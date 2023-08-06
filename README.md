@@ -1,1 +1,0 @@
-# odin-cv-application
