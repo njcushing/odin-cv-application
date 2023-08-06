@@ -1,4 +1,10 @@
+import { useState } from 'react'
+import './../styles/Form.css'
+
+import InputSingleLine from './InputSingleLine.jsx'
+
 function Form() {
+    let page = "Home";
     let counter = 0;
     const CVInformation = {
         firstName: "",
@@ -7,6 +13,8 @@ function Form() {
         phoneNumber: "",
         previousEducation: [],
         previousEmployment: [],
+        hobbiesInterests: "",
+        references: [],
     }
     const previousEducation = () => {
         return {
@@ -34,12 +42,37 @@ function Form() {
             endDate: null,
         }
     }
+    const references = () => {
+        return {
+            id: counter++,
+            firstName: "",
+            lastName: "",
+            relation: "",
+            emailAddress: "",
+            phoneNumber: "",
+        }
+    }
 
-    return (
-        <>
-        
-        </>
-    )
+    switch (page) {
+        case "Home":
+            break;
+        case "PersonalInfo":
+            break;
+        case "Education":
+            break;
+        case "Employment":
+            break;
+        case "HobbiesInterests":
+            break;
+        case "References":
+            break;
+        case "Review":
+            break;
+        case "Submitted":
+            break;
+        default:
+            return null;
+    }
 }
 
 export default Form
