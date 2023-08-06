@@ -53,6 +53,7 @@ const references = () => {
 }
 
 function Form() {
+    const [currentPage, setCurrentPage] = useState("PersonalInfo");
     const [personalInformation, setPersonalInformation] = useState({
         firstName: "",
         lastName: "",
@@ -60,30 +61,55 @@ function Form() {
         phoneNumber: "",
     });
 
-    switch (page) {
+    const classNames = {
+        formSectionTitle: "cv-application-form-section-title",
+        inputsArea: "cv-application-inputs-area"
+    }
+
+    switch (currentPage) {
         case "Home":
             return (
                 <>
-                <h2>Personal Information</h2>
-                <InputSingleLine
-                    labelText="First Name(s): "
-                    inputValue={personalInformation.firstName}
-                    changeHandler={(e) => setPersonalInformation(
-                        { ...personalInformation, firstName: e.target.value }
-                    )}
-                />
-                <InputSingleLine
-                    labelText="Last Name: "
-                    inputValue={personalInformation.lastName}
-                    changeHandler={(e) => setPersonalInformation(
-                        { ...personalInformation, lastName: e.target.value }
-                    )}
-                />
                 </>
             )
         case "PersonalInfo":
             return (
                 <>
+                <h2 className={classNames.formSectionTitle}>Personal Information</h2>
+                <div className={classNames.inputsArea}>
+                    <InputSingleLine
+                        inputType="text"
+                        labelText="First Name(s): "
+                        inputValue={personalInformation.firstName}
+                        changeHandler={(e) => setPersonalInformation(
+                            { ...personalInformation, firstName: e.target.value }
+                        )}
+                    />
+                    <InputSingleLine
+                        inputType="text"
+                        labelText="Last Name: "
+                        inputValue={personalInformation.lastName}
+                        changeHandler={(e) => setPersonalInformation(
+                            { ...personalInformation, lastName: e.target.value }
+                        )}
+                    />
+                    <InputSingleLine
+                        inputType="email"
+                        labelText="Email Address: "
+                        inputValue={personalInformation.emailAddress}
+                        changeHandler={(e) => setPersonalInformation(
+                            { ...personalInformation, emailAddress: e.target.value }
+                        )}
+                    />
+                    <InputSingleLine
+                        inputType="tel"
+                        labelText="Telephone Number: "
+                        inputValue={personalInformation.phoneNumber}
+                        changeHandler={(e) => setPersonalInformation(
+                            { ...personalInformation, phoneNumber: e.target.value }
+                        )}
+                    />
+                </div>
                 </>
             )
         case "Education":
@@ -121,4 +147,4 @@ function Form() {
     }
 }
 
-export default Form
+export default Form;

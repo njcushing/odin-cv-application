@@ -1,0 +1,4 @@
+.cv-application-inputs-area {
+    display: grid;
+    grid-template-rows: auto;
+}

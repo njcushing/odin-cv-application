@@ -1,8 +1,9 @@
 const InputSingleLine = ({
 
+    inputType = "text",
     labelText = "Label",
     inputValue = "",
-    changeHandler=null,
+    changeHandler = null,
 
 }) => {
     
@@ -10,7 +11,11 @@ const InputSingleLine = ({
         <>
         <label>
             {labelText}
-            <input type='text' value={inputValue} onChange={changeHandler}>
+            <input
+                type={inputType}
+                value={inputValue}
+                onChange={changeHandler}
+            >
             </input>
         </label>
         </>
