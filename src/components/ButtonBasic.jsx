@@ -1,6 +1,6 @@
 const ButtonBasic = ({
 
-    buttonText = "Label",
+    buttonText = "Button",
     clickHandler = null,
 
 }) => {

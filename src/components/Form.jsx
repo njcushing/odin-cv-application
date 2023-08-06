@@ -3,8 +3,8 @@ import './../styles/Form.css'
 
 import InputSingleLine from './InputSingleLine.jsx'
 import ButtonBasic from './ButtonBasic.jsx'
+import TextBox from './TextBox.jsx'
 
-let page = "Home";
 let counter = 0;
 const CVInformation = {
     firstName: "",
@@ -54,8 +54,6 @@ const references = () => {
 }
 
 function Form() {
-    const totalPages = 8;
-
     const [currentPage, setCurrentPage] = useState("PersonalInfo");
     const [personalInformation, setPersonalInformation] = useState({
         firstName: "",
@@ -63,9 +61,12 @@ function Form() {
         emailAddress: "",
         phoneNumber: "",
     });
+    const [hobbiesInterests, setHobbiesInterests] = useState("");
 
     const classNames = {
+        formContainer: "cv-application-form-container",
         formSectionTitle: "cv-application-form-section-title",
+        textRegular: "cv-application-text-regular",
         inputsArea: "cv-application-inputs-area",
         pageButtons: "cv-application-page-buttons",
     }
@@ -73,16 +74,18 @@ function Form() {
     switch (currentPage) {
         case "Home":
             return (
-                <>
+                <div className={classNames.formContainer}>
+                <h2 className={classNames.formSectionTitle}>CV Application</h2>
+                <h4 className={classNames.textRegular}>Click the button below to get started</h4>
                 <div className={classNames.pageButtons}>
                     <ButtonBasic buttonText="Next Page" clickHandler={() => 
                         setCurrentPage("PersonalInfo")}/>
                 </div>
-                </>
+                </div>
             )
         case "PersonalInfo":
             return (
-                <>
+                <div className={classNames.formContainer}>
                 <h2 className={classNames.formSectionTitle}>Personal Information</h2>
                 <div className={classNames.inputsArea}>
                     <InputSingleLine
@@ -124,71 +127,86 @@ function Form() {
                     <ButtonBasic buttonText="Next Page" clickHandler={() => 
                         setCurrentPage("Education")}/>
                 </div>
-                </>
+                </div>
             )
         case "Education":
             return (
-                <>
+                <div className={classNames.formContainer}>
+                <h2 className={classNames.formSectionTitle}>Education</h2>
                 <div className={classNames.pageButtons}>
                     <ButtonBasic buttonText="Previous Page" clickHandler={() => 
                         setCurrentPage("PersonalInfo")}/>
                     <ButtonBasic buttonText="Next Page" clickHandler={() => 
                         setCurrentPage("Employment")}/>
                 </div>
-                </>
+                </div>
             )
         case "Employment":
             return (
-                <>
+                <div className={classNames.formContainer}>
+                <h2 className={classNames.formSectionTitle}>Previous Employment</h2>
                 <div className={classNames.pageButtons}>
                     <ButtonBasic buttonText="Previous Page" clickHandler={() => 
                         setCurrentPage("Education")}/>
                     <ButtonBasic buttonText="Next Page" clickHandler={() => 
                         setCurrentPage("HobbiesInterests")}/>
                 </div>
-                </>
+                </div>
             )
         case "HobbiesInterests":
             return (
-                <>
+                <div className={classNames.formContainer}>
+                <h2 className={classNames.formSectionTitle}>Hobbies and Interests</h2>
+                <h4 className={classNames.textRegular}>
+                    Please tell us a little more about yourself using the box below</h4>
+                <TextBox
+                    textBoxText={hobbiesInterests}
+                    changeHandler={(e) => setHobbiesInterests(e.target.value)}
+                    size={[600, 440]}
+                    resize="none"
+                    scrollable={true}
+                    maxLength={500}
+                />
                 <div className={classNames.pageButtons}>
                     <ButtonBasic buttonText="Previous Page" clickHandler={() => 
                         setCurrentPage("Employment")}/>
                     <ButtonBasic buttonText="Next Page" clickHandler={() => 
                         setCurrentPage("References")}/>
                 </div>
-                </>
+                </div>
             )
         case "References":
             return (
-                <>
+                <div className={classNames.formContainer}>
+                <h2 className={classNames.formSectionTitle}>Personal References</h2>
                 <div className={classNames.pageButtons}>
                     <ButtonBasic buttonText="Previous Page" clickHandler={() => 
                         setCurrentPage("HobbiesInterests")}/>
                     <ButtonBasic buttonText="Next Page" clickHandler={() => 
                         setCurrentPage("Review")}/>
                 </div>
-                </>
+                </div>
             )
         case "Review":
             return (
-                <>
+                <div className={classNames.formContainer}>
+                <h2 className={classNames.formSectionTitle}>Review Your Information</h2>
                 <div className={classNames.pageButtons}>
                     <ButtonBasic buttonText="Previous Page" clickHandler={() => 
                         setCurrentPage("References")}/>
                     <ButtonBasic buttonText="Next Page" clickHandler={() => 
                         setCurrentPage("Submitted")}/>
                 </div>
-                </>
+                </div>
             )
         case "Submitted":
             return (
-                <>
+                <div className={classNames.formContainer}>
                 <div className={classNames.pageButtons}>
                     <ButtonBasic buttonText="Previous Page" clickHandler={() => 
                         setCurrentPage("Review")}/>
                 </div>
-                </>
+                </div>
             )
         default:
             return null;
