@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './../styles/Form.css'
 
 import InputSingleLine from './InputSingleLine.jsx'
+import ButtonBasic from './ButtonBasic.jsx'
 
 let page = "Home";
 let counter = 0;
@@ -53,6 +54,8 @@ const references = () => {
 }
 
 function Form() {
+    const totalPages = 8;
+
     const [currentPage, setCurrentPage] = useState("PersonalInfo");
     const [personalInformation, setPersonalInformation] = useState({
         firstName: "",
@@ -63,13 +66,18 @@ function Form() {
 
     const classNames = {
         formSectionTitle: "cv-application-form-section-title",
-        inputsArea: "cv-application-inputs-area"
+        inputsArea: "cv-application-inputs-area",
+        pageButtons: "cv-application-page-buttons",
     }
 
     switch (currentPage) {
         case "Home":
             return (
                 <>
+                <div className={classNames.pageButtons}>
+                    <ButtonBasic buttonText="Next Page" clickHandler={() => 
+                        setCurrentPage("PersonalInfo")}/>
+                </div>
                 </>
             )
         case "PersonalInfo":
@@ -110,36 +118,76 @@ function Form() {
                         )}
                     />
                 </div>
+                <div className={classNames.pageButtons}>
+                    <ButtonBasic buttonText="Previous Page" clickHandler={() => 
+                        setCurrentPage("Home")}/>
+                    <ButtonBasic buttonText="Next Page" clickHandler={() => 
+                        setCurrentPage("Education")}/>
+                </div>
                 </>
             )
         case "Education":
             return (
                 <>
+                <div className={classNames.pageButtons}>
+                    <ButtonBasic buttonText="Previous Page" clickHandler={() => 
+                        setCurrentPage("PersonalInfo")}/>
+                    <ButtonBasic buttonText="Next Page" clickHandler={() => 
+                        setCurrentPage("Employment")}/>
+                </div>
                 </>
             )
         case "Employment":
             return (
                 <>
+                <div className={classNames.pageButtons}>
+                    <ButtonBasic buttonText="Previous Page" clickHandler={() => 
+                        setCurrentPage("Education")}/>
+                    <ButtonBasic buttonText="Next Page" clickHandler={() => 
+                        setCurrentPage("HobbiesInterests")}/>
+                </div>
                 </>
             )
         case "HobbiesInterests":
             return (
                 <>
+                <div className={classNames.pageButtons}>
+                    <ButtonBasic buttonText="Previous Page" clickHandler={() => 
+                        setCurrentPage("Employment")}/>
+                    <ButtonBasic buttonText="Next Page" clickHandler={() => 
+                        setCurrentPage("References")}/>
+                </div>
                 </>
             )
         case "References":
             return (
                 <>
+                <div className={classNames.pageButtons}>
+                    <ButtonBasic buttonText="Previous Page" clickHandler={() => 
+                        setCurrentPage("HobbiesInterests")}/>
+                    <ButtonBasic buttonText="Next Page" clickHandler={() => 
+                        setCurrentPage("Review")}/>
+                </div>
                 </>
             )
         case "Review":
             return (
                 <>
+                <div className={classNames.pageButtons}>
+                    <ButtonBasic buttonText="Previous Page" clickHandler={() => 
+                        setCurrentPage("References")}/>
+                    <ButtonBasic buttonText="Next Page" clickHandler={() => 
+                        setCurrentPage("Submitted")}/>
+                </div>
                 </>
             )
         case "Submitted":
             return (
                 <>
+                <div className={classNames.pageButtons}>
+                    <ButtonBasic buttonText="Previous Page" clickHandler={() => 
+                        setCurrentPage("Review")}/>
+                </div>
                 </>
             )
         default:
