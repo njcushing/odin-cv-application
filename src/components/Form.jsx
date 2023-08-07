@@ -20,7 +20,7 @@ const previousEducationNew = () => {
     return {
         uniqueID: counter++,
         institution: "",
-        qualifications: [],
+        qualifications: "",
         startDate: null,
         endDate: null,
     }
@@ -157,6 +157,21 @@ function Form() {
                                     setPreviousEducation(previousEducationCopy);
                                 }}
                             />
+                            <label>
+                                Qualifications: 
+                                <TextBox
+                                    textBoxText={education.qualifications}
+                                    changeHandler={(e) => {
+                                        var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
+                                        previousEducationCopy.get(uniqueID).qualifications = e.target.value;
+                                        setPreviousEducation(previousEducationCopy);
+                                    }}
+                                    size={[600, 440]}
+                                    resize="none"
+                                    scrollable={true}
+                                    maxLength={500}
+                                />
+                            </label>
                             </div>
                         )
                     })}
