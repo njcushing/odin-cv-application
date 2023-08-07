@@ -143,14 +143,19 @@ function Form() {
                 <h4 className={classNames.textRegular}>Please include some examples
                 of where and what you have studied</h4>
                 <div>
-                    {[...previousEducation.keys()].map((education) => {
-                        const id = education.id;
+                    {[...previousEducation.keys()].map((uniqueID) => {
+                        const education = previousEducation.get(uniqueID);
                         return (
-                            <div key={id}>
+                            <div key={uniqueID}>
                             <InputSingleLine
                                 inputType="text"
                                 labelText="Institution: "
                                 inputValue={education.institution}
+                                changeHandler={(e) => {
+                                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
+                                    previousEducationCopy.get(uniqueID).institution = e.target.value;
+                                    setPreviousEducation(previousEducationCopy);
+                                }}
                             />
                             </div>
                         )
