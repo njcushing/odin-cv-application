@@ -53,10 +53,6 @@ const references = () => {
     }
 }
 
-const test = new Map();
-const edu = previousEducationNew();
-test.set(edu.uniqueID, edu);
-
 function Form() {
     const [currentPage, setCurrentPage] = useState("Education");
     const [personalInformation, setPersonalInformation] = useState({
@@ -65,7 +61,7 @@ function Form() {
         emailAddress: "",
         phoneNumber: "",
     });
-    const [previousEducation, setPreviousEducation] = useState(test);
+    const [previousEducation, setPreviousEducation] = useState(new Map());
     const [hobbiesInterests, setHobbiesInterests] = useState("");
 
     const classNames = {
@@ -166,19 +162,35 @@ function Form() {
                                         previousEducationCopy.get(uniqueID).qualifications = e.target.value;
                                         setPreviousEducation(previousEducationCopy);
                                     }}
-                                    size={[600, 440]}
+                                    size={[400, 160]}
                                     resize="none"
                                     scrollable={true}
                                     maxLength={500}
                                 />
                             </label>
+                            <ButtonBasic
+                                buttonText="Delete"
+                                clickHandler={() => {
+                                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
+                                    previousEducationCopy.delete(uniqueID);
+                                    setPreviousEducation(previousEducationCopy);
+                                }}
+                            />
                             </div>
                         )
                     })}
                 </div>
                 <div className={classNames.addFieldButton}>
-                    <ButtonBasic buttonText="+" clickHandler={() => {
-                    }}/>
+                    <ButtonBasic
+                        buttonText="+"
+                        clickHandler={() => {
+                            var newEducation = previousEducationNew();
+                            var uniqueID = newEducation.uniqueID;
+                            var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
+                            previousEducationCopy.set(uniqueID, newEducation);
+                            setPreviousEducation(previousEducationCopy);
+                        }}
+                    />
                 </div>
                 <div className={classNames.pageButtons}>
                     <ButtonBasic buttonText="Previous Page" clickHandler={() => 
