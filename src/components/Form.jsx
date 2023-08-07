@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './../styles/Form.css'
 
-import InputSingleLine from './InputSingleLine.jsx'
 import ButtonBasic from './ButtonBasic.jsx'
+import InputSingleLine from './InputSingleLine.jsx'
 import TextBox from './TextBox.jsx'
 
 let counter = 0;
@@ -16,9 +16,9 @@ const CVInformation = {
     hobbiesInterests: "",
     references: [],
 }
-const previousEducation = () => {
+const previousEducationNew = () => {
     return {
-        id: counter++,
+        uniqueID: counter++,
         institution: "",
         qualifications: [],
         startDate: null,
@@ -27,14 +27,14 @@ const previousEducation = () => {
 }
 const qualification = () => {
     return {
-        id: counter++,
+        uniqueID: counter++,
         name: "",
         grade: "",
     }
 }
 const previousEmployment = () => {
     return {
-        id: counter++,
+        uniqueID: counter++,
         company: "",
         role: "",
         responsibilities: "",
@@ -44,7 +44,7 @@ const previousEmployment = () => {
 }
 const references = () => {
     return {
-        id: counter++,
+        uniqueID: counter++,
         firstName: "",
         lastName: "",
         relation: "",
@@ -53,14 +53,19 @@ const references = () => {
     }
 }
 
+const test = new Map();
+const edu = previousEducationNew();
+test.set(edu.uniqueID, edu);
+
 function Form() {
-    const [currentPage, setCurrentPage] = useState("PersonalInfo");
+    const [currentPage, setCurrentPage] = useState("Education");
     const [personalInformation, setPersonalInformation] = useState({
         firstName: "",
         lastName: "",
         emailAddress: "",
         phoneNumber: "",
     });
+    const [previousEducation, setPreviousEducation] = useState(test);
     const [hobbiesInterests, setHobbiesInterests] = useState("");
 
     const classNames = {
@@ -68,6 +73,8 @@ function Form() {
         formSectionTitle: "cv-application-form-section-title",
         textRegular: "cv-application-text-regular",
         inputsArea: "cv-application-inputs-area",
+        getStartedButton: "cv-application-get-started-button",
+        addFieldButton: "cv-application-add-field-button",
         pageButtons: "cv-application-page-buttons",
     }
 
@@ -77,8 +84,8 @@ function Form() {
                 <div className={classNames.formContainer}>
                 <h2 className={classNames.formSectionTitle}>CV Application</h2>
                 <h4 className={classNames.textRegular}>Click the button below to get started</h4>
-                <div className={classNames.pageButtons}>
-                    <ButtonBasic buttonText="Next Page" clickHandler={() => 
+                <div className={classNames.getStartedButton}>
+                    <ButtonBasic buttonText="Get Started" clickHandler={() => 
                         setCurrentPage("PersonalInfo")}/>
                 </div>
                 </div>
@@ -133,6 +140,26 @@ function Form() {
             return (
                 <div className={classNames.formContainer}>
                 <h2 className={classNames.formSectionTitle}>Education</h2>
+                <h4 className={classNames.textRegular}>Please include some examples
+                of where and what you have studied</h4>
+                <div>
+                    {[...previousEducation.keys()].map((education) => {
+                        const id = education.id;
+                        return (
+                            <div key={id}>
+                            <InputSingleLine
+                                inputType="text"
+                                labelText="Institution: "
+                                inputValue={education.institution}
+                            />
+                            </div>
+                        )
+                    })}
+                </div>
+                <div className={classNames.addFieldButton}>
+                    <ButtonBasic buttonText="+" clickHandler={() => {
+                    }}/>
+                </div>
                 <div className={classNames.pageButtons}>
                     <ButtonBasic buttonText="Previous Page" clickHandler={() => 
                         setCurrentPage("PersonalInfo")}/>
