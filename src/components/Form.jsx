@@ -73,8 +73,15 @@ function Form() {
         inputsArea: "cv-application-inputs-area",
         getStartedButton: "cv-application-get-started-button",
         addFieldButton: "cv-application-add-field-button",
+        requiredFieldWarning: "cv-application-required-field-warning",
         pageButtons: "cv-application-page-buttons",
     }
+
+    const requiredFieldWarning = (
+        <div className={classNames.requiredFieldWarning}>
+            Any field marked by an asterisk (*) is a <strong>required</strong> field.
+        </div>
+    )
 
     switch (currentPage) {
         case "Home":
@@ -92,9 +99,10 @@ function Form() {
             return (
                 <div className={classNames.formContainer}>
                 <h2 className={classNames.formSectionTitle}>Personal Information</h2>
+                {requiredFieldWarning}
                 <div className={classNames.personalInfoContainer}>
                     <InputSingleLine
-                        label="First Name(s): "
+                        label="First Name(s)*: "
                         inputType="text"
                         inputValue={personalInformation.firstName}
                         inputID="personal-info-first-name"
@@ -103,7 +111,7 @@ function Form() {
                         )}
                     />
                     <InputSingleLine
-                        label="Last Name: "
+                        label="Last Name*: "
                         inputType="text"
                         inputValue={personalInformation.lastName}
                         inputID="personal-info-last-name"
@@ -112,7 +120,7 @@ function Form() {
                         )}
                     />
                     <InputSingleLine
-                        label="Email Address: "
+                        label="Email Address*: "
                         inputType="email"
                         inputValue={personalInformation.emailAddress}
                         inputID="personal-info-email-address"
@@ -121,7 +129,7 @@ function Form() {
                         )}
                     />
                     <InputSingleLine
-                        label="Telephone Number: "
+                        label="Telephone Number*: "
                         inputType="tel"
                         inputValue={personalInformation.phoneNumber}
                         inputID="personal-info-phone-number"

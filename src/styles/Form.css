@@ -16,6 +16,12 @@
     text-align: center;
 }
 
+.cv-application-required-field-warning {
+    font-size: 0.7rem;
+    color: rgb(34, 34, 34);
+    text-align: center;
+}
+
 .cv-application-personal-info-container {
     display: flex;
     flex-direction: column;
@@ -55,4 +61,16 @@
 .cv-application-inputs-area {
     display: grid;
     grid-template-rows: auto;
+}
+
+.cv-application-page-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.cv-application-page-buttons .button-basic {
+    border-radius: 0.3rem;
+    border: none;
+    outline: 1px solid black;
+    color: red;
 }

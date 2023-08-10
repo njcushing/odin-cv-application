@@ -7,7 +7,12 @@ const ButtonBasic = ({
     
     return (
         <>
-        <button onClick={clickHandler}>
+        <button
+            onClick={clickHandler}
+            className={[
+                "button-basic"
+            ]}
+        >
             {buttonText}
         </button>
         </>
