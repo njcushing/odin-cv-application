@@ -1,6 +1,8 @@
 const DatePicker = ({
 
-    label="",
+    label = "",
+    date = "",
+    changeHandler = null,
 
 }) => {
     
@@ -10,6 +12,8 @@ const DatePicker = ({
             {label}
                 <input
                     type="date"
+                    onChange={changeHandler}
+                    value={date}
                 ></input>
             </label>
         </>

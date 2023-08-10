@@ -178,7 +178,34 @@ function Form() {
                                 }}
                             />
                             <DatePicker
-                                label="Start Date"
+                                label="Start Date: "
+                                date={education.startDate}
+                                changeHandler={(e) => {
+                                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
+                                    previousEducationCopy.get(uniqueID).startDate = e.target.value;
+                                    if (
+                                        new Date(previousEducationCopy.get(uniqueID).startDate) >
+                                        new Date(previousEducationCopy.get(uniqueID).endDate)
+                                    ) {
+                                        previousEducationCopy.get(uniqueID).endDate = e.target.value;
+                                    }
+                                    setPreviousEducation(previousEducationCopy);
+                                }}
+                            />
+                            <DatePicker
+                                label="End Date: "
+                                date={education.endDate}
+                                changeHandler={(e) => {
+                                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
+                                    previousEducationCopy.get(uniqueID).endDate = e.target.value;
+                                    if (
+                                        new Date(previousEducationCopy.get(uniqueID).endDate) <
+                                        new Date(previousEducationCopy.get(uniqueID).startDate)
+                                    ) {
+                                        previousEducationCopy.get(uniqueID).startDate = e.target.value;
+                                    }
+                                    setPreviousEducation(previousEducationCopy);
+                                }}
                             />
                             </div>
                         )
