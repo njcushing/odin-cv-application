@@ -93,32 +93,32 @@ function Form() {
                 <h2 className={classNames.formSectionTitle}>Personal Information</h2>
                 <div className={classNames.inputsArea}>
                     <InputSingleLine
+                        label="First Name(s): "
                         inputType="text"
-                        labelText="First Name(s): "
                         inputValue={personalInformation.firstName}
                         changeHandler={(e) => setPersonalInformation(
                             { ...personalInformation, firstName: e.target.value }
                         )}
                     />
                     <InputSingleLine
+                        label="Last Name: "
                         inputType="text"
-                        labelText="Last Name: "
                         inputValue={personalInformation.lastName}
                         changeHandler={(e) => setPersonalInformation(
                             { ...personalInformation, lastName: e.target.value }
                         )}
                     />
                     <InputSingleLine
+                        label="Email Address: "
                         inputType="email"
-                        labelText="Email Address: "
                         inputValue={personalInformation.emailAddress}
                         changeHandler={(e) => setPersonalInformation(
                             { ...personalInformation, emailAddress: e.target.value }
                         )}
                     />
                     <InputSingleLine
+                        label="Telephone Number: "
                         inputType="tel"
-                        labelText="Telephone Number: "
                         inputValue={personalInformation.phoneNumber}
                         changeHandler={(e) => setPersonalInformation(
                             { ...personalInformation, phoneNumber: e.target.value }
@@ -145,8 +145,8 @@ function Form() {
                         return (
                             <div key={uniqueID}>
                             <InputSingleLine
+                                label="Institution: "
                                 inputType="text"
-                                labelText="Institution: "
                                 inputValue={education.institution}
                                 changeHandler={(e) => {
                                     var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
@@ -169,14 +169,6 @@ function Form() {
                                     maxLength={500}
                                 />
                             </label>
-                            <ButtonBasic
-                                buttonText="Delete"
-                                clickHandler={() => {
-                                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
-                                    previousEducationCopy.delete(uniqueID);
-                                    setPreviousEducation(previousEducationCopy);
-                                }}
-                            />
                             <DatePicker
                                 label="Start Date: "
                                 date={education.startDate}
@@ -204,6 +196,14 @@ function Form() {
                                     ) {
                                         previousEducationCopy.get(uniqueID).startDate = e.target.value;
                                     }
+                                    setPreviousEducation(previousEducationCopy);
+                                }}
+                            />
+                            <ButtonBasic
+                                buttonText="Delete"
+                                clickHandler={() => {
+                                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
+                                    previousEducationCopy.delete(uniqueID);
                                     setPreviousEducation(previousEducationCopy);
                                 }}
                             />
