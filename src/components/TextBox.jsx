@@ -1,6 +1,7 @@
 const TextBox = ({
 
-    textBoxText = "Label",
+    label="",
+    textBoxText = "",
     changeHandler = null,
     size = [50, 50],
     resize = "none",
@@ -18,13 +19,16 @@ const TextBox = ({
     
     return (
         <>
-        <textarea
-            onChange={changeHandler}
-            value={textBoxText}
-            maxLength={maxLength}
-            style={styles}
-        >
-        </textarea>
+        <label>
+            {label}
+            <textarea
+                onChange={changeHandler}
+                value={textBoxText}
+                maxLength={maxLength}
+                style={styles}
+            >
+            </textarea>
+        </label>
         </>
     )
     

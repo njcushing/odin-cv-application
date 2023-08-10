@@ -4,6 +4,7 @@ import './../styles/Form.css'
 import ButtonBasic from './ButtonBasic.jsx'
 import InputSingleLine from './InputSingleLine.jsx'
 import TextBox from './TextBox.jsx'
+import DatePicker from './DatePicker.jsx'
 
 let counter = 0;
 const CVInformation = {
@@ -154,8 +155,8 @@ function Form() {
                                 }}
                             />
                             <label>
-                                Qualifications: 
                                 <TextBox
+                                    label="Qualifications: "
                                     textBoxText={education.qualifications}
                                     changeHandler={(e) => {
                                         var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
@@ -175,6 +176,9 @@ function Form() {
                                     previousEducationCopy.delete(uniqueID);
                                     setPreviousEducation(previousEducationCopy);
                                 }}
+                            />
+                            <DatePicker
+                                label="Start Date"
                             />
                             </div>
                         )
@@ -219,6 +223,7 @@ function Form() {
                 <h4 className={classNames.textRegular}>
                     Please tell us a little more about yourself using the box below</h4>
                 <TextBox
+                    label=""
                     textBoxText={hobbiesInterests}
                     changeHandler={(e) => setHobbiesInterests(e.target.value)}
                     size={[600, 440]}
