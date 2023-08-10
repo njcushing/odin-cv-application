@@ -71,6 +71,16 @@
 .cv-application-page-buttons .button-basic {
     border-radius: 0.3rem;
     border: none;
-    outline: 1px solid black;
-    color: red;
+    outline: 1px solid rgb(66, 66, 66);
+    color: rgb(0, 0, 0);
+    background-color: #f0f0f0;
+    font-size: 1rem;
+    width: 8rem;
+    height: 2.2rem;
+}
+.cv-application-page-buttons .button-basic:hover {
+    background-color: #dfdfdf;
+}
+.cv-application-page-buttons .button-basic:active {
+    background-color: #d1d1d1;
 }
