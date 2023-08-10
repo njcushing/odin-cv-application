@@ -2,8 +2,8 @@ const TextBox = ({
 
     label="",
     textBoxText = "",
+    textareaID = "",
     changeHandler = null,
-    size = [50, 50],
     resize = "none",
     scrollable = true,
     maxLength = -1,
@@ -11,8 +11,6 @@ const TextBox = ({
 }) => {
 
     const styles = {
-        width: size[0],
-        height: size[1],
         resize: resize,
         overflowY: (scrollable ? "scroll" : "hidden"),
     }
@@ -27,19 +25,21 @@ const TextBox = ({
             className={[
                 "TextBox-label"
             ]}
+            htmlFor={textareaID}
         >
             {label}
-            <textarea
-                className={[
-                    "TextBox-textarea"
-                ]}
-                onChange={changeHandler}
-                value={textBoxText}
-                maxLength={maxLength}
-                style={styles}
-            >
-            </textarea>
         </label>
+        <textarea
+            id={textareaID}
+            className={[
+                "TextBox-textarea"
+            ]}
+            onChange={changeHandler}
+            value={textBoxText}
+            maxLength={maxLength}
+            style={styles}
+        >
+        </textarea>
         </div>
     )
     

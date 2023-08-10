@@ -167,7 +167,7 @@ function Form() {
                                 label="Institution: "
                                 inputType="text"
                                 inputValue={education.institution}
-                                inputID={`personal-info-institution-name-${education.institution}`}
+                                inputID={`personal-info-institution-name-${education.uniqueID}`}
                                 changeHandler={(e) => {
                                     var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
                                     previousEducationCopy.get(uniqueID).institution = e.target.value;
@@ -178,12 +178,12 @@ function Form() {
                                 <TextBox
                                     label="Qualifications: "
                                     textBoxText={education.qualifications}
+                                    textareaID={`personal-info-qualifications-${education.uniqueID}`}
                                     changeHandler={(e) => {
                                         var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
                                         previousEducationCopy.get(uniqueID).qualifications = e.target.value;
                                         setPreviousEducation(previousEducationCopy);
                                     }}
-                                    size={[400, 160]}
                                     resize="none"
                                     scrollable={true}
                                     maxLength={500}
@@ -274,8 +274,8 @@ function Form() {
                 <TextBox
                     label=""
                     textBoxText={hobbiesInterests}
+                    textareaID="hobbies-interests"
                     changeHandler={(e) => setHobbiesInterests(e.target.value)}
-                    size={[600, 440]}
                     resize="none"
                     scrollable={true}
                     maxLength={500}
