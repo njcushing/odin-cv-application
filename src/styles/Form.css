@@ -63,24 +63,54 @@
     grid-template-rows: auto;
 }
 
+.cv-application-get-started-button .button-basic,
+.cv-application-page-buttons .button-basic {
+    border-radius: 0.3rem;
+    border: none;
+    font-size: 1rem;
+    width: 8rem;
+    height: 2.2rem;
+}
+
+.cv-application-get-started-button {
+    justify-self: center;
+}
+.cv-application-get-started-button .button-basic {
+    outline: 1px solid rgb(66, 66, 66);
+    color: rgb(0, 0, 0);
+    background-color: #b4f5b4;
+    font-size: 1.6rem;
+    width: 10rem;
+    height: 2.4rem;
+}
+.cv-application-get-started-button .button-basic:hover {
+    outline: 2px solid rgb(37, 37, 37);
+    background-color: #c4f8c4;
+    box-shadow: 0px 4px 5px -0px rgba(0, 0, 0, 0.3);
+}
+.cv-application-get-started-button .button-basic:active {
+    outline: 2px solid rgb(37, 37, 37);
+    background-color: #81e081;
+    box-shadow: 0px 4px 5px -0px rgba(0, 0, 0, 0.3);
+}
+
 .cv-application-page-buttons {
     display: flex;
     justify-content: center;
     gap: 1rem;
 }
 .cv-application-page-buttons .button-basic {
-    border-radius: 0.3rem;
-    border: none;
     outline: 1px solid rgb(66, 66, 66);
     color: rgb(0, 0, 0);
     background-color: #f0f0f0;
-    font-size: 1rem;
-    width: 8rem;
-    height: 2.2rem;
 }
 .cv-application-page-buttons .button-basic:hover {
-    background-color: #dfdfdf;
+    outline: 2px solid rgb(37, 37, 37);
+    background-color: #f1f1f1;
+    box-shadow: 0px 4px 5px -0px rgba(0, 0, 0, 0.3);
 }
 .cv-application-page-buttons .button-basic:active {
-    background-color: #d1d1d1;
+    outline: 2px solid rgb(37, 37, 37);
+    background-color: #dadada;
+    box-shadow: 0px 4px 5px -0px rgba(0, 0, 0, 0.3);
 }
