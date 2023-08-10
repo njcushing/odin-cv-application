@@ -11,13 +11,13 @@ const InputSingleLine = ({
     return (
         <div
             className={[
-                "input-single-line"
+                "InputSingleLine"
             ]}
         >
         <label
             htmlFor={inputID}
             className={[
-                "input-single-line-label"
+                "InputSingleLine-label"
             ]}
         >
             {label}
@@ -28,7 +28,7 @@ const InputSingleLine = ({
             value={inputValue}
             onChange={changeHandler}
             className={[
-                "input-single-line-input"
+                "InputSingleLine-input"
             ]}
         >
         </input>

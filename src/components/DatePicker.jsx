@@ -7,16 +7,27 @@ const DatePicker = ({
 }) => {
     
     return (
-        <>
-            <label>
+        <div
+            className={[
+                "DatePicker"
+            ]}
+        >
+            <label
+                className={[
+                    "DatePicker-label"
+                ]}
+            >
             {label}
-                <input
-                    type="date"
-                    onChange={changeHandler}
-                    value={date}
-                ></input>
             </label>
-        </>
+            <input
+                className={[
+                    "DatePicker-input"
+                ]}
+                type="date"
+                onChange={changeHandler}
+                value={date}
+            ></input>
+        </div>
     )
 
 }

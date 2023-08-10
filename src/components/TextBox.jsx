@@ -18,10 +18,21 @@ const TextBox = ({
     }
     
     return (
-        <>
-        <label>
+        <div
+            className={[
+                "TextBox"
+            ]}
+        >
+        <label
+            className={[
+                "TextBox-label"
+            ]}
+        >
             {label}
             <textarea
+                className={[
+                    "TextBox-textarea"
+                ]}
                 onChange={changeHandler}
                 value={textBoxText}
                 maxLength={maxLength}
@@ -29,7 +40,7 @@ const TextBox = ({
             >
             </textarea>
         </label>
-        </>
+        </div>
     )
     
 }

@@ -70,6 +70,8 @@ function Form() {
         formSectionTitle: "cv-application-form-section-title",
         textRegular: "cv-application-text-regular",
         personalInfoContainer: "cv-application-personal-info-container",
+        previousEducationContainer: "cv-application-previous-education-container",
+        previousEducationElement: "cv-application-previous-education-element",
         inputsArea: "cv-application-inputs-area",
         getStartedButton: "cv-application-get-started-button",
         addFieldButton: "cv-application-add-field-button",
@@ -150,13 +152,17 @@ function Form() {
             return (
                 <div className={classNames.formContainer}>
                 <h2 className={classNames.formSectionTitle}>Education</h2>
+                {requiredFieldWarning}
                 <h4 className={classNames.textRegular}>Please include some examples
                 of where and what you have studied</h4>
-                <div>
+                <div className={classNames.previousEducationContainer}>
                     {[...previousEducation.keys()].map((uniqueID) => {
                         const education = previousEducation.get(uniqueID);
                         return (
-                            <div key={uniqueID}>
+                            <div
+                                className={classNames.previousEducationElement}
+                                key={uniqueID}
+                            >
                             <InputSingleLine
                                 label="Institution: "
                                 inputType="text"
@@ -249,6 +255,7 @@ function Form() {
             return (
                 <div className={classNames.formContainer}>
                 <h2 className={classNames.formSectionTitle}>Previous Employment</h2>
+                {requiredFieldWarning}
                 <div className={classNames.pageButtons}>
                     <ButtonBasic buttonText="Previous Page" clickHandler={() => 
                         setCurrentPage("Education")}/>
@@ -261,6 +268,7 @@ function Form() {
             return (
                 <div className={classNames.formContainer}>
                 <h2 className={classNames.formSectionTitle}>Hobbies and Interests</h2>
+                {requiredFieldWarning}
                 <h4 className={classNames.textRegular}>
                     Please tell us a little more about yourself using the box below</h4>
                 <TextBox
@@ -284,6 +292,7 @@ function Form() {
             return (
                 <div className={classNames.formContainer}>
                 <h2 className={classNames.formSectionTitle}>Personal References</h2>
+                {requiredFieldWarning}
                 <div className={classNames.pageButtons}>
                     <ButtonBasic buttonText="Previous Page" clickHandler={() => 
                         setCurrentPage("HobbiesInterests")}/>
@@ -296,6 +305,7 @@ function Form() {
             return (
                 <div className={classNames.formContainer}>
                 <h2 className={classNames.formSectionTitle}>Review Your Information</h2>
+                {requiredFieldWarning}
                 <div className={classNames.pageButtons}>
                     <ButtonBasic buttonText="Previous Page" clickHandler={() => 
                         setCurrentPage("References")}/>

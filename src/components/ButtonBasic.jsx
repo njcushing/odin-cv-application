@@ -10,7 +10,7 @@ const ButtonBasic = ({
         <button
             onClick={clickHandler}
             className={[
-                "button-basic"
+                "ButtonBasic"
             ]}
         >
             {buttonText}
