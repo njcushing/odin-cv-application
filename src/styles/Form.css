@@ -74,12 +74,14 @@
 }
 .cv-application-personal-info-container .InputSingleLine-input:hover,
 .cv-application-previous-education-container .cv-application-previous-education-element .InputSingleLine-input:hover,
-.cv-application-previous-education-container .cv-application-previous-education-element .TextBox-textarea:hover {
+.cv-application-previous-education-container .cv-application-previous-education-element .TextBox-textarea:hover,
+.cv-application-previous-education-container .cv-application-previous-education-element .DatePicker-input:hover {
     outline: 2px solid rgb(37, 37, 37);
 }
 .cv-application-personal-info-container .InputSingleLine-input:focus,
 .cv-application-previous-education-container .cv-application-previous-education-element .InputSingleLine-input:focus,
-.cv-application-previous-education-container .cv-application-previous-education-element .TextBox-textarea:focus {
+.cv-application-previous-education-container .cv-application-previous-education-element .TextBox-textarea:focus,
+.cv-application-previous-education-container .cv-application-previous-education-element .DatePicker-input:focus {
     outline: 2px solid rgb(37, 37, 37);
     background-color: rgba(0, 0, 0, 0.03);
     box-shadow: 0px 4px 5px -0px rgba(0, 0, 0, 0.3);

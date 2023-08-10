@@ -191,6 +191,7 @@ function Form() {
                             </label>
                             <DatePicker
                                 label="Start Date: "
+                                inputID={`personal-info-start-date-${education.uniqueID}`}
                                 date={education.startDate}
                                 changeHandler={(e) => {
                                     var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
@@ -206,6 +207,7 @@ function Form() {
                             />
                             <DatePicker
                                 label="End Date: "
+                                inputID={`personal-info-end-date-${education.uniqueID}`}
                                 date={education.endDate}
                                 changeHandler={(e) => {
                                     var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));

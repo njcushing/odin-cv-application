@@ -1,6 +1,7 @@
 const DatePicker = ({
 
     label = "",
+    inputID = "",
     date = "",
     changeHandler = null,
 
@@ -13,6 +14,7 @@ const DatePicker = ({
             ]}
         >
             <label
+                htmlFor={inputID}
                 className={[
                     "DatePicker-label"
                 ]}
@@ -20,6 +22,7 @@ const DatePicker = ({
             {label}
             </label>
             <input
+                id={inputID}
                 className={[
                     "DatePicker-input"
                 ]}
