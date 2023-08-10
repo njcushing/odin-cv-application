@@ -69,6 +69,7 @@ function Form() {
         formContainer: "cv-application-form-container",
         formSectionTitle: "cv-application-form-section-title",
         textRegular: "cv-application-text-regular",
+        personalInfoContainer: "cv-application-personal-info-container",
         inputsArea: "cv-application-inputs-area",
         getStartedButton: "cv-application-get-started-button",
         addFieldButton: "cv-application-add-field-button",
@@ -91,11 +92,12 @@ function Form() {
             return (
                 <div className={classNames.formContainer}>
                 <h2 className={classNames.formSectionTitle}>Personal Information</h2>
-                <div className={classNames.inputsArea}>
+                <div className={classNames.personalInfoContainer}>
                     <InputSingleLine
                         label="First Name(s): "
                         inputType="text"
                         inputValue={personalInformation.firstName}
+                        inputID="personal-info-first-name"
                         changeHandler={(e) => setPersonalInformation(
                             { ...personalInformation, firstName: e.target.value }
                         )}
@@ -104,6 +106,7 @@ function Form() {
                         label="Last Name: "
                         inputType="text"
                         inputValue={personalInformation.lastName}
+                        inputID="personal-info-last-name"
                         changeHandler={(e) => setPersonalInformation(
                             { ...personalInformation, lastName: e.target.value }
                         )}
@@ -112,6 +115,7 @@ function Form() {
                         label="Email Address: "
                         inputType="email"
                         inputValue={personalInformation.emailAddress}
+                        inputID="personal-info-email-address"
                         changeHandler={(e) => setPersonalInformation(
                             { ...personalInformation, emailAddress: e.target.value }
                         )}
@@ -120,6 +124,7 @@ function Form() {
                         label="Telephone Number: "
                         inputType="tel"
                         inputValue={personalInformation.phoneNumber}
+                        inputID="personal-info-phone-number"
                         changeHandler={(e) => setPersonalInformation(
                             { ...personalInformation, phoneNumber: e.target.value }
                         )}
@@ -148,6 +153,7 @@ function Form() {
                                 label="Institution: "
                                 inputType="text"
                                 inputValue={education.institution}
+                                inputID={`personal-info-institution-name-${education.institution}`}
                                 changeHandler={(e) => {
                                     var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
                                     previousEducationCopy.get(uniqueID).institution = e.target.value;

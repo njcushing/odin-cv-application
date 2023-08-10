@@ -3,22 +3,36 @@ const InputSingleLine = ({
     label = "Label",
     inputType = "text",
     inputValue = "",
+    inputID = "",
     changeHandler = null,
 
 }) => {
     
     return (
-        <>
-        <label>
+        <div
+            className={[
+                "input-single-line"
+            ]}
+        >
+        <label
+            htmlFor={inputID}
+            className={[
+                "input-single-line-label"
+            ]}
+        >
             {label}
-            <input
-                type={inputType}
-                value={inputValue}
-                onChange={changeHandler}
-            >
-            </input>
         </label>
-        </>
+        <input
+            id={inputID}
+            type={inputType}
+            value={inputValue}
+            onChange={changeHandler}
+            className={[
+                "input-single-line-input"
+            ]}
+        >
+        </input>
+        </div>
     )
     
 }
