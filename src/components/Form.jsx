@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import './../styles/Form.css'
+import { useState } from 'react';
+import './../styles/Form.css';
 
-import ButtonBasic from './ButtonBasic.jsx'
-import InputSingleLine from './InputSingleLine.jsx'
-import TextBox from './TextBox.jsx'
-import DatePicker from './DatePicker.jsx'
+import { v4 as uuidv4 } from 'uuid';
+import ButtonBasic from './ButtonBasic.jsx';
+import InputSingleLine from './InputSingleLine.jsx';
+import TextBox from './TextBox.jsx';
+import DatePicker from './DatePicker.jsx';
 
-let counter = 0;
 const CVInformation = {
     firstName: "",
     secondName: "",
@@ -19,7 +19,7 @@ const CVInformation = {
 }
 const previousEducationNew = () => {
     return {
-        uniqueID: counter++,
+        uniqueID: uuidv4(),
         institution: "",
         qualifications: "",
         startDate: null,
@@ -28,14 +28,14 @@ const previousEducationNew = () => {
 }
 const qualification = () => {
     return {
-        uniqueID: counter++,
+        uniqueID: uuidv4(),
         name: "",
         grade: "",
     }
 }
 const previousEmployment = () => {
     return {
-        uniqueID: counter++,
+        uniqueID: uuidv4(),
         company: "",
         role: "",
         responsibilities: "",
@@ -45,7 +45,7 @@ const previousEmployment = () => {
 }
 const references = () => {
     return {
-        uniqueID: counter++,
+        uniqueID: uuidv4(),
         firstName: "",
         lastName: "",
         relation: "",
