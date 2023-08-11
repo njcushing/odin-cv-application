@@ -61,61 +61,6 @@
     box-shadow: 0px 4px 5px -0px rgba(0, 0, 0, 0.3);
 }
 
-.cv-application-previous-education-container {
-    display: grid;
-    grid-template-rows: auto;
-    padding: 1rem 0.2rem;
-    gap: 1rem;
-}
-.cv-application-previous-education-element {
-    place-self: center;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-}
-.cv-application-previous-education-element .institution-name,
-.cv-application-previous-education-element .qualifications,
-.cv-application-previous-education-element .start-date,
-.cv-application-previous-education-element .end-date {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 1rem;
-}
-.cv-application-previous-education-element .institution-name {
-    grid-area: 1 / 1 / 2 / 2;
-}
-.cv-application-previous-education-element .qualifications {
-    grid-area: 2 / 1 / 3 / 2;
-}
-.cv-application-previous-education-element .qualifications .TextBox-textarea {
-    height: 10rem;
-}
-.cv-application-previous-education-element .start-date {
-    grid-area: 3 / 1 / 4 / 2;
-}
-.cv-application-previous-education-element .end-date {
-    grid-area: 4 / 1 / 5 / 2;
-}
-.cv-application-previous-education-element .ButtonBasic {
-    border-radius: 0.3rem;
-    border: none;
-    font-size: 1rem;
-    font-weight: bold;
-    color: rgb(255, 255, 255);
-    padding: 0.2rem 0.4rem;
-    width: 7rem;
-    height: 1.8rem;
-    place-self: end;
-    grid-area: 5 / 1 / 6 / 2;
-    background-color: #e73333;
-}
-.cv-application-previous-education-element .ButtonBasic:hover {
-    background-color: #f54e4e;
-}
-.cv-application-previous-education-element .ButtonBasic:active {
-    background-color: #c51717;
-}
-
 .cv-application-previous-employment-container {
     display: grid;
     grid-template-rows: auto;

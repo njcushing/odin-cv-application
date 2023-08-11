@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './../styles/PersonalInformation.css';
 
 import InputSingleLine from './InputSingleLine.jsx';

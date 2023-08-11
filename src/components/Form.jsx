@@ -7,6 +7,7 @@ import InputSingleLine from './InputSingleLine.jsx';
 import TextBox from './TextBox.jsx';
 import DatePicker from './DatePicker.jsx';
 import PersonalInformation from './PersonalInformation.jsx';
+import PreviousEducation from './PreviousEducation.jsx';
 
 const previousEducationNew = () => {
     return {
@@ -72,6 +73,14 @@ function Form() {
     }
 
     const sectionTitle = (title) => <h2 className={classNames.formSectionTitle}>{title}</h2>
+    const textRegular = (text) => <h4 className={classNames.textRegular}>{text}</h4>
+
+    const getStartedButton = (
+        <div className={classNames.getStartedButton}>
+            <ButtonBasic buttonText="Get Started" clickHandler={() => 
+                setCurrentPage("PersonalInfo")}/>
+        </div>
+    )
 
     const requiredFieldWarning = (
         <div className={classNames.requiredFieldWarning}>
@@ -79,7 +88,8 @@ function Form() {
         </div>
     )
 
-    const personalInfo = (
+    const personalInfoComponent = (
+        <div className={classNames.personalInfoContainer}>
         <PersonalInformation
             firstNames={personalInformation.firstName}
             firstNamesChangeHandler={(e) => setPersonalInformation(
@@ -97,8 +107,88 @@ function Form() {
             phoneNumberChangeHandler={(e) => setPersonalInformation(
                 { ...personalInformation, phoneNumber: e.target.value }
             )}
-            classNames={[classNames.personalInfoContainer]}
         />
+        </div>
+    )
+
+    const previousEducationComponent = (
+        <div className={classNames.previousEducationContainer}>
+        {[...previousEducation.keys()].map((uniqueID) => {
+            const education = previousEducation.get(uniqueID);
+            return (<PreviousEducation
+                institution={education.institution}
+                institutionChangeHandler={(e) => {
+                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
+                    previousEducationCopy.get(uniqueID).institution = e.target.value;
+                    setPreviousEducation(previousEducationCopy);
+                }}
+                qualifications={education.qualifications}
+                qualificationsChangeHandler={(e) => {
+                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
+                    previousEducationCopy.get(uniqueID).qualifications = e.target.value;
+                    setPreviousEducation(previousEducationCopy);
+                }}
+                startDate={education.startDate}
+                startDateChangeHandler={(e) => {
+                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
+                    previousEducationCopy.get(uniqueID).startDate = e.target.value;
+                    if (
+                        new Date(previousEducationCopy.get(uniqueID).startDate) >
+                        new Date(previousEducationCopy.get(uniqueID).endDate)
+                    ) {
+                        previousEducationCopy.get(uniqueID).endDate = e.target.value;
+                    }
+                    setPreviousEducation(previousEducationCopy);
+                }}
+                endDate={education.endDate}
+                endDateChangeHandler={(e) => {
+                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
+                    previousEducationCopy.get(uniqueID).endDate = e.target.value;
+                    if (
+                        new Date(previousEducationCopy.get(uniqueID).endDate) <
+                        new Date(previousEducationCopy.get(uniqueID).startDate)
+                    ) {
+                        previousEducationCopy.get(uniqueID).startDate = e.target.value;
+                    }
+                    setPreviousEducation(previousEducationCopy);
+                }}
+                deleteButtonClickHandler={() => {
+                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
+                    previousEducationCopy.delete(uniqueID);
+                    setPreviousEducation(previousEducationCopy);
+                }}
+                classNames={[classNames.previousEducationElement]}
+                key={uniqueID}
+            />)
+        })}
+        <div className={classNames.addFieldButton}>
+            <ButtonBasic
+                buttonText="Create New"
+                clickHandler={() => {
+                    var newEducation = previousEducationNew();
+                    var uniqueID = newEducation.uniqueID;
+                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
+                    previousEducationCopy.set(uniqueID, newEducation);
+                    setPreviousEducation(previousEducationCopy);
+                }}
+            />
+        </div>
+        </div>
+    )
+
+    const hobbiesInterestsComponent = (
+        <div className={classNames.hobbiesInterestsContainer}>
+        {textRegular("Please tell us a little more about yourself using the box below")}
+        <TextBox
+            label=""
+            textBoxText={hobbiesInterests}
+            textareaID="hobbies-interests"
+            changeHandler={(e) => setHobbiesInterests(e.target.value)}
+            resize="none"
+            scrollable={true}
+            maxLength={500}
+        />
+        </div>
     )
 
     const pageButtons = (prev, next) => {
@@ -117,11 +207,8 @@ function Form() {
             return (
                 <div className={classNames.formContainer}>
                 {sectionTitle("CV Application")}
-                <h4 className={classNames.textRegular}>Click the button below to get started</h4>
-                <div className={classNames.getStartedButton}>
-                    <ButtonBasic buttonText="Get Started" clickHandler={() => 
-                        setCurrentPage("PersonalInfo")}/>
-                </div>
+                {textRegular("Click the button below to get started")}
+                {getStartedButton}
                 </div>
             )
         case "PersonalInfo":
@@ -129,7 +216,7 @@ function Form() {
                 <div className={classNames.formContainer}>
                 {sectionTitle("Personal Information")}
                 {requiredFieldWarning}
-                {personalInfo}
+                {personalInfoComponent}
                 {pageButtons("Home", "Education")}
                 </div>
             )
@@ -138,98 +225,7 @@ function Form() {
                 <div className={classNames.formContainer}>
                 {sectionTitle("Education")}
                 {requiredFieldWarning}
-                <div className={classNames.previousEducationContainer}>
-                    {[...previousEducation.keys()].map((uniqueID) => {
-                        const education = previousEducation.get(uniqueID);
-                        return (
-                            <div
-                                className={classNames.previousEducationElement}
-                                key={uniqueID}
-                            >
-                            <InputSingleLine
-                                label="Institution*: "
-                                inputType="text"
-                                inputValue={education.institution}
-                                inputID={`previous-education-institution-name-${education.uniqueID}`}
-                                classNames={["institution-name"]}
-                                changeHandler={(e) => {
-                                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
-                                    previousEducationCopy.get(uniqueID).institution = e.target.value;
-                                    setPreviousEducation(previousEducationCopy);
-                                }}
-                            />
-                            <TextBox
-                                label="Qualifications: "
-                                textBoxText={education.qualifications}
-                                textareaID={`previous-education-qualifications-${education.uniqueID}`}
-                                classNames={["qualifications"]}
-                                changeHandler={(e) => {
-                                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
-                                    previousEducationCopy.get(uniqueID).qualifications = e.target.value;
-                                    setPreviousEducation(previousEducationCopy);
-                                }}
-                                resize="none"
-                                scrollable={true}
-                                maxLength={500}
-                            />
-                            <DatePicker
-                                label="Start Date*: "
-                                inputID={`previous-education-start-date-${education.uniqueID}`}
-                                date={education.startDate}
-                                classNames={["start-date"]}
-                                changeHandler={(e) => {
-                                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
-                                    previousEducationCopy.get(uniqueID).startDate = e.target.value;
-                                    if (
-                                        new Date(previousEducationCopy.get(uniqueID).startDate) >
-                                        new Date(previousEducationCopy.get(uniqueID).endDate)
-                                    ) {
-                                        previousEducationCopy.get(uniqueID).endDate = e.target.value;
-                                    }
-                                    setPreviousEducation(previousEducationCopy);
-                                }}
-                            />
-                            <DatePicker
-                                label="End Date*: "
-                                inputID={`previous-education-end-date-${education.uniqueID}`}
-                                date={education.endDate}
-                                classNames={["end-date"]}
-                                changeHandler={(e) => {
-                                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
-                                    previousEducationCopy.get(uniqueID).endDate = e.target.value;
-                                    if (
-                                        new Date(previousEducationCopy.get(uniqueID).endDate) <
-                                        new Date(previousEducationCopy.get(uniqueID).startDate)
-                                    ) {
-                                        previousEducationCopy.get(uniqueID).startDate = e.target.value;
-                                    }
-                                    setPreviousEducation(previousEducationCopy);
-                                }}
-                            />
-                            <ButtonBasic
-                                buttonText="Delete"
-                                clickHandler={() => {
-                                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
-                                    previousEducationCopy.delete(uniqueID);
-                                    setPreviousEducation(previousEducationCopy);
-                                }}
-                            />
-                            </div>
-                        )
-                    })}
-                    <div className={classNames.addFieldButton}>
-                        <ButtonBasic
-                            buttonText="Create New"
-                            clickHandler={() => {
-                                var newEducation = previousEducationNew();
-                                var uniqueID = newEducation.uniqueID;
-                                var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
-                                previousEducationCopy.set(uniqueID, newEducation);
-                                setPreviousEducation(previousEducationCopy);
-                            }}
-                        />
-                    </div>
-                </div>
+                {previousEducationComponent}
                 {pageButtons("PersonalInfo", "Employment")}
                 </div>
             )
@@ -350,19 +346,7 @@ function Form() {
                 <div className={classNames.formContainer}>
                 {sectionTitle("Hobbies Interests")}
                 {requiredFieldWarning}
-                <div className={classNames.hobbiesInterestsContainer}>
-                <h4 className={classNames.textRegular}>
-                    Please tell us a little more about yourself using the box below</h4>
-                <TextBox
-                    label=""
-                    textBoxText={hobbiesInterests}
-                    textareaID="hobbies-interests"
-                    changeHandler={(e) => setHobbiesInterests(e.target.value)}
-                    resize="none"
-                    scrollable={true}
-                    maxLength={500}
-                />
-                </div>
+                {hobbiesInterestsComponent}
                 {pageButtons("Employment", "References")}
                 </div>
             )
