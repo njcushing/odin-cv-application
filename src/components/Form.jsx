@@ -72,6 +72,7 @@ function Form() {
         personalInfoContainer: "cv-application-personal-info-container",
         previousEducationContainer: "cv-application-previous-education-container",
         previousEducationElement: "cv-application-previous-education-element",
+        hobbiesInterestsContainer: "cv-application-hobbies-interests-container",
         inputsArea: "cv-application-inputs-area",
         getStartedButton: "cv-application-get-started-button",
         addFieldButton: "cv-application-add-field-button",
@@ -275,6 +276,7 @@ function Form() {
                 <div className={classNames.formContainer}>
                 <h2 className={classNames.formSectionTitle}>Hobbies and Interests</h2>
                 {requiredFieldWarning}
+                <div className={classNames.hobbiesInterestsContainer}>
                 <h4 className={classNames.textRegular}>
                     Please tell us a little more about yourself using the box below</h4>
                 <TextBox
@@ -286,6 +288,7 @@ function Form() {
                     scrollable={true}
                     maxLength={500}
                 />
+                </div>
                 <div className={classNames.pageButtons}>
                     <ButtonBasic buttonText="Previous Page" clickHandler={() => 
                         setCurrentPage("Employment")}/>

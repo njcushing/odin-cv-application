@@ -11,18 +11,22 @@
     gap: 0.5rem;
 }
 
-.cv-application-form-section-title {
-    font-size: 2rem;
+.cv-application-form-section-title,
+.cv-application-required-field-warning,
+.cv-application-text-regular {
     color: rgb(34, 34, 34);
     text-align: center;
+}
+.cv-application-form-section-title {
+    font-size: 2rem;
     height: 3rem;
     margin: 0rem;
 }
-
 .cv-application-required-field-warning {
     font-size: 0.7rem;
-    color: rgb(34, 34, 34);
-    text-align: center;
+}
+.cv-application-text-regular {
+    font-size: 1rem;
 }
 
 .InputSingleLine-label,
@@ -135,19 +139,21 @@
 .cv-application-previous-education-element .ButtonBasic:active {
     background-color: #c51717;
 }
-.cv-application-add-field-button {
+
+.cv-application-hobbies-interests-container {
+    display: grid;
+    grid-template-rows: auto;
+    padding: 1rem 0.2rem;
+}
+.cv-application-hobbies-interests-container .cv-application-text-regular {
+    margin: 0rem;
+}
+.cv-application-hobbies-interests-container .TextBox {
     place-self: center;
 }
-.cv-application-add-field-button .ButtonBasic {
-    width: 10rem;
-    height: 2rem;
-    background-color: #31c22c;
-}
-.cv-application-add-field-button .ButtonBasic:hover {
-    background-color: #4bdb46;
-}
-.cv-application-add-field-button .ButtonBasic:active {
-    background-color: #23aa1f;
+.cv-application-hobbies-interests-container .TextBox-textarea {
+    width: 36rem;
+    height: 12rem;
 }
 
 .cv-application-inputs-area {
@@ -189,6 +195,7 @@
 .cv-application-page-buttons {
     display: flex;
     justify-content: center;
+    align-items: flex-end;
     gap: 1rem;
 }
 .cv-application-page-buttons .ButtonBasic {
@@ -205,4 +212,19 @@
     outline: 2px solid rgb(37, 37, 37);
     background-color: #dadada;
     box-shadow: 0px 4px 5px -0px rgba(0, 0, 0, 0.3);
+}
+
+.cv-application-add-field-button {
+    place-self: center;
+}
+.cv-application-add-field-button .ButtonBasic {
+    width: 10rem;
+    height: 2rem;
+    background-color: #31c22c;
+}
+.cv-application-add-field-button .ButtonBasic:hover {
+    background-color: #4bdb46;
+}
+.cv-application-add-field-button .ButtonBasic:active {
+    background-color: #23aa1f;
 }
