@@ -108,6 +108,7 @@ function Form() {
                         inputType="text"
                         inputValue={personalInformation.firstName}
                         inputID="personal-info-first-name"
+                        classNames={["first-names"]}
                         changeHandler={(e) => setPersonalInformation(
                             { ...personalInformation, firstName: e.target.value }
                         )}
@@ -117,6 +118,7 @@ function Form() {
                         inputType="text"
                         inputValue={personalInformation.lastName}
                         inputID="personal-info-last-name"
+                        classNames={["last-name"]}
                         changeHandler={(e) => setPersonalInformation(
                             { ...personalInformation, lastName: e.target.value }
                         )}
@@ -126,6 +128,7 @@ function Form() {
                         inputType="email"
                         inputValue={personalInformation.emailAddress}
                         inputID="personal-info-email-address"
+                        classNames={["email-address"]}
                         changeHandler={(e) => setPersonalInformation(
                             { ...personalInformation, emailAddress: e.target.value }
                         )}
@@ -135,6 +138,7 @@ function Form() {
                         inputType="tel"
                         inputValue={personalInformation.phoneNumber}
                         inputID="personal-info-phone-number"
+                        classNames={["phone-number"]}
                         changeHandler={(e) => setPersonalInformation(
                             { ...personalInformation, phoneNumber: e.target.value }
                         )}
