@@ -26,14 +26,7 @@ const previousEducationNew = () => {
         endDate: null,
     }
 }
-const qualification = () => {
-    return {
-        uniqueID: uuidv4(),
-        name: "",
-        grade: "",
-    }
-}
-const previousEmployment = () => {
+const previousEmploymentNew = () => {
     return {
         uniqueID: uuidv4(),
         company: "",
@@ -43,7 +36,7 @@ const previousEmployment = () => {
         endDate: null,
     }
 }
-const references = () => {
+const referenceNew = () => {
     return {
         uniqueID: uuidv4(),
         firstName: "",
@@ -65,6 +58,7 @@ function Form() {
     const [previousEducation, setPreviousEducation] = useState(new Map());
     const [previousEmployment, setPreviousEmployment] = useState(new Map());
     const [hobbiesInterests, setHobbiesInterests] = useState("");
+    const [references, setReferences] = useState(new Map());
 
     const classNames = {
         formContainer: "cv-application-form-container",
@@ -76,6 +70,8 @@ function Form() {
         previousEmploymentContainer: "cv-application-previous-employment-container",
         previousEmploymentElement: "cv-application-previous-employment-element",
         hobbiesInterestsContainer: "cv-application-hobbies-interests-container",
+        referencesContainer: "cv-application-references-container",
+        referencesElement: "cv-application-references-element",
         inputsArea: "cv-application-inputs-area",
         getStartedButton: "cv-application-get-started-button",
         addFieldButton: "cv-application-add-field-button",
@@ -361,7 +357,7 @@ function Form() {
                         <ButtonBasic
                             buttonText="Create New"
                             clickHandler={() => {
-                                var newEmployment = previousEducationNew();
+                                var newEmployment = previousEmploymentNew();
                                 var uniqueID = newEmployment.uniqueID;
                                 var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
                                 previousEmploymentCopy.set(uniqueID, newEmployment);
@@ -409,6 +405,98 @@ function Form() {
                 <div className={classNames.formContainer}>
                 <h2 className={classNames.formSectionTitle}>Personal References</h2>
                 {requiredFieldWarning}
+                <div className={classNames.referencesContainer}>
+                    {[...references.keys()].map((uniqueID) => {
+                        const reference = references.get(uniqueID);
+                        return (
+                            <div
+                                className={classNames.referencesElement}
+                                key={uniqueID}
+                            >
+                            <InputSingleLine
+                                label="First Name(s)*: "
+                                inputType="text"
+                                inputValue={reference.firstName}
+                                inputID={`references-first-names-${reference.uniqueID}`}
+                                classNames={["first-names"]}
+                                changeHandler={(e) => {
+                                    var referencesCopy = new Map(JSON.parse(JSON.stringify(Array.from(references))));
+                                    referencesCopy.get(uniqueID).firstName = e.target.value;
+                                    setReferences(referencesCopy);
+                                }}
+                            />
+                            <InputSingleLine
+                                label="Last Name*: "
+                                inputType="text"
+                                inputValue={reference.lastName}
+                                inputID={`references-last-name-${reference.uniqueID}`}
+                                classNames={["last-name"]}
+                                changeHandler={(e) => {
+                                    var referencesCopy = new Map(JSON.parse(JSON.stringify(Array.from(references))));
+                                    referencesCopy.get(uniqueID).lastName = e.target.value;
+                                    setReferences(referencesCopy);
+                                }}
+                            />
+                            <InputSingleLine
+                                label="Relationship*: "
+                                inputType="text"
+                                inputValue={reference.relationship}
+                                inputID={`references-relationship-${reference.uniqueID}`}
+                                classNames={["relationship"]}
+                                changeHandler={(e) => {
+                                    var referencesCopy = new Map(JSON.parse(JSON.stringify(Array.from(references))));
+                                    referencesCopy.get(uniqueID).relationship = e.target.value;
+                                    setReferences(referencesCopy);
+                                }}
+                            />
+                            <InputSingleLine
+                                label="Email Address*: "
+                                inputType="email"
+                                inputValue={reference.emailAddress}
+                                inputID={`references-email-address-${reference.uniqueID}`}
+                                classNames={["email-address"]}
+                                changeHandler={(e) => {
+                                    var referencesCopy = new Map(JSON.parse(JSON.stringify(Array.from(references))));
+                                    referencesCopy.get(uniqueID).emailAddress = e.target.value;
+                                    setReferences(referencesCopy);
+                                }}
+                            />
+                            <InputSingleLine
+                                label="Telephone Number*: "
+                                inputType="tel"
+                                inputValue={reference.phoneNumber}
+                                inputID={`references-phone-number-${reference.uniqueID}`}
+                                classNames={["phone-number"]}
+                                changeHandler={(e) => {
+                                    var referencesCopy = new Map(JSON.parse(JSON.stringify(Array.from(references))));
+                                    referencesCopy.get(uniqueID).phoneNumber = e.target.value;
+                                    setReferences(referencesCopy);
+                                }}
+                            />
+                            <ButtonBasic
+                                buttonText="Delete"
+                                clickHandler={() => {
+                                    var referencesCopy = new Map(JSON.parse(JSON.stringify(Array.from(references))));
+                                    referencesCopy.delete(uniqueID);
+                                    setReferences(referencesCopy);
+                                }}
+                            />
+                            </div>
+                        )
+                    })}
+                    <div className={classNames.addFieldButton}>
+                        <ButtonBasic
+                            buttonText="Create New"
+                            clickHandler={() => {
+                                var newReference = referenceNew();
+                                var uniqueID = newReference.uniqueID;
+                                var referencesCopy = new Map(JSON.parse(JSON.stringify(Array.from(references))));
+                                referencesCopy.set(uniqueID, newReference);
+                                setReferences(referencesCopy);
+                            }}
+                        />
+                    </div>
+                </div>
                 <div className={classNames.pageButtons}>
                     <ButtonBasic buttonText="Previous Page" clickHandler={() => 
                         setCurrentPage("HobbiesInterests")}/>
