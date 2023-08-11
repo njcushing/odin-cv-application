@@ -218,8 +218,8 @@
     place-self: center;
 }
 .cv-application-add-field-button .ButtonBasic {
-    width: 10rem;
-    height: 2rem;
+    min-width: 10rem;
+    min-height: 2rem;
     background-color: #31c22c;
 }
 .cv-application-add-field-button .ButtonBasic:hover {

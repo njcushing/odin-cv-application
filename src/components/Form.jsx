@@ -63,6 +63,7 @@ function Form() {
         phoneNumber: "",
     });
     const [previousEducation, setPreviousEducation] = useState(new Map());
+    const [previousEmployment, setPreviousEmployment] = useState(new Map());
     const [hobbiesInterests, setHobbiesInterests] = useState("");
 
     const classNames = {
@@ -72,6 +73,8 @@ function Form() {
         personalInfoContainer: "cv-application-personal-info-container",
         previousEducationContainer: "cv-application-previous-education-container",
         previousEducationElement: "cv-application-previous-education-element",
+        previousEmploymentContainer: "cv-application-previous-employment-container",
+        previousEmploymentElement: "cv-application-previous-employment-element",
         hobbiesInterestsContainer: "cv-application-hobbies-interests-container",
         inputsArea: "cv-application-inputs-area",
         getStartedButton: "cv-application-get-started-button",
@@ -170,7 +173,7 @@ function Form() {
                                 label="Institution*: "
                                 inputType="text"
                                 inputValue={education.institution}
-                                inputID={`personal-info-institution-name-${education.uniqueID}`}
+                                inputID={`previous-education-institution-name-${education.uniqueID}`}
                                 classNames={["institution-name"]}
                                 changeHandler={(e) => {
                                     var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
@@ -181,7 +184,7 @@ function Form() {
                             <TextBox
                                 label="Qualifications: "
                                 textBoxText={education.qualifications}
-                                textareaID={`personal-info-qualifications-${education.uniqueID}`}
+                                textareaID={`previous-education-qualifications-${education.uniqueID}`}
                                 classNames={["qualifications"]}
                                 changeHandler={(e) => {
                                     var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
@@ -194,7 +197,7 @@ function Form() {
                             />
                             <DatePicker
                                 label="Start Date*: "
-                                inputID={`personal-info-start-date-${education.uniqueID}`}
+                                inputID={`previous-education-start-date-${education.uniqueID}`}
                                 date={education.startDate}
                                 classNames={["start-date"]}
                                 changeHandler={(e) => {
@@ -211,7 +214,7 @@ function Form() {
                             />
                             <DatePicker
                                 label="End Date*: "
-                                inputID={`personal-info-end-date-${education.uniqueID}`}
+                                inputID={`previous-education-end-date-${education.uniqueID}`}
                                 date={education.endDate}
                                 classNames={["end-date"]}
                                 changeHandler={(e) => {
@@ -263,6 +266,110 @@ function Form() {
                 <div className={classNames.formContainer}>
                 <h2 className={classNames.formSectionTitle}>Previous Employment</h2>
                 {requiredFieldWarning}
+                <div className={classNames.previousEmploymentContainer}>
+                    {[...previousEmployment.keys()].map((uniqueID) => {
+                        const employment = previousEmployment.get(uniqueID);
+                        return (
+                            <div
+                                className={classNames.previousEmploymentElement}
+                                key={uniqueID}
+                            >
+                            <InputSingleLine
+                                label="Company*: "
+                                inputType="text"
+                                inputValue={employment.company}
+                                inputID={`previous-employment-company-name-${employment.uniqueID}`}
+                                classNames={["company-name"]}
+                                changeHandler={(e) => {
+                                    var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
+                                    previousEmploymentCopy.get(uniqueID).company = e.target.value;
+                                    setPreviousEmployment(previousEmploymentCopy);
+                                }}
+                            />
+                            <InputSingleLine
+                                label="Role*: "
+                                inputType="text"
+                                inputValue={employment.role}
+                                inputID={`previous-employment-role-${employment.uniqueID}`}
+                                classNames={["role"]}
+                                changeHandler={(e) => {
+                                    var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
+                                    previousEmploymentCopy.get(uniqueID).role = e.target.value;
+                                    setPreviousEmployment(previousEmploymentCopy);
+                                }}
+                            />
+                            <TextBox
+                                label="Responsibilities: "
+                                textBoxText={employment.responsibilities}
+                                textareaID={`previous-employment-responsibilities-${employment.uniqueID}`}
+                                classNames={["responsibilities"]}
+                                changeHandler={(e) => {
+                                    var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
+                                    previousEmploymentCopy.get(uniqueID).responsibilities = e.target.value;
+                                    setPreviousEmployment(previousEmploymentCopy);
+                                }}
+                                resize="none"
+                                scrollable={true}
+                                maxLength={500}
+                            />
+                            <DatePicker
+                                label="Start Date*: "
+                                inputID={`previous-employment-start-date-${employment.uniqueID}`}
+                                date={employment.startDate}
+                                classNames={["start-date"]}
+                                changeHandler={(e) => {
+                                    var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
+                                    previousEmploymentCopy.get(uniqueID).startDate = e.target.value;
+                                    if (
+                                        new Date(previousEmploymentCopy.get(uniqueID).startDate) >
+                                        new Date(previousEmploymentCopy.get(uniqueID).endDate)
+                                    ) {
+                                        previousEmploymentCopy.get(uniqueID).endDate = e.target.value;
+                                    }
+                                    setPreviousEmployment(previousEmploymentCopy);
+                                }}
+                            />
+                            <DatePicker
+                                label="End Date*: "
+                                inputID={`previous-employment-end-date-${employment.uniqueID}`}
+                                date={employment.endDate}
+                                classNames={["end-date"]}
+                                changeHandler={(e) => {
+                                    var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
+                                    previousEmploymentCopy.get(uniqueID).endDate = e.target.value;
+                                    if (
+                                        new Date(previousEmploymentCopy.get(uniqueID).endDate) <
+                                        new Date(previousEmploymentCopy.get(uniqueID).startDate)
+                                    ) {
+                                        previousEmploymentCopy.get(uniqueID).startDate = e.target.value;
+                                    }
+                                    setPreviousEmployment(previousEmploymentCopy);
+                                }}
+                            />
+                            <ButtonBasic
+                                buttonText="Delete"
+                                clickHandler={() => {
+                                    var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
+                                    previousEmploymentCopy.delete(uniqueID);
+                                    setPreviousEmployment(previousEmploymentCopy);
+                                }}
+                            />
+                            </div>
+                        )
+                    })}
+                    <div className={classNames.addFieldButton}>
+                        <ButtonBasic
+                            buttonText="Create New"
+                            clickHandler={() => {
+                                var newEmployment = previousEducationNew();
+                                var uniqueID = newEmployment.uniqueID;
+                                var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
+                                previousEmploymentCopy.set(uniqueID, newEmployment);
+                                setPreviousEmployment(previousEmploymentCopy);
+                            }}
+                        />
+                    </div>
+                </div>
                 <div className={classNames.pageButtons}>
                     <ButtonBasic buttonText="Previous Page" clickHandler={() => 
                         setCurrentPage("Education")}/>
