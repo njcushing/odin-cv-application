@@ -1,6 +1,7 @@
 const ButtonBasic = ({
 
     buttonText = "Button",
+    classNames = [],
     clickHandler = null,
 
 }) => {
@@ -9,9 +10,7 @@ const ButtonBasic = ({
         <>
         <button
             onClick={clickHandler}
-            className={[
-                "ButtonBasic"
-            ]}
+            className={["ButtonBasic"].concat(classNames).join(" ")}
         >
             {buttonText}
         </button>

@@ -153,8 +153,6 @@ function Form() {
                 <div className={classNames.formContainer}>
                 <h2 className={classNames.formSectionTitle}>Education</h2>
                 {requiredFieldWarning}
-                <h4 className={classNames.textRegular}>Please include some examples
-                of where and what you have studied</h4>
                 <div className={classNames.previousEducationContainer}>
                     {[...previousEducation.keys()].map((uniqueID) => {
                         const education = previousEducation.get(uniqueID);
@@ -164,35 +162,36 @@ function Form() {
                                 key={uniqueID}
                             >
                             <InputSingleLine
-                                label="Institution: "
+                                label="Institution*: "
                                 inputType="text"
                                 inputValue={education.institution}
                                 inputID={`personal-info-institution-name-${education.uniqueID}`}
+                                classNames={["institution-name"]}
                                 changeHandler={(e) => {
                                     var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
                                     previousEducationCopy.get(uniqueID).institution = e.target.value;
                                     setPreviousEducation(previousEducationCopy);
                                 }}
                             />
-                            <label>
-                                <TextBox
-                                    label="Qualifications: "
-                                    textBoxText={education.qualifications}
-                                    textareaID={`personal-info-qualifications-${education.uniqueID}`}
-                                    changeHandler={(e) => {
-                                        var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
-                                        previousEducationCopy.get(uniqueID).qualifications = e.target.value;
-                                        setPreviousEducation(previousEducationCopy);
-                                    }}
-                                    resize="none"
-                                    scrollable={true}
-                                    maxLength={500}
-                                />
-                            </label>
+                            <TextBox
+                                label="Qualifications: "
+                                textBoxText={education.qualifications}
+                                textareaID={`personal-info-qualifications-${education.uniqueID}`}
+                                classNames={["qualifications"]}
+                                changeHandler={(e) => {
+                                    var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
+                                    previousEducationCopy.get(uniqueID).qualifications = e.target.value;
+                                    setPreviousEducation(previousEducationCopy);
+                                }}
+                                resize="none"
+                                scrollable={true}
+                                maxLength={500}
+                            />
                             <DatePicker
-                                label="Start Date: "
+                                label="Start Date*: "
                                 inputID={`personal-info-start-date-${education.uniqueID}`}
                                 date={education.startDate}
+                                classNames={["start-date"]}
                                 changeHandler={(e) => {
                                     var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
                                     previousEducationCopy.get(uniqueID).startDate = e.target.value;
@@ -206,9 +205,10 @@ function Form() {
                                 }}
                             />
                             <DatePicker
-                                label="End Date: "
+                                label="End Date*: "
                                 inputID={`personal-info-end-date-${education.uniqueID}`}
                                 date={education.endDate}
+                                classNames={["end-date"]}
                                 changeHandler={(e) => {
                                     var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
                                     previousEducationCopy.get(uniqueID).endDate = e.target.value;
@@ -232,18 +232,18 @@ function Form() {
                             </div>
                         )
                     })}
-                </div>
-                <div className={classNames.addFieldButton}>
-                    <ButtonBasic
-                        buttonText="+"
-                        clickHandler={() => {
-                            var newEducation = previousEducationNew();
-                            var uniqueID = newEducation.uniqueID;
-                            var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
-                            previousEducationCopy.set(uniqueID, newEducation);
-                            setPreviousEducation(previousEducationCopy);
-                        }}
-                    />
+                    <div className={classNames.addFieldButton}>
+                        <ButtonBasic
+                            buttonText="Create New"
+                            clickHandler={() => {
+                                var newEducation = previousEducationNew();
+                                var uniqueID = newEducation.uniqueID;
+                                var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
+                                previousEducationCopy.set(uniqueID, newEducation);
+                                setPreviousEducation(previousEducationCopy);
+                            }}
+                        />
+                    </div>
                 </div>
                 <div className={classNames.pageButtons}>
                     <ButtonBasic buttonText="Previous Page" clickHandler={() => 

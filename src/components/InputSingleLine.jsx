@@ -4,21 +4,18 @@ const InputSingleLine = ({
     inputType = "text",
     inputValue = "",
     inputID = "",
+    classNames = [],
     changeHandler = null,
 
 }) => {
     
     return (
         <div
-            className={[
-                "InputSingleLine"
-            ]}
+            className={["InputSingleLine"].concat(classNames).join(" ")}
         >
         <label
             htmlFor={inputID}
-            className={[
-                "InputSingleLine-label"
-            ]}
+            className={["InputSingleLine-label"]}
         >
             {label}
         </label>
@@ -27,9 +24,7 @@ const InputSingleLine = ({
             type={inputType}
             value={inputValue}
             onChange={changeHandler}
-            className={[
-                "InputSingleLine-input"
-            ]}
+            className={["InputSingleLine-input"]}
         >
         </input>
         </div>

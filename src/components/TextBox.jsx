@@ -3,6 +3,7 @@ const TextBox = ({
     label="",
     textBoxText = "",
     textareaID = "",
+    classNames = [],
     changeHandler = null,
     resize = "none",
     scrollable = true,
@@ -17,23 +18,17 @@ const TextBox = ({
     
     return (
         <div
-            className={[
-                "TextBox"
-            ]}
+            className={["TextBox"].concat(classNames).join(" ")}
         >
         <label
-            className={[
-                "TextBox-label"
-            ]}
+            className={["TextBox-label"]}
             htmlFor={textareaID}
         >
             {label}
         </label>
         <textarea
             id={textareaID}
-            className={[
-                "TextBox-textarea"
-            ]}
+            className={["TextBox-textarea"]}
             onChange={changeHandler}
             value={textBoxText}
             maxLength={maxLength}
