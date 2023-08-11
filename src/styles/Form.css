@@ -117,16 +117,13 @@
 .cv-application-previous-education-element .end-date {
     grid-area: 4 / 1 / 5 / 2;
 }
-.cv-application-previous-education-element .ButtonBasic,
-.cv-application-add-field-button .ButtonBasic {
+.cv-application-previous-education-element .ButtonBasic {
     border-radius: 0.3rem;
     border: none;
     font-size: 1rem;
     font-weight: bold;
     color: rgb(255, 255, 255);
     padding: 0.2rem 0.4rem;
-}
-.cv-application-previous-education-element .ButtonBasic {
     width: 7rem;
     height: 1.8rem;
     place-self: end;
@@ -137,6 +134,65 @@
     background-color: #f54e4e;
 }
 .cv-application-previous-education-element .ButtonBasic:active {
+    background-color: #c51717;
+}
+
+.cv-application-previous-employment-container {
+    display: grid;
+    grid-template-rows: auto;
+    padding: 1rem 0.2rem;
+    gap: 1rem;
+}
+.cv-application-previous-employment-element {
+    place-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+.cv-application-previous-employment-element .company-name,
+.cv-application-previous-employment-element .role,
+.cv-application-previous-employment-element .responsibilities,
+.cv-application-previous-employment-element .start-date,
+.cv-application-previous-employment-element .end-date {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+}
+.cv-application-previous-employment-element .company-name {
+    grid-area: 1 / 1 / 2 / 2;
+}
+.cv-application-previous-employment-element .role {
+    grid-area: 2 / 1 / 3 / 2;
+}
+.cv-application-previous-employment-element .responsibilities {
+    grid-area: 3 / 1 / 4 / 2;
+}
+.cv-application-previous-employment-element .responsibilities .TextBox-textarea {
+    height: 10rem;
+}
+.cv-application-previous-employment-element .start-date {
+    grid-area: 4 / 1 / 5 / 2;
+}
+.cv-application-previous-employment-element .end-date {
+    grid-area: 5 / 1 / 6 / 2;
+}
+.cv-application-previous-employment-element .ButtonBasic {
+    border-radius: 0.3rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    padding: 0.2rem 0.4rem;
+    width: 7rem;
+    height: 1.8rem;
+    place-self: end;
+    grid-area: 5 / 1 / 6 / 2;
+    background-color: #e73333;
+}
+.cv-application-previous-employment-element .ButtonBasic:hover {
+    background-color: #f54e4e;
+}
+.cv-application-previous-employment-element .ButtonBasic:active {
     background-color: #c51717;
 }
 
@@ -218,6 +274,12 @@
     place-self: center;
 }
 .cv-application-add-field-button .ButtonBasic {
+    border-radius: 0.3rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    padding: 0.2rem 0.4rem;
     min-width: 10rem;
     min-height: 2rem;
     background-color: #31c22c;
