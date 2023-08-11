@@ -6,17 +6,8 @@ import ButtonBasic from './ButtonBasic.jsx';
 import InputSingleLine from './InputSingleLine.jsx';
 import TextBox from './TextBox.jsx';
 import DatePicker from './DatePicker.jsx';
+import PersonalInformation from './PersonalInformation.jsx';
 
-const CVInformation = {
-    firstName: "",
-    secondName: "",
-    emailAddress: "",
-    phoneNumber: "",
-    previousEducation: [],
-    previousEmployment: [],
-    hobbiesInterests: "",
-    references: [],
-}
 const previousEducationNew = () => {
     return {
         uniqueID: uuidv4(),
@@ -77,7 +68,10 @@ function Form() {
         addFieldButton: "cv-application-add-field-button",
         requiredFieldWarning: "cv-application-required-field-warning",
         pageButtons: "cv-application-page-buttons",
+        submitButton: "cv-application-submit-button",
     }
+
+    const sectionTitle = (title) => <h2 className={classNames.formSectionTitle}>{title}</h2>
 
     const requiredFieldWarning = (
         <div className={classNames.requiredFieldWarning}>
@@ -85,11 +79,44 @@ function Form() {
         </div>
     )
 
+    const personalInfo = (
+        <PersonalInformation
+            firstNames={personalInformation.firstName}
+            firstNamesChangeHandler={(e) => setPersonalInformation(
+                { ...personalInformation, firstName: e.target.value }
+            )}
+            lastName={personalInformation.lastName}
+            lastNameChangeHandler={(e) => setPersonalInformation(
+                { ...personalInformation, lastName: e.target.value }
+            )}
+            emailAddress={personalInformation.emailAddress}
+            emailAddressChangeHandler={(e) => setPersonalInformation(
+                { ...personalInformation, emailAddress: e.target.value }
+            )}
+            phoneNumber={personalInformation.phoneNumber}
+            phoneNumberChangeHandler={(e) => setPersonalInformation(
+                { ...personalInformation, phoneNumber: e.target.value }
+            )}
+            classNames={[classNames.personalInfoContainer]}
+        />
+    )
+
+    const pageButtons = (prev, next) => {
+        return (
+            <div className={classNames.pageButtons}>
+                <ButtonBasic buttonText="Previous Page" clickHandler={() => 
+                    setCurrentPage(prev)}/>
+                <ButtonBasic buttonText="Next Page" clickHandler={() => 
+                    setCurrentPage(next)}/>
+            </div>
+        )
+    }
+
     switch (currentPage) {
         case "Home":
             return (
                 <div className={classNames.formContainer}>
-                <h2 className={classNames.formSectionTitle}>CV Application</h2>
+                {sectionTitle("CV Application")}
                 <h4 className={classNames.textRegular}>Click the button below to get started</h4>
                 <div className={classNames.getStartedButton}>
                     <ButtonBasic buttonText="Get Started" clickHandler={() => 
@@ -100,62 +127,16 @@ function Form() {
         case "PersonalInfo":
             return (
                 <div className={classNames.formContainer}>
-                <h2 className={classNames.formSectionTitle}>Personal Information</h2>
+                {sectionTitle("Personal Information")}
                 {requiredFieldWarning}
-                <div className={classNames.personalInfoContainer}>
-                    <InputSingleLine
-                        label="First Name(s)*: "
-                        inputType="text"
-                        inputValue={personalInformation.firstName}
-                        inputID="personal-info-first-name"
-                        classNames={["first-names"]}
-                        changeHandler={(e) => setPersonalInformation(
-                            { ...personalInformation, firstName: e.target.value }
-                        )}
-                    />
-                    <InputSingleLine
-                        label="Last Name*: "
-                        inputType="text"
-                        inputValue={personalInformation.lastName}
-                        inputID="personal-info-last-name"
-                        classNames={["last-name"]}
-                        changeHandler={(e) => setPersonalInformation(
-                            { ...personalInformation, lastName: e.target.value }
-                        )}
-                    />
-                    <InputSingleLine
-                        label="Email Address*: "
-                        inputType="email"
-                        inputValue={personalInformation.emailAddress}
-                        inputID="personal-info-email-address"
-                        classNames={["email-address"]}
-                        changeHandler={(e) => setPersonalInformation(
-                            { ...personalInformation, emailAddress: e.target.value }
-                        )}
-                    />
-                    <InputSingleLine
-                        label="Telephone Number*: "
-                        inputType="tel"
-                        inputValue={personalInformation.phoneNumber}
-                        inputID="personal-info-phone-number"
-                        classNames={["phone-number"]}
-                        changeHandler={(e) => setPersonalInformation(
-                            { ...personalInformation, phoneNumber: e.target.value }
-                        )}
-                    />
-                </div>
-                <div className={classNames.pageButtons}>
-                    <ButtonBasic buttonText="Previous Page" clickHandler={() => 
-                        setCurrentPage("Home")}/>
-                    <ButtonBasic buttonText="Next Page" clickHandler={() => 
-                        setCurrentPage("Education")}/>
-                </div>
+                {personalInfo}
+                {pageButtons("Home", "Education")}
                 </div>
             )
         case "Education":
             return (
                 <div className={classNames.formContainer}>
-                <h2 className={classNames.formSectionTitle}>Education</h2>
+                {sectionTitle("Education")}
                 {requiredFieldWarning}
                 <div className={classNames.previousEducationContainer}>
                     {[...previousEducation.keys()].map((uniqueID) => {
@@ -249,18 +230,13 @@ function Form() {
                         />
                     </div>
                 </div>
-                <div className={classNames.pageButtons}>
-                    <ButtonBasic buttonText="Previous Page" clickHandler={() => 
-                        setCurrentPage("PersonalInfo")}/>
-                    <ButtonBasic buttonText="Next Page" clickHandler={() => 
-                        setCurrentPage("Employment")}/>
-                </div>
+                {pageButtons("PersonalInfo", "Employment")}
                 </div>
             )
         case "Employment":
             return (
                 <div className={classNames.formContainer}>
-                <h2 className={classNames.formSectionTitle}>Previous Employment</h2>
+                {sectionTitle("Previous Employment")}
                 {requiredFieldWarning}
                 <div className={classNames.previousEmploymentContainer}>
                     {[...previousEmployment.keys()].map((uniqueID) => {
@@ -366,18 +342,13 @@ function Form() {
                         />
                     </div>
                 </div>
-                <div className={classNames.pageButtons}>
-                    <ButtonBasic buttonText="Previous Page" clickHandler={() => 
-                        setCurrentPage("Education")}/>
-                    <ButtonBasic buttonText="Next Page" clickHandler={() => 
-                        setCurrentPage("HobbiesInterests")}/>
-                </div>
+                {pageButtons("Education", "HobbiesInterests")}
                 </div>
             )
         case "HobbiesInterests":
             return (
                 <div className={classNames.formContainer}>
-                <h2 className={classNames.formSectionTitle}>Hobbies and Interests</h2>
+                {sectionTitle("Hobbies Interests")}
                 {requiredFieldWarning}
                 <div className={classNames.hobbiesInterestsContainer}>
                 <h4 className={classNames.textRegular}>
@@ -392,18 +363,13 @@ function Form() {
                     maxLength={500}
                 />
                 </div>
-                <div className={classNames.pageButtons}>
-                    <ButtonBasic buttonText="Previous Page" clickHandler={() => 
-                        setCurrentPage("Employment")}/>
-                    <ButtonBasic buttonText="Next Page" clickHandler={() => 
-                        setCurrentPage("References")}/>
-                </div>
+                {pageButtons("Employment", "References")}
                 </div>
             )
         case "References":
             return (
                 <div className={classNames.formContainer}>
-                <h2 className={classNames.formSectionTitle}>Personal References</h2>
+                {sectionTitle("Personal References")}
                 {requiredFieldWarning}
                 <div className={classNames.referencesContainer}>
                     {[...references.keys()].map((uniqueID) => {
@@ -497,24 +463,17 @@ function Form() {
                         />
                     </div>
                 </div>
-                <div className={classNames.pageButtons}>
-                    <ButtonBasic buttonText="Previous Page" clickHandler={() => 
-                        setCurrentPage("HobbiesInterests")}/>
-                    <ButtonBasic buttonText="Next Page" clickHandler={() => 
-                        setCurrentPage("Review")}/>
-                </div>
+                {pageButtons("HobbiesInterests", "Review")}
                 </div>
             )
         case "Review":
             return (
                 <div className={classNames.formContainer}>
-                <h2 className={classNames.formSectionTitle}>Review Your Information</h2>
+                {sectionTitle("Review Your Information")}
                 {requiredFieldWarning}
-                <div className={classNames.pageButtons}>
-                    <ButtonBasic buttonText="Previous Page" clickHandler={() => 
+                <div className={classNames.submitButton}>
+                    <ButtonBasic buttonText="Submit" clickHandler={() => 
                         setCurrentPage("References")}/>
-                    <ButtonBasic buttonText="Next Page" clickHandler={() => 
-                        setCurrentPage("Submitted")}/>
                 </div>
                 </div>
             )

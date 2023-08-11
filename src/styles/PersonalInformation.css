@@ -1,0 +1,20 @@
+.cv-application-personal-info-container {
+    place-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+.cv-application-personal-info-container {
+    display: grid;
+    grid-template-rows: auto;
+    padding: 1rem 0.2rem;
+    gap: 0.4rem;
+}
+.cv-application-personal-info-container .first-names,
+.cv-application-personal-info-container .last-name,
+.cv-application-personal-info-container .email-address,
+.cv-application-personal-info-container .phone-number {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+}

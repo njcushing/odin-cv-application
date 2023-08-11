@@ -61,27 +61,6 @@
     box-shadow: 0px 4px 5px -0px rgba(0, 0, 0, 0.3);
 }
 
-.cv-application-personal-info-container {
-    place-self: center;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-}
-.cv-application-personal-info-container {
-    display: grid;
-    grid-template-rows: auto;
-    padding: 1rem 0.2rem;
-    gap: 0.4rem;
-}
-.cv-application-personal-info-container .first-names,
-.cv-application-personal-info-container .last-name,
-.cv-application-personal-info-container .email-address,
-.cv-application-personal-info-container .phone-number {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 1rem;
-}
-
 .cv-application-previous-education-container {
     display: grid;
     grid-template-rows: auto;
