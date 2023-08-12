@@ -3,11 +3,11 @@ import './../styles/Form.css';
 
 import { v4 as uuidv4 } from 'uuid';
 import ButtonBasic from './ButtonBasic.jsx';
-import TextBox from './TextBox.jsx';
 import PersonalInformation from './PersonalInformation.jsx';
 import PreviousEducation from './PreviousEducation.jsx';
 import PreviousEmployment from './PreviousEmployment.jsx';
 import Reference from './Reference.jsx';
+import HobbiesInterests from './HobbiesInterests.jsx';
 
 const previousEducationNew = () => {
     return {
@@ -252,19 +252,12 @@ function Form() {
     )}
 
     const hobbiesInterestsComponent = (editMode = true) => { return(
-        <div className={classNames.hobbiesInterestsContainer}>
-        {textRegular("Please tell us a little more about yourself using the box below")}
-        <TextBox
-            label=""
-            textBoxText={hobbiesInterests}
-            textareaID="hobbies-interests"
-            changeHandler={(e) => setHobbiesInterests(e.target.value)}
-            resize="none"
-            scrollable={true}
-            maxLength={500}
+        <HobbiesInterests
+            hobbiesInterests={hobbiesInterests}
+            hobbiesInterestsChangeHandler={(e) => setHobbiesInterests(e.target.value)}
+            classNames={[classNames.hobbiesInterestsContainer]}
             editMode={editMode}
         />
-        </div>
     )}
 
     const referencesComponent = (editMode = true) => { return(

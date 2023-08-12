@@ -61,22 +61,6 @@
     box-shadow: 0px 4px 5px -0px rgba(0, 0, 0, 0.3);
 }
 
-.cv-application-hobbies-interests-container {
-    display: grid;
-    grid-template-rows: auto;
-    padding: 1rem 0.2rem;
-}
-.cv-application-hobbies-interests-container .cv-application-text-regular {
-    margin: 0rem;
-}
-.cv-application-hobbies-interests-container .TextBox {
-    place-self: center;
-}
-.cv-application-hobbies-interests-container .TextBox-textarea {
-    width: 36rem;
-    height: 12rem;
-}
-
 .cv-application-inputs-area {
     display: grid;
     grid-template-rows: auto;

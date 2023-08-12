@@ -1,0 +1,21 @@
+.HobbiesInterests {
+    display: grid;
+    grid-template-rows: auto;
+    padding: 1rem 0.2rem;
+}
+
+.HobbiesInterests .hobbies-interests-information-text {
+    color: rgb(34, 34, 34);
+    text-align: center;
+    font-size: 1rem;
+    margin: 0.2rem 0rem;
+}
+
+.HobbiesInterests .hobbies-interests-textarea {
+    place-self: center;
+}
+
+.HobbiesInterests .hobbies-interests-textarea .TextBox-textarea {
+    width: 36rem;
+    height: 12rem;
+}
