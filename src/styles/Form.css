@@ -77,62 +77,6 @@
     height: 12rem;
 }
 
-.cv-application-references-container {
-    display: grid;
-    grid-template-rows: auto;
-    padding: 1rem 0.2rem;
-    gap: 1rem;
-}
-.cv-application-references-element {
-    place-self: center;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-}
-.cv-application-references-element .first-names,
-.cv-application-references-element .last-name,
-.cv-application-references-element .relationship,
-.cv-application-references-element .email-address,
-.cv-application-references-element .phone-number {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 1rem;
-}
-.cv-application-references-element .first-names {
-    grid-area: 1 / 1 / 2 / 2;
-}
-.cv-application-references-element .last-name {
-    grid-area: 2 / 1 / 3 / 2;
-}
-.cv-application-references-element .relationship {
-    grid-area: 3 / 1 / 4 / 2;
-}
-.cv-application-references-element .email-address {
-    grid-area: 4 / 1 / 5 / 2;
-}
-.cv-application-references-element .phone-number {
-    grid-area: 5 / 1 / 6 / 2;
-}
-.cv-application-references-element .ButtonBasic {
-    border-radius: 0.3rem;
-    border: none;
-    font-size: 1rem;
-    font-weight: bold;
-    color: rgb(255, 255, 255);
-    padding: 0.2rem 0.4rem;
-    width: 7rem;
-    height: 1.8rem;
-    place-self: end;
-    grid-area: 5 / 1 / 6 / 2;
-    background-color: #e73333;
-}
-.cv-application-references-element .ButtonBasic:hover {
-    background-color: #f54e4e;
-}
-.cv-application-references-element .ButtonBasic:active {
-    background-color: #c51717;
-}
-
 .cv-application-inputs-area {
     display: grid;
     grid-template-rows: auto;
