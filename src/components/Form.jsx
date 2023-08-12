@@ -8,6 +8,7 @@ import TextBox from './TextBox.jsx';
 import DatePicker from './DatePicker.jsx';
 import PersonalInformation from './PersonalInformation.jsx';
 import PreviousEducation from './PreviousEducation.jsx';
+import PreviousEmployment from './PreviousEmployment';
 
 const previousEducationNew = () => {
     return {
@@ -176,6 +177,79 @@ function Form() {
         </div>
     )
 
+    const previousEmploymentComponent = (
+        <div className={classNames.previousEmploymentContainer}>
+            {[...previousEmployment.keys()].map((uniqueID) => {
+                const employment = previousEmployment.get(uniqueID);
+                return (
+                    <PreviousEmployment
+                        companyName={employment.company}
+                        companyNameChangeHandler={(e) => {
+                            var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
+                            previousEmploymentCopy.get(uniqueID).company = e.target.value;
+                            setPreviousEmployment(previousEmploymentCopy);
+                        }}
+                        role={employment.role}
+                        roleChangeHandler={(e) => {
+                            var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
+                            previousEmploymentCopy.get(uniqueID).role = e.target.value;
+                            setPreviousEmployment(previousEmploymentCopy);
+                        }}
+                        responsibilities={employment.responsibilities}
+                        responsibilitiesChangeHandler={(e) => {
+                            var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
+                            previousEmploymentCopy.get(uniqueID).responsibilities = e.target.value;
+                            setPreviousEmployment(previousEmploymentCopy);
+                        }}
+                        startDate={employment.startDate}
+                        startDateChangeHandler={(e) => {
+                            var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
+                            previousEmploymentCopy.get(uniqueID).startDate = e.target.value;
+                            if (
+                                new Date(previousEmploymentCopy.get(uniqueID).startDate) >
+                                new Date(previousEmploymentCopy.get(uniqueID).endDate)
+                            ) {
+                                previousEmploymentCopy.get(uniqueID).endDate = e.target.value;
+                            }
+                            setPreviousEmployment(previousEmploymentCopy);
+                        }}
+                        endDate={employment.endDate}
+                        endDateChangeHandler={(e) => {
+                            var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
+                            previousEmploymentCopy.get(uniqueID).endDate = e.target.value;
+                            if (
+                                new Date(previousEmploymentCopy.get(uniqueID).endDate) <
+                                new Date(previousEmploymentCopy.get(uniqueID).startDate)
+                            ) {
+                                previousEmploymentCopy.get(uniqueID).startDate = e.target.value;
+                            }
+                            setPreviousEmployment(previousEmploymentCopy);
+                        }}
+                        deleteButtonClickHandler={() => {
+                            var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
+                            previousEmploymentCopy.delete(uniqueID);
+                            setPreviousEmployment(previousEmploymentCopy);
+                        }}
+                        classNames={[classNames.previousEmploymentElement]}
+                        key={uniqueID}
+                    />
+                )
+            })}
+            <div className={classNames.addFieldButton}>
+                <ButtonBasic
+                    buttonText="Create New"
+                    clickHandler={() => {
+                        var newEmployment = previousEmploymentNew();
+                        var uniqueID = newEmployment.uniqueID;
+                        var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
+                        previousEmploymentCopy.set(uniqueID, newEmployment);
+                        setPreviousEmployment(previousEmploymentCopy);
+                    }}
+                />
+            </div>
+        </div>
+    )
+
     const hobbiesInterestsComponent = (
         <div className={classNames.hobbiesInterestsContainer}>
         {textRegular("Please tell us a little more about yourself using the box below")}
@@ -234,110 +308,7 @@ function Form() {
                 <div className={classNames.formContainer}>
                 {sectionTitle("Previous Employment")}
                 {requiredFieldWarning}
-                <div className={classNames.previousEmploymentContainer}>
-                    {[...previousEmployment.keys()].map((uniqueID) => {
-                        const employment = previousEmployment.get(uniqueID);
-                        return (
-                            <div
-                                className={classNames.previousEmploymentElement}
-                                key={uniqueID}
-                            >
-                            <InputSingleLine
-                                label="Company*: "
-                                inputType="text"
-                                inputValue={employment.company}
-                                inputID={`previous-employment-company-name-${employment.uniqueID}`}
-                                classNames={["company-name"]}
-                                changeHandler={(e) => {
-                                    var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
-                                    previousEmploymentCopy.get(uniqueID).company = e.target.value;
-                                    setPreviousEmployment(previousEmploymentCopy);
-                                }}
-                            />
-                            <InputSingleLine
-                                label="Role*: "
-                                inputType="text"
-                                inputValue={employment.role}
-                                inputID={`previous-employment-role-${employment.uniqueID}`}
-                                classNames={["role"]}
-                                changeHandler={(e) => {
-                                    var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
-                                    previousEmploymentCopy.get(uniqueID).role = e.target.value;
-                                    setPreviousEmployment(previousEmploymentCopy);
-                                }}
-                            />
-                            <TextBox
-                                label="Responsibilities: "
-                                textBoxText={employment.responsibilities}
-                                textareaID={`previous-employment-responsibilities-${employment.uniqueID}`}
-                                classNames={["responsibilities"]}
-                                changeHandler={(e) => {
-                                    var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
-                                    previousEmploymentCopy.get(uniqueID).responsibilities = e.target.value;
-                                    setPreviousEmployment(previousEmploymentCopy);
-                                }}
-                                resize="none"
-                                scrollable={true}
-                                maxLength={500}
-                            />
-                            <DatePicker
-                                label="Start Date*: "
-                                inputID={`previous-employment-start-date-${employment.uniqueID}`}
-                                date={employment.startDate}
-                                classNames={["start-date"]}
-                                changeHandler={(e) => {
-                                    var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
-                                    previousEmploymentCopy.get(uniqueID).startDate = e.target.value;
-                                    if (
-                                        new Date(previousEmploymentCopy.get(uniqueID).startDate) >
-                                        new Date(previousEmploymentCopy.get(uniqueID).endDate)
-                                    ) {
-                                        previousEmploymentCopy.get(uniqueID).endDate = e.target.value;
-                                    }
-                                    setPreviousEmployment(previousEmploymentCopy);
-                                }}
-                            />
-                            <DatePicker
-                                label="End Date*: "
-                                inputID={`previous-employment-end-date-${employment.uniqueID}`}
-                                date={employment.endDate}
-                                classNames={["end-date"]}
-                                changeHandler={(e) => {
-                                    var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
-                                    previousEmploymentCopy.get(uniqueID).endDate = e.target.value;
-                                    if (
-                                        new Date(previousEmploymentCopy.get(uniqueID).endDate) <
-                                        new Date(previousEmploymentCopy.get(uniqueID).startDate)
-                                    ) {
-                                        previousEmploymentCopy.get(uniqueID).startDate = e.target.value;
-                                    }
-                                    setPreviousEmployment(previousEmploymentCopy);
-                                }}
-                            />
-                            <ButtonBasic
-                                buttonText="Delete"
-                                clickHandler={() => {
-                                    var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
-                                    previousEmploymentCopy.delete(uniqueID);
-                                    setPreviousEmployment(previousEmploymentCopy);
-                                }}
-                            />
-                            </div>
-                        )
-                    })}
-                    <div className={classNames.addFieldButton}>
-                        <ButtonBasic
-                            buttonText="Create New"
-                            clickHandler={() => {
-                                var newEmployment = previousEmploymentNew();
-                                var uniqueID = newEmployment.uniqueID;
-                                var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
-                                previousEmploymentCopy.set(uniqueID, newEmployment);
-                                setPreviousEmployment(previousEmploymentCopy);
-                            }}
-                        />
-                    </div>
-                </div>
+                {previousEmploymentComponent}
                 {pageButtons("Education", "HobbiesInterests")}
                 </div>
             )
