@@ -8,6 +8,7 @@ const TextBox = ({
     resize = "none",
     scrollable = true,
     maxLength = -1,
+    enabled = true,
 
 }) => {
 
@@ -15,17 +16,17 @@ const TextBox = ({
         resize: resize,
         overflowY: (scrollable ? "scroll" : "hidden"),
     }
-    
-    return (
-        <div
-            className={["TextBox"].concat(classNames).join(" ")}
-        >
+
+    const labelElement = (
         <label
             className={["TextBox-label"]}
             htmlFor={textareaID}
         >
             {label}
         </label>
+    )
+
+    const textareaElement = enabled ? (
         <textarea
             id={textareaID}
             className={["TextBox-textarea"]}
@@ -33,8 +34,23 @@ const TextBox = ({
             value={textBoxText}
             maxLength={maxLength}
             style={styles}
-        >
-        </textarea>
+        ></textarea>
+    ) : (
+        <textarea
+            id={textareaID}
+            className={["TextBox-textarea"]}
+            onChange={changeHandler}
+            value={textBoxText}
+            maxLength={maxLength}
+            style={styles}
+            disabled
+        ></textarea>
+    )
+    
+    return (
+        <div className={["TextBox"].concat(classNames).join(" ")} >
+        {labelElement}
+        {textareaElement}
         </div>
     )
     

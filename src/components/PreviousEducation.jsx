@@ -18,50 +18,77 @@ const PreviousEducation = ({
     endDateChangeHandler,
     deleteButtonClickHandler,
     classNames = [],
-    key = uuidv4(),
+    editMode = false,
 
 }) => {
 
-    return (
-        <div
-            className={["PreviousEducation"].concat(classNames).join(" ")}
-        >
+    const institutionKey = uuidv4();
+    const qualificationsKey = uuidv4();
+    const startDateKey = uuidv4();
+    const endDateKey = uuidv4();
+
+    const institutionElement = (
         <InputSingleLine
             label="Institution*: "
             inputType="text"
             inputValue={institution}
-            inputID={`previous-education-institution-name-${key}`}
+            inputID={`previous-education-institution-name-${institutionKey}`}
             classNames={["institution-name"]}
             changeHandler={institutionChangeHandler}
+            enabled={editMode}
         />
+    )
+
+    const qualificationsElement = (
         <TextBox
             label="Qualifications: "
             textBoxText={qualifications}
-            textareaID={`previous-education-qualifications-${key}`}
+            textareaID={`previous-education-qualifications-${qualificationsKey}`}
             classNames={["qualifications"]}
             changeHandler={qualificationsChangeHandler}
             resize="none"
             scrollable={true}
             maxLength={500}
+            enabled={editMode}
         />
+    )
+
+    const startDateElement = (
         <DatePicker
             label="Start Date*: "
-            inputID={`previous-education-start-date-${key}`}
+            inputID={`previous-education-start-date-${startDateKey}`}
             date={startDate}
             classNames={["start-date"]}
             changeHandler={startDateChangeHandler}
+            enabled={editMode}
         />
+    )
+
+    const endDateElement = (
         <DatePicker
             label="End Date*: "
-            inputID={`previous-education-end-date-${key}`}
+            inputID={`previous-education-end-date-${endDateKey}`}
             date={endDate}
             classNames={["end-date"]}
             changeHandler={endDateChangeHandler}
+            enabled={editMode}
         />
+    )
+
+    const deleteButtonElement = editMode ? (
         <ButtonBasic
             buttonText="Delete"
             clickHandler={deleteButtonClickHandler}
         />
+    ) : null
+
+    return (
+        <div className={["PreviousEducation"].concat(classNames).join(" ")} >
+        {institutionElement}
+        {qualificationsElement}
+        {startDateElement}
+        {endDateElement}
+        {deleteButtonElement}
         </div>
     )
 

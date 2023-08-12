@@ -3,9 +3,7 @@ import './../styles/Form.css';
 
 import { v4 as uuidv4 } from 'uuid';
 import ButtonBasic from './ButtonBasic.jsx';
-import InputSingleLine from './InputSingleLine.jsx';
 import TextBox from './TextBox.jsx';
-import DatePicker from './DatePicker.jsx';
 import PersonalInformation from './PersonalInformation.jsx';
 import PreviousEducation from './PreviousEducation.jsx';
 import PreviousEmployment from './PreviousEmployment.jsx';

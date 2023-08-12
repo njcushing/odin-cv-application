@@ -20,58 +20,91 @@ const PreviousEmployment = ({
     endDateChangeHandler,
     deleteButtonClickHandler,
     classNames = [],
-    key = uuidv4(),
+    editMode = false,
 
 }) => {
 
-    return (
-        <div
-            className={["PreviousEmployment"].concat(classNames).join(" ")}
-        >
+    const companyNameKey = uuidv4();
+    const roleKey = uuidv4();
+    const responsibilitiesKey = uuidv4();
+    const startDateKey = uuidv4();
+    const endDateKey = uuidv4();
+
+    const companyNameElement = (
         <InputSingleLine
             label="Company*: "
             inputType="text"
             inputValue={companyName}
-            inputID={`previous-employment-company-name-${key}`}
+            inputID={`previous-employment-company-name-${companyNameKey}`}
             classNames={["company-name"]}
             changeHandler={companyNameChangeHandler}
+            enabled={editMode}
         />
+    )
+
+    const roleElement = (
         <InputSingleLine
             label="Role*: "
             inputType="text"
             inputValue={role}
-            inputID={`previous-employment-role-${key}`}
+            inputID={`previous-employment-role-${roleKey}`}
             classNames={["role"]}
             changeHandler={roleChangeHandler}
+            enabled={editMode}
         />
+    )
+
+    const responsibilitiesElement = (
         <TextBox
             label="Responsibilities: "
             textBoxText={responsibilities}
-            textareaID={`previous-employment-responsibilities-${key}`}
+            textareaID={`previous-employment-responsibilities-${responsibilitiesKey}`}
             classNames={["responsibilities"]}
             changeHandler={responsibilitiesChangeHandler}
             resize="none"
             scrollable={true}
             maxLength={500}
+            enabled={editMode}
         />
+    )
+
+    const startDateElement = (
         <DatePicker
             label="Start Date*: "
-            inputID={`previous-employment-start-date-${key}`}
+            inputID={`previous-employment-start-date-${startDateKey}`}
             date={startDate}
             classNames={["start-date"]}
             changeHandler={startDateChangeHandler}
+            enabled={editMode}
         />
+    )
+
+    const endDateElement = (
         <DatePicker
             label="End Date*: "
-            inputID={`previous-employment-end-date-${key}`}
+            inputID={`previous-employment-end-date-${endDateKey}`}
             date={endDate}
             classNames={["end-date"]}
             changeHandler={endDateChangeHandler}
+            enabled={editMode}
         />
+    )
+
+    const deleteButtonElement = editMode ? (
         <ButtonBasic
             buttonText="Delete"
             clickHandler={deleteButtonClickHandler}
         />
+    ) : null
+
+    return (
+        <div className={["PreviousEmployment"].concat(classNames).join(" ")} >
+        {companyNameElement}
+        {roleElement}
+        {responsibilitiesElement}
+        {startDateElement}
+        {endDateElement}
+        {deleteButtonElement}
         </div>
     )
 
