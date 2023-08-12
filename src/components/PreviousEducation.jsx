@@ -21,11 +21,10 @@ const PreviousEducation = ({
     key = uuidv4(),
 
 }) => {
-    
+
     return (
         <div
             className={["PreviousEducation"].concat(classNames).join(" ")}
-            key={key}
         >
         <InputSingleLine
             label="Institution*: "

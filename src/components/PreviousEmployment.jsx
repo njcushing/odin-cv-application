@@ -27,7 +27,6 @@ const PreviousEmployment = ({
     return (
         <div
             className={["PreviousEmployment"].concat(classNames).join(" ")}
-            key={key}
         >
         <InputSingleLine
             label="Company*: "
