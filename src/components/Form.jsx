@@ -88,7 +88,7 @@ function Form() {
         </div>
     )
 
-    const personalInfoComponent = (
+    const personalInfoComponent = (editMode = true) => { return(
         <PersonalInformation
             firstNames={personalInformation.firstName}
             firstNamesChangeHandler={(e) => setPersonalInformation(
@@ -107,10 +107,11 @@ function Form() {
                 { ...personalInformation, phoneNumber: e.target.value }
             )}
             classNames={[classNames.personalInfoContainer]}
+            editMode={editMode}
         />
-    )
+    )}
 
-    const previousEducationComponent = (
+    const previousEducationComponent = (editMode = true) => { return(
         <div className={classNames.previousEducationContainer}>
         {[...previousEducation.keys()].map((uniqueID) => {
             const education = previousEducation.get(uniqueID);
@@ -157,6 +158,7 @@ function Form() {
                     setPreviousEducation(previousEducationCopy);
                 }}
                 classNames={[classNames.previousEducationElement]}
+                editMode={editMode}
                 key={uniqueID}
             />)
         })}
@@ -173,9 +175,9 @@ function Form() {
             />
         </div>
         </div>
-    )
+    )}
 
-    const previousEmploymentComponent = (
+    const previousEmploymentComponent = (editMode = true) => { return(
         <div className={classNames.previousEmploymentContainer}>
             {[...previousEmployment.keys()].map((uniqueID) => {
                 const employment = previousEmployment.get(uniqueID);
@@ -229,6 +231,7 @@ function Form() {
                             setPreviousEmployment(previousEmploymentCopy);
                         }}
                         classNames={[classNames.previousEmploymentElement]}
+                        editMode={editMode}
                         key={uniqueID}
                     />
                 )
@@ -246,9 +249,9 @@ function Form() {
                 />
             </div>
         </div>
-    )
+    )}
 
-    const hobbiesInterestsComponent = (
+    const hobbiesInterestsComponent = (editMode = true) => { return(
         <div className={classNames.hobbiesInterestsContainer}>
         {textRegular("Please tell us a little more about yourself using the box below")}
         <TextBox
@@ -259,11 +262,12 @@ function Form() {
             resize="none"
             scrollable={true}
             maxLength={500}
+            editMode={editMode}
         />
         </div>
-    )
+    )}
 
-    const referencesComponent = (
+    const referencesComponent = (editMode = true) => { return(
         <div className={classNames.referencesContainer}>
             {[...references.keys()].map((uniqueID) => {
                 const reference = references.get(uniqueID);
@@ -305,6 +309,7 @@ function Form() {
                             setReferences(referencesCopy);
                         }}
                         classNames={[classNames.referencesElement]}
+                        editMode={editMode}
                         key={uniqueID}
                     />
                 )
@@ -322,7 +327,7 @@ function Form() {
                 />
             </div>
         </div>
-    )
+    )}
 
     const pageButtons = (prev, next) => {
         return (
@@ -349,7 +354,7 @@ function Form() {
                 <div className={classNames.formContainer}>
                 {sectionTitle("Personal Information")}
                 {requiredFieldWarning}
-                {personalInfoComponent}
+                {personalInfoComponent()}
                 {pageButtons("Home", "Education")}
                 </div>
             )
@@ -358,7 +363,7 @@ function Form() {
                 <div className={classNames.formContainer}>
                 {sectionTitle("Education")}
                 {requiredFieldWarning}
-                {previousEducationComponent}
+                {previousEducationComponent()}
                 {pageButtons("PersonalInfo", "Employment")}
                 </div>
             )
@@ -367,7 +372,7 @@ function Form() {
                 <div className={classNames.formContainer}>
                 {sectionTitle("Previous Employment")}
                 {requiredFieldWarning}
-                {previousEmploymentComponent}
+                {previousEmploymentComponent()}
                 {pageButtons("Education", "HobbiesInterests")}
                 </div>
             )
@@ -376,7 +381,7 @@ function Form() {
                 <div className={classNames.formContainer}>
                 {sectionTitle("Hobbies Interests")}
                 {requiredFieldWarning}
-                {hobbiesInterestsComponent}
+                {hobbiesInterestsComponent()}
                 {pageButtons("Employment", "References")}
                 </div>
             )
@@ -385,7 +390,7 @@ function Form() {
                 <div className={classNames.formContainer}>
                 {sectionTitle("Personal References")}
                 {requiredFieldWarning}
-                {referencesComponent}
+                {referencesComponent()}
                 {pageButtons("HobbiesInterests", "Review")}
                 </div>
             )
@@ -394,6 +399,11 @@ function Form() {
                 <div className={classNames.formContainer}>
                 {sectionTitle("Review Your Information")}
                 {requiredFieldWarning}
+                {personalInfoComponent(false)}
+                {previousEducationComponent(false)}
+                {previousEmploymentComponent(false)}
+                {hobbiesInterestsComponent(false)}
+                {referencesComponent(false)}
                 <div className={classNames.submitButton}></div>
                 </div>
             )
