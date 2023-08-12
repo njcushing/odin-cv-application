@@ -57,11 +57,14 @@ function Form() {
         formSectionTitle: "cv-application-form-section-title",
         textRegular: "cv-application-text-regular",
         personalInfoContainer: "cv-application-personal-info-container",
+        previousEducationPage: "cv-application-previous-education-page",
         previousEducationContainer: "cv-application-previous-education-container",
         previousEducationElement: "cv-application-previous-education-element",
+        previousEmploymentPage: "cv-application-previous-employment-container",
         previousEmploymentContainer: "cv-application-previous-employment-container",
         previousEmploymentElement: "cv-application-previous-employment-element",
         hobbiesInterestsContainer: "cv-application-hobbies-interests-container",
+        referencesPage: "cv-application-references-container",
         referencesContainer: "cv-application-references-container",
         referencesElement: "cv-application-references-element",
         inputsArea: "cv-application-inputs-area",
@@ -162,6 +165,10 @@ function Form() {
                 key={uniqueID}
             />)
         })}
+        </div>
+    )}
+
+    const createNewPreviousEducationButton = (
         <div className={classNames.addFieldButton}>
             <ButtonBasic
                 buttonText="Create New"
@@ -174,8 +181,7 @@ function Form() {
                 }}
             />
         </div>
-        </div>
-    )}
+    )
 
     const previousEmploymentComponent = (editMode = true) => { return(
         <div className={classNames.previousEmploymentContainer}>
@@ -236,20 +242,23 @@ function Form() {
                     />
                 )
             })}
-            <div className={classNames.addFieldButton}>
-                <ButtonBasic
-                    buttonText="Create New"
-                    clickHandler={() => {
-                        var newEmployment = previousEmploymentNew();
-                        var uniqueID = newEmployment.uniqueID;
-                        var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
-                        previousEmploymentCopy.set(uniqueID, newEmployment);
-                        setPreviousEmployment(previousEmploymentCopy);
-                    }}
-                />
-            </div>
         </div>
     )}
+
+    const createNewPreviousEmploymentButton = (
+        <div className={classNames.addFieldButton}>
+            <ButtonBasic
+                buttonText="Create New"
+                clickHandler={() => {
+                    var newEmployment = previousEmploymentNew();
+                    var uniqueID = newEmployment.uniqueID;
+                    var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
+                    previousEmploymentCopy.set(uniqueID, newEmployment);
+                    setPreviousEmployment(previousEmploymentCopy);
+                }}
+            />
+        </div>
+    )
 
     const hobbiesInterestsComponent = (editMode = true) => { return(
         <HobbiesInterests
@@ -307,20 +316,23 @@ function Form() {
                     />
                 )
             })}
-            <div className={classNames.addFieldButton}>
-                <ButtonBasic
-                    buttonText="Create New"
-                    clickHandler={() => {
-                        var newReference = referenceNew();
-                        var uniqueID = newReference.uniqueID;
-                        var referencesCopy = new Map(JSON.parse(JSON.stringify(Array.from(references))));
-                        referencesCopy.set(uniqueID, newReference);
-                        setReferences(referencesCopy);
-                    }}
-                />
-            </div>
         </div>
     )}
+
+    const createNewReferenceButton = (
+        <div className={classNames.addFieldButton}>
+            <ButtonBasic
+                buttonText="Create New"
+                clickHandler={() => {
+                    var newReference = referenceNew();
+                    var uniqueID = newReference.uniqueID;
+                    var referencesCopy = new Map(JSON.parse(JSON.stringify(Array.from(references))));
+                    referencesCopy.set(uniqueID, newReference);
+                    setReferences(referencesCopy);
+                }}
+            />
+        </div>
+    )
 
     const pageButtons = (prev, next) => {
         return (
@@ -356,7 +368,10 @@ function Form() {
                 <div className={classNames.formContainer}>
                 {sectionTitle("Education")}
                 {requiredFieldWarning}
+                <div className={classNames.previousEducationPage}>
                 {previousEducationComponent()}
+                {createNewPreviousEducationButton}
+                </div>
                 {pageButtons("PersonalInfo", "Employment")}
                 </div>
             )
@@ -365,7 +380,10 @@ function Form() {
                 <div className={classNames.formContainer}>
                 {sectionTitle("Previous Employment")}
                 {requiredFieldWarning}
+                <div className={classNames.previousEmploymentPage}>
                 {previousEmploymentComponent()}
+                {createNewPreviousEmploymentButton}
+                </div>
                 {pageButtons("Education", "HobbiesInterests")}
                 </div>
             )
@@ -383,7 +401,10 @@ function Form() {
                 <div className={classNames.formContainer}>
                 {sectionTitle("Personal References")}
                 {requiredFieldWarning}
+                <div className={classNames.referencesPage}>
                 {referencesComponent()}
+                {createNewReferenceButton}
+                </div>
                 {pageButtons("HobbiesInterests", "Review")}
                 </div>
             )
