@@ -16,7 +16,7 @@
 .cv-application-references-element .email-address,
 .cv-application-references-element .phone-number {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 10rem auto;
     gap: 1rem;
 }
 .cv-application-references-element .first-names {

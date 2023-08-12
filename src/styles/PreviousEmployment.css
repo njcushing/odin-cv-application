@@ -16,7 +16,7 @@
 .cv-application-previous-employment-element .start-date,
 .cv-application-previous-employment-element .end-date {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 10rem auto;
     gap: 1rem;
 }
 .cv-application-previous-employment-element .company-name {
