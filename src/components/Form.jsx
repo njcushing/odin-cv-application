@@ -91,7 +91,6 @@ function Form() {
     )
 
     const personalInfoComponent = (
-        <div className={classNames.personalInfoContainer}>
         <PersonalInformation
             firstNames={personalInformation.firstName}
             firstNamesChangeHandler={(e) => setPersonalInformation(
@@ -109,8 +108,8 @@ function Form() {
             phoneNumberChangeHandler={(e) => setPersonalInformation(
                 { ...personalInformation, phoneNumber: e.target.value }
             )}
+            classNames={[classNames.personalInfoContainer]}
         />
-        </div>
     )
 
     const previousEducationComponent = (
@@ -397,19 +396,13 @@ function Form() {
                 <div className={classNames.formContainer}>
                 {sectionTitle("Review Your Information")}
                 {requiredFieldWarning}
-                <div className={classNames.submitButton}>
-                    <ButtonBasic buttonText="Submit" clickHandler={() => 
-                        setCurrentPage("References")}/>
-                </div>
+                <div className={classNames.submitButton}></div>
                 </div>
             )
         case "Submitted":
             return (
                 <div className={classNames.formContainer}>
-                <div className={classNames.pageButtons}>
-                    <ButtonBasic buttonText="Previous Page" clickHandler={() => 
-                        setCurrentPage("Review")}/>
-                </div>
+                <div></div>
                 </div>
             )
         default:
