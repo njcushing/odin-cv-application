@@ -48,14 +48,14 @@
     font-size: 1.2rem;
     padding: 0rem 0.4rem;
 }
-.InputSingleLine-input:hover,
-.TextBox-textarea:hover,
-.DatePicker-input:hover {
+.InputSingleLine-input:hover:not(:disabled),
+.TextBox-textarea:hover:not(:disabled),
+.DatePicker-input:hover:not(:disabled) {
     outline: 2px solid rgb(37, 37, 37);
 }
-.InputSingleLine-input:focus,
-.TextBox-textarea:focus,
-.DatePicker-input:focus {
+.InputSingleLine-input:focus:not(:disabled),
+.TextBox-textarea:focus:not(:disabled),
+.DatePicker-input:focus:not(:disabled) {
     outline: 2px solid rgb(37, 37, 37);
     background-color: rgba(0, 0, 0, 0.03);
     box-shadow: 0px 4px 5px -0px rgba(0, 0, 0, 0.3);
