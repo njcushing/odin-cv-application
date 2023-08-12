@@ -1,40 +1,54 @@
-.cv-application-references-container {
+:root {
+    --Reference-label-column-width: 10rem;
+    --Reference-input-column-width: 27rem;
+    --Reference-label-to-input-gap: 1rem;
+    --Reference-total-width: calc(
+        var(--Reference-label-column-width, 10rem) +
+        var(--Reference-input-column-width, 27rem) +
+        var(--Reference-label-to-input-gap, 1rem)
+    );
+}
+
+.Reference {
+    place-self: center;
     display: grid;
     grid-template-rows: auto;
-    padding: 1rem 0.2rem;
-    gap: 1rem;
-}
-.cv-application-references-element {
-    place-self: center;
-    display: flex;
-    flex-direction: column;
+    place-items: center;
     gap: 0.4rem;
+    width: var(--Reference-total-width);
 }
-.cv-application-references-element .first-names,
-.cv-application-references-element .last-name,
-.cv-application-references-element .relationship,
-.cv-application-references-element .email-address,
-.cv-application-references-element .phone-number {
+
+.Reference .first-names,
+.Reference .last-name,
+.Reference .relationship,
+.Reference .email-address,
+.Reference .phone-number {
     display: grid;
-    grid-template-columns: 10rem auto;
-    gap: 1rem;
+    grid-template-columns: var(--Reference-label-column-width, 10rem) var(--Reference-input-column-width, 27rem);
+    gap: var(--Reference-label-to-input-gap, 1rem);
 }
-.cv-application-references-element .first-names {
+
+.Reference .first-names {
     grid-area: 1 / 1 / 2 / 2;
 }
-.cv-application-references-element .last-name {
+
+.Reference .last-name {
     grid-area: 2 / 1 / 3 / 2;
 }
-.cv-application-references-element .relationship {
+
+.Reference .relationship {
     grid-area: 3 / 1 / 4 / 2;
 }
-.cv-application-references-element .email-address {
+
+.Reference .email-address {
     grid-area: 4 / 1 / 5 / 2;
 }
-.cv-application-references-element .phone-number {
+
+.Reference .phone-number {
     grid-area: 5 / 1 / 6 / 2;
 }
-.cv-application-references-element .ButtonBasic {
+
+.Reference .ButtonBasic {
     border-radius: 0.3rem;
     border: none;
     font-size: 1rem;
@@ -44,12 +58,14 @@
     width: 7rem;
     height: 1.8rem;
     place-self: end;
-    grid-area: 5 / 1 / 6 / 2;
+    grid-area: 6 / 1 / 7 / 2;
     background-color: #e73333;
 }
-.cv-application-references-element .ButtonBasic:hover {
+
+.Reference .ButtonBasic:hover {
     background-color: #f54e4e;
 }
-.cv-application-references-element .ButtonBasic:active {
+
+.Reference .ButtonBasic:active {
     background-color: #c51717;
 }

@@ -40,7 +40,7 @@
 .TextBox-textarea,
 .DatePicker-input {
     align-self: center;
-    width: 27rem;
+    width: auto;
     height: 1.8rem;
     border-radius: 0.3rem;
     border: none;
@@ -59,6 +59,27 @@
     outline: 2px solid rgb(37, 37, 37);
     background-color: rgba(0, 0, 0, 0.03);
     box-shadow: 0px 4px 5px -0px rgba(0, 0, 0, 0.3);
+}
+
+.cv-application-previous-education-container {
+    display: grid;
+    grid-template-rows: auto;
+    padding: 1rem 0.2rem;
+    gap: 1rem;
+}
+
+.cv-application-previous-employment-container {
+    display: grid;
+    grid-template-rows: auto;
+    padding: 1rem 0.2rem;
+    gap: 1rem;
+}
+
+.cv-application-references-container {
+    display: grid;
+    grid-template-rows: auto;
+    padding: 1rem 0.2rem;
+    gap: 1rem;
 }
 
 .cv-application-inputs-area {

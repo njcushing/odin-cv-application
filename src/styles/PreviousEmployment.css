@@ -1,43 +1,58 @@
-.cv-application-previous-employment-container {
+:root {
+    --PreviousEmployment-label-column-width: 10rem;
+    --PreviousEmployment-input-column-width: 27rem;
+    --PreviousEmployment-label-to-input-gap: 1rem;
+    --PreviousEmployment-total-width: calc(
+        var(--PreviousEmployment-label-column-width, 10rem) +
+        var(--PreviousEmployment-input-column-width, 27rem) +
+        var(--PreviousEmployment-label-to-input-gap, 1rem)
+    );
+}
+
+.PreviousEmployment {
+    place-self: center;
     display: grid;
     grid-template-rows: auto;
-    padding: 1rem 0.2rem;
-    gap: 1rem;
-}
-.cv-application-previous-employment-element {
-    place-self: center;
-    display: flex;
-    flex-direction: column;
+    place-items: center;
     gap: 0.4rem;
+    width: var(--PreviousEmployment-total-width);
 }
-.cv-application-previous-employment-element .company-name,
-.cv-application-previous-employment-element .role,
-.cv-application-previous-employment-element .responsibilities,
-.cv-application-previous-employment-element .start-date,
-.cv-application-previous-employment-element .end-date {
+
+.PreviousEmployment .company-name,
+.PreviousEmployment .role,
+.PreviousEmployment .responsibilities,
+.PreviousEmployment .start-date,
+.PreviousEmployment .end-date {
     display: grid;
-    grid-template-columns: 10rem auto;
-    gap: 1rem;
+    grid-template-columns: var(--PreviousEmployment-label-column-width, 10rem) var(--PreviousEmployment-input-column-width, 27rem);
+    gap: var(--PreviousEmployment-label-to-input-gap, 1rem);
 }
-.cv-application-previous-employment-element .company-name {
+
+.PreviousEmployment .company-name {
     grid-area: 1 / 1 / 2 / 2;
 }
-.cv-application-previous-employment-element .role {
+
+.PreviousEmployment .role {
     grid-area: 2 / 1 / 3 / 2;
 }
-.cv-application-previous-employment-element .responsibilities {
+
+.PreviousEmployment .responsibilities {
     grid-area: 3 / 1 / 4 / 2;
 }
-.cv-application-previous-employment-element .responsibilities .TextBox-textarea {
+
+.PreviousEmployment .responsibilities .TextBox-textarea {
     height: 10rem;
 }
-.cv-application-previous-employment-element .start-date {
+
+.PreviousEmployment .start-date {
     grid-area: 4 / 1 / 5 / 2;
 }
-.cv-application-previous-employment-element .end-date {
+
+.PreviousEmployment .end-date {
     grid-area: 5 / 1 / 6 / 2;
 }
-.cv-application-previous-employment-element .ButtonBasic {
+
+.PreviousEmployment .ButtonBasic {
     border-radius: 0.3rem;
     border: none;
     font-size: 1rem;
@@ -47,12 +62,14 @@
     width: 7rem;
     height: 1.8rem;
     place-self: end;
-    grid-area: 5 / 1 / 6 / 2;
+    grid-area: 6 / 1 / 7 / 2;
     background-color: #e73333;
 }
-.cv-application-previous-employment-element .ButtonBasic:hover {
+
+.PreviousEmployment .ButtonBasic:hover {
     background-color: #f54e4e;
 }
-.cv-application-previous-employment-element .ButtonBasic:active {
+
+.PreviousEmployment .ButtonBasic:active {
     background-color: #c51717;
 }

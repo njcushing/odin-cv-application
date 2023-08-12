@@ -1,3 +1,8 @@
+:root {
+    --PreviousEducation-width: 38rem;
+    --PreviousEducation-height: 12rem;
+}
+
 .HobbiesInterests {
     display: grid;
     grid-template-rows: auto;
@@ -16,6 +21,6 @@
 }
 
 .HobbiesInterests .hobbies-interests-textarea .TextBox-textarea {
-    width: 36rem;
-    height: 12rem;
+    width: var(--PreviousEducation-width, 38rem);
+    height: var(--PreviousEducation-height, 12rem);
 }

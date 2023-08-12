@@ -78,6 +78,7 @@ const PreviousEducation = ({
     const deleteButtonElement = editMode ? (
         <ButtonBasic
             buttonText="Delete"
+            classNames={["delete-button"]}
             clickHandler={deleteButtonClickHandler}
         />
     ) : null

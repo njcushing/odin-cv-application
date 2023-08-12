@@ -1,39 +1,53 @@
-.cv-application-previous-education-container {
+:root {
+    --PreviousEducation-label-column-width: 10rem;
+    --PreviousEducation-input-column-width: 27rem;
+    --PreviousEducation-label-to-input-gap: 1rem;
+    --PreviousEducation-total-width: calc(
+        var(--PreviousEducation-label-column-width, 10rem) +
+        var(--PreviousEducation-input-column-width, 27rem) +
+        var(--PreviousEducation-label-to-input-gap, 1rem)
+    );
+}
+
+.PreviousEducation {
+    place-self: center;
     display: grid;
     grid-template-rows: auto;
-    padding: 1rem 0.2rem;
-    gap: 1rem;
-}
-.cv-application-previous-education-element {
-    place-self: center;
-    display: flex;
-    flex-direction: column;
+    place-items: center;
     gap: 0.4rem;
+    width: var(--PreviousEducation-total-width);
 }
-.cv-application-previous-education-element .institution-name,
-.cv-application-previous-education-element .qualifications,
-.cv-application-previous-education-element .start-date,
-.cv-application-previous-education-element .end-date {
+
+.PreviousEducation .institution-name,
+.PreviousEducation .qualifications,
+.PreviousEducation .start-date,
+.PreviousEducation .end-date {
     display: grid;
-    grid-template-columns: 10rem auto;
-    gap: 1rem;
+    grid-template-columns: var(--PreviousEducation-label-column-width, 10rem) var(--PreviousEducation-input-column-width, 27rem);
+    gap: var(--PreviousEducation-label-to-input-gap, 1rem);
 }
-.cv-application-previous-education-element .institution-name {
+
+.PreviousEducation .institution-name {
     grid-area: 1 / 1 / 2 / 2;
 }
-.cv-application-previous-education-element .qualifications {
+
+.PreviousEducation .qualifications {
     grid-area: 2 / 1 / 3 / 2;
 }
-.cv-application-previous-education-element .qualifications .TextBox-textarea {
+
+.PreviousEducation .qualifications .TextBox-textarea {
     height: 10rem;
 }
-.cv-application-previous-education-element .start-date {
+
+.PreviousEducation .start-date {
     grid-area: 3 / 1 / 4 / 2;
 }
-.cv-application-previous-education-element .end-date {
+
+.PreviousEducation .end-date {
     grid-area: 4 / 1 / 5 / 2;
 }
-.cv-application-previous-education-element .ButtonBasic {
+
+.PreviousEducation .delete-button {
     border-radius: 0.3rem;
     border: none;
     font-size: 1rem;
@@ -46,9 +60,11 @@
     grid-area: 5 / 1 / 6 / 2;
     background-color: #e73333;
 }
-.cv-application-previous-education-element .ButtonBasic:hover {
+
+.PreviousEducation .delete-button:hover {
     background-color: #f54e4e;
 }
-.cv-application-previous-education-element .ButtonBasic:active {
+
+.PreviousEducation .delete-button:active {
     background-color: #c51717;
 }

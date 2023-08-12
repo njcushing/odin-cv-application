@@ -1,20 +1,27 @@
-.cv-application-personal-info-container {
+:root {
+    --PersonalInformation-label-column-width: 10rem;
+    --PersonalInformation-input-column-width: 27rem;
+    --PersonalInformation-label-to-input-gap: 1rem;
+    --PersonalInformation-total-width: calc(
+        var(--PersonalInformation-label-column-width, 10rem) +
+        var(--PersonalInformation-input-column-width, 27rem) +
+        var(--PersonalInformation-label-to-input-gap, 1rem)
+    );
+}
+
+.PersonalInformation {
     place-self: center;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
-}
-.cv-application-personal-info-container {
-    display: grid;
-    grid-template-rows: auto;
     padding: 1rem 0.2rem;
     gap: 0.4rem;
 }
-.cv-application-personal-info-container .first-names,
-.cv-application-personal-info-container .last-name,
-.cv-application-personal-info-container .email-address,
-.cv-application-personal-info-container .phone-number {
+
+.PersonalInformation .first-names,
+.PersonalInformation .last-name,
+.PersonalInformation .email-address,
+.PersonalInformation .phone-number {
     display: grid;
-    grid-template-columns: 10rem auto;
-    gap: 1rem;
+    grid-template-columns: var(--PersonalInformation-label-column-width, 10rem) var(--PersonalInformation-input-column-width, 27rem);
+    gap: var(--PersonalInformation-label-to-input-gap, 1rem);
 }
