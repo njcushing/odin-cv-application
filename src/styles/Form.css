@@ -176,8 +176,31 @@
     background-color: white;
 }
 
+.cv-application-edit-section-button .ButtonBasic {
+    position: absolute;
+    height: 1.6rem;
+    width: 4rem;
+    top: -0.8rem;
+    right: 1rem;
+    border: 2px solid rgb(175, 175, 175);
+    border-radius: 0.5rem;
+    outline: 4px solid white;
+    color: rgb(58, 58, 58);
+    background-color: rgb(245, 245, 245);
+    font-size: 1rem;
+}
+.cv-application-edit-section-button .ButtonBasic:hover {
+    border: 2px solid rgb(201, 201, 201);
+    background-color: rgb(255, 255, 255);
+}
+.cv-application-edit-section-button .ButtonBasic:active {
+    border: 2px solid rgb(136, 136, 136);
+    background-color: rgb(236, 236, 236);
+}
+
 .cv-application-review-section-empty-warning {
     text-align: center;
     color: rgb(90, 90, 90);
     font-size: 0.9rem;
+    margin: 1rem 0.4rem;
 }

@@ -480,43 +480,46 @@ function Form() {
                 <div className={classNames.reviewSectionContainer}>
                 <div className={classNames.reviewSectionTitle}>Previous Education</div>
                 {editSectionButton("previousEducation")}
-                {previousEducationComponent(false)}
+                {previousEducationComponent(editSection.previousEducation)}
                 {previousEducation.size === 0
                     ?   <div className={classNames.reviewSectionEmptyWarning}>
                             You have opted not to provide any information regarding your education history.
                         </div>
                     : null
                 }
+                {editSection.previousEducation ? createNewPreviousEducationButton : null}
                 </div>
 
                 <div className={classNames.reviewSectionContainer}>
                 <div className={classNames.reviewSectionTitle}>Previous Employment</div>
                 {editSectionButton("previousEmployment")}
-                {previousEmploymentComponent(false)}
-                {previousEducation.size === 0
+                {previousEmploymentComponent(editSection.previousEmployment)}
+                {previousEmployment.size === 0
                     ?   <div className={classNames.reviewSectionEmptyWarning}>
                             You have opted not to provide any information regarding your employment history.
                         </div>
                     : null
                 }
+                {editSection.previousEmployment ? createNewPreviousEmploymentButton : null}
                 </div>
 
                 <div className={classNames.reviewSectionContainer}>
                 <div className={classNames.reviewSectionTitle}>Hobbies & Interests</div>
                 {editSectionButton("hobbiesInterests")}
-                {hobbiesInterestsComponent(false)}
+                {hobbiesInterestsComponent(editSection.hobbiesInterests)}
                 </div>
 
                 <div className={classNames.reviewSectionContainer}>
                 <div className={classNames.reviewSectionTitle}>Personal References</div>
                 {editSectionButton("references")}
-                {referencesComponent(false)}
-                {previousEducation.size === 0
+                {referencesComponent(editSection.references)}
+                {references.size === 0
                     ?   <div className={classNames.reviewSectionEmptyWarning}>
                             You have opted not to provide any personal references.
                         </div>
                     : null
                 }
+                {editSection.references ? createNewReferenceButton : null}
                 </div>
 
                 <div className={classNames.submitButton}></div>
