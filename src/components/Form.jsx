@@ -51,6 +51,13 @@ function Form() {
     const [previousEmployment, setPreviousEmployment] = useState(new Map());
     const [hobbiesInterests, setHobbiesInterests] = useState("");
     const [references, setReferences] = useState(new Map());
+    const [editSection, setEditSection] = useState({
+        personalInformation: false,
+        previousEducation: false,
+        previousEmployment: false,
+        hobbiesInterests: false,
+        references: false,
+    })
 
     const classNames = {
         formContainer: "cv-application-form-container",
@@ -72,10 +79,11 @@ function Form() {
         addFieldButton: "cv-application-add-field-button",
         requiredFieldWarning: "cv-application-required-field-warning",
         pageButtons: "cv-application-page-buttons",
-        submitButton: "cv-application-submit-button",
         reviewSectionContainer: "cv-application-review-section-container",
         reviewSectionTitle: "cv-application-review-section-title",
         reviewSectionEmptyWarning: "cv-application-review-section-empty-warning",
+        editSectionButton: "cv-application-edit-section-button",
+        submitButton: "cv-application-submit-button",
     }
 
     const sectionTitle = (title) => <h2 className={classNames.formSectionTitle}>{title}</h2>
@@ -337,6 +345,52 @@ function Form() {
         </div>
     )
 
+    const editSectionButton = (sectionName) => {
+
+        let buttonText, clickHandler;
+        switch(sectionName) {
+            case "personalInformation":
+                buttonText = editSection.personalInformation ? "Done" : "Edit";
+                clickHandler = () => setEditSection(
+                    { ...editSection, personalInformation: !editSection.personalInformation }
+                )
+                break;
+            case "previousEducation":
+                buttonText = editSection.previousEducation ? "Done" : "Edit";
+                clickHandler = () => setEditSection(
+                    { ...editSection, previousEducation: !editSection.previousEducation }
+                )
+                break;
+            case "previousEmployment":
+                buttonText = editSection.previousEmployment ? "Done" : "Edit";
+                clickHandler = () => setEditSection(
+                    { ...editSection, previousEmployment: !editSection.previousEmployment }
+                )
+                break;
+            case "hobbiesInterests":
+                buttonText = editSection.hobbiesInterests ? "Done" : "Edit";
+                clickHandler = () => setEditSection(
+                    { ...editSection, hobbiesInterests: !editSection.hobbiesInterests }
+                )
+                break;
+            case "references":
+                buttonText = editSection.references ? "Done" : "Edit";
+                clickHandler = () => setEditSection(
+                    { ...editSection, references: !editSection.references }
+                )
+                break;
+            default:
+                break;
+        }
+
+        return (<div className={classNames.editSectionButton}>
+            <ButtonBasic
+                buttonText={buttonText}
+                clickHandler={clickHandler}
+            />
+        </div>)
+    }
+
     const pageButtons = (prev, next) => {
         return (
             <div className={classNames.pageButtons}>
@@ -419,11 +473,13 @@ function Form() {
 
                 <div className={classNames.reviewSectionContainer}>
                 <div className={classNames.reviewSectionTitle}>Personal Information</div>
-                {personalInfoComponent(false)}
+                {editSectionButton("personalInformation")}
+                {personalInfoComponent(editSection.personalInformation)}
                 </div>
 
                 <div className={classNames.reviewSectionContainer}>
                 <div className={classNames.reviewSectionTitle}>Previous Education</div>
+                {editSectionButton("previousEducation")}
                 {previousEducationComponent(false)}
                 {previousEducation.size === 0
                     ?   <div className={classNames.reviewSectionEmptyWarning}>
@@ -435,6 +491,7 @@ function Form() {
 
                 <div className={classNames.reviewSectionContainer}>
                 <div className={classNames.reviewSectionTitle}>Previous Employment</div>
+                {editSectionButton("previousEmployment")}
                 {previousEmploymentComponent(false)}
                 {previousEducation.size === 0
                     ?   <div className={classNames.reviewSectionEmptyWarning}>
@@ -446,11 +503,13 @@ function Form() {
 
                 <div className={classNames.reviewSectionContainer}>
                 <div className={classNames.reviewSectionTitle}>Hobbies & Interests</div>
+                {editSectionButton("hobbiesInterests")}
                 {hobbiesInterestsComponent(false)}
                 </div>
 
                 <div className={classNames.reviewSectionContainer}>
                 <div className={classNames.reviewSectionTitle}>Personal References</div>
+                {editSectionButton("references")}
                 {referencesComponent(false)}
                 {previousEducation.size === 0
                     ?   <div className={classNames.reviewSectionEmptyWarning}>
