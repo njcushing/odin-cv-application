@@ -8,14 +8,19 @@ const Reference = ({
 
     firstNames = "",
     firstNamesChangeHandler,
+    firstNamesValidityHandler,
     lastName = "",
     lastNameChangeHandler,
+    lastNameValidityHandler,
     relationship = "",
     relationshipChangeHandler,
+    relationshipValidityHandler,
     emailAddress = "",
     emailAddressChangeHandler,
+    emailAddressValidityHandler,
     phoneNumber = "",
     phoneNumberChangeHandler,
+    phoneNumberValidityHandler,
     deleteButtonChangeHandler,
     classNames = [],
     editMode = false,
@@ -37,6 +42,7 @@ const Reference = ({
             classNames={["first-names"]}
             changeHandler={firstNamesChangeHandler}
             enabled={editMode}
+            valid={firstNamesValidityHandler}
         />
     )
 
@@ -49,6 +55,7 @@ const Reference = ({
             classNames={["last-name"]}
             changeHandler={lastNameChangeHandler}
             enabled={editMode}
+            valid={lastNameValidityHandler}
         />
     )
 
@@ -61,6 +68,7 @@ const Reference = ({
             classNames={["relationship"]}
             changeHandler={relationshipChangeHandler}
             enabled={editMode}
+            valid={relationshipValidityHandler}
         />
     )
 
@@ -72,6 +80,8 @@ const Reference = ({
             inputID={`references-email-address-${emailAddressKey}`}
             classNames={["email-address"]}
             changeHandler={emailAddressChangeHandler}
+            enabled={editMode}
+            valid={emailAddressValidityHandler}
         />
     )
 
@@ -83,6 +93,8 @@ const Reference = ({
             inputID={`references-phone-number-${phoneNumberKey}`}
             classNames={["phone-number"]}
             changeHandler={phoneNumberChangeHandler}
+            enabled={editMode}
+            valid={phoneNumberValidityHandler}
         />
     )
 

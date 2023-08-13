@@ -10,6 +10,7 @@ const TextBox = ({
     maxLength = -1,
     placeholder = "",
     enabled = true,
+    valid = true,
 
 }) => {
 
@@ -27,26 +28,16 @@ const TextBox = ({
         </label>
     )
 
-    const textareaElement = enabled ? (
+    const textareaElement = (
         <textarea
             id={textareaID}
-            className={["TextBox-textarea"]}
+            className={[`TextBox-textarea${valid ? "" : " invalid-field"}`]}
             onChange={changeHandler}
             value={textBoxText}
             maxLength={maxLength}
             placeholder={placeholder}
             style={styles}
-        ></textarea>
-    ) : (
-        <textarea
-            id={textareaID}
-            className={["TextBox-textarea"]}
-            onChange={changeHandler}
-            value={textBoxText}
-            maxLength={maxLength}
-            placeholder={placeholder}
-            style={styles}
-            disabled
+            disabled={!enabled}
         ></textarea>
     )
     

@@ -10,12 +10,16 @@ const PreviousEducation = ({
 
     institution = "",
     institutionChangeHandler,
+    institutionValidityHandler,
     qualifications = "",
     qualificationsChangeHandler,
+    qualificationsValidityHandler,
     startDate = null,
     startDateChangeHandler,
+    startDateValidityHandler,
     endDate = null,
     endDateChangeHandler,
+    endDateValidityHandler,
     deleteButtonClickHandler,
     classNames = [],
     editMode = false,
@@ -36,6 +40,7 @@ const PreviousEducation = ({
             classNames={["institution-name"]}
             changeHandler={institutionChangeHandler}
             enabled={editMode}
+            valid={institutionValidityHandler}
         />
     )
 
@@ -50,6 +55,7 @@ const PreviousEducation = ({
             scrollable={true}
             maxLength={500}
             enabled={editMode}
+            valid={qualificationsValidityHandler}
         />
     )
 
@@ -61,6 +67,7 @@ const PreviousEducation = ({
             classNames={["start-date"]}
             changeHandler={startDateChangeHandler}
             enabled={editMode}
+            valid={startDateValidityHandler}
         />
     )
 
@@ -72,6 +79,7 @@ const PreviousEducation = ({
             classNames={["end-date"]}
             changeHandler={endDateChangeHandler}
             enabled={editMode}
+            valid={endDateValidityHandler}
         />
     )
 

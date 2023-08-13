@@ -6,6 +6,7 @@ const DatePicker = ({
     classNames = [],
     changeHandler = null,
     enabled = true,
+    valid = true,
 
 }) => {
 
@@ -18,22 +19,14 @@ const DatePicker = ({
         </label>
     )
 
-    const inputElement = enabled ? (
+    const inputElement = (
         <input
             id={inputID}
-            className={["DatePicker-input"]}
+            className={[`DatePicker-input${valid ? "" : " invalid-field"}`]}
             type="date"
             onChange={changeHandler}
             value={date}
-        ></input>
-    ) : (
-        <input
-            id={inputID}
-            className={["DatePicker-input"]}
-            type="date"
-            onChange={changeHandler}
-            value={date}
-            disabled
+            disabled={!enabled}
         ></input>
     )
     

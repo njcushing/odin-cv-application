@@ -10,14 +10,19 @@ const PreviousEmployment = ({
 
     companyName = "",
     companyNameChangeHandler,
+    companyNameValidityHandler,
     role = "",
     roleChangeHandler,
+    roleValidityHandler,
     responsibilities = "",
     responsibilitiesChangeHandler,
+    responsibilitiesValidityHandler,
     startDate = null,
     startDateChangeHandler,
+    startDateValidityHandler,
     endDate = null,
     endDateChangeHandler,
+    endDateValidityHandler,
     deleteButtonClickHandler,
     classNames = [],
     editMode = false,
@@ -39,6 +44,7 @@ const PreviousEmployment = ({
             classNames={["company-name"]}
             changeHandler={companyNameChangeHandler}
             enabled={editMode}
+            valid={companyNameValidityHandler}
         />
     )
 
@@ -51,6 +57,7 @@ const PreviousEmployment = ({
             classNames={["role"]}
             changeHandler={roleChangeHandler}
             enabled={editMode}
+            valid={roleValidityHandler}
         />
     )
 
@@ -65,6 +72,7 @@ const PreviousEmployment = ({
             scrollable={true}
             maxLength={500}
             enabled={editMode}
+            valid={responsibilitiesValidityHandler}
         />
     )
 
@@ -76,6 +84,7 @@ const PreviousEmployment = ({
             classNames={["start-date"]}
             changeHandler={startDateChangeHandler}
             enabled={editMode}
+            valid={startDateValidityHandler}
         />
     )
 
@@ -87,6 +96,7 @@ const PreviousEmployment = ({
             classNames={["end-date"]}
             changeHandler={endDateChangeHandler}
             enabled={editMode}
+            valid={endDateValidityHandler}
         />
     )
 

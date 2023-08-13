@@ -6,12 +6,16 @@ const PersonalInformation = ({
 
     firstNames = "",
     firstNamesChangeHandler,
+    firstNamesValidityHandler,
     lastName = "",
     lastNameChangeHandler,
+    lastNameValidityHandler,
     emailAddress = "",
     emailAddressChangeHandler,
+    emailAddressValidityHandler,
     phoneNumber = "",
     phoneNumberChangeHandler,
+    phoneNumberValidityHandler,
     classNames = [],
     editMode = false,
 
@@ -26,6 +30,7 @@ const PersonalInformation = ({
             classNames={["first-names"]}
             changeHandler={firstNamesChangeHandler}
             enabled={editMode}
+            valid={firstNamesValidityHandler}
         />
     )
 
@@ -38,6 +43,7 @@ const PersonalInformation = ({
             classNames={["last-name"]}
             changeHandler={lastNameChangeHandler}
             enabled={editMode}
+            valid={lastNameValidityHandler}
         />
     )
 
@@ -50,6 +56,7 @@ const PersonalInformation = ({
             classNames={["email-address"]}
             changeHandler={emailAddressChangeHandler}
             enabled={editMode}
+            valid={emailAddressValidityHandler}
         />
     )
 
@@ -62,6 +69,7 @@ const PersonalInformation = ({
             classNames={["phone-number"]}
             changeHandler={phoneNumberChangeHandler}
             enabled={editMode}
+            valid={phoneNumberValidityHandler}
         />
     )
 

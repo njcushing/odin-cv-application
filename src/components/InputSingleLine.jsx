@@ -7,6 +7,7 @@ const InputSingleLine = ({
     classNames = [],
     changeHandler = null,
     enabled = true,
+    valid = true,
 
 }) => {
 
@@ -19,22 +20,14 @@ const InputSingleLine = ({
         </label>
     )
 
-    const inputElement = enabled ? (
+    const inputElement = (
         <input
             id={inputID}
             type={inputType}
             value={inputValue}
             onChange={changeHandler}
-            className={["InputSingleLine-input"]}
-        ></input>
-    ) : (
-        <input
-            id={inputID}
-            type={inputType}
-            value={inputValue}
-            onChange={changeHandler}
-            className={["InputSingleLine-input"]}
-            disabled
+            className={[`InputSingleLine-input${valid ? "" : " invalid-field"}`]}
+            disabled={!enabled}
         ></input>
     )
     

@@ -7,6 +7,7 @@ const HobbiesInterests = ({
 
     hobbiesInterests = "",
     hobbiesInterestsChangeHandler,
+    hobbiesInterestsValidityHandler,
     classNames = [],
     editMode = false,
 
@@ -32,6 +33,7 @@ const HobbiesInterests = ({
             maxLength={500}
             placeholder={"You have opted not to provide any additional information about yourself"}
             enabled={editMode}
+            valid={hobbiesInterestsValidityHandler}
         />
     )
 

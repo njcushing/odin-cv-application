@@ -7,18 +7,11 @@ const ButtonBasic = ({
 
 }) => {
 
-    const buttonElement = enabled ? (
+    const buttonElement = (
         <button
             onClick={clickHandler}
             className={["ButtonBasic"].concat(classNames).join(" ")}
-        >
-            {buttonText}
-        </button>
-    ) : (
-        <button
-            onClick={clickHandler}
-            className={["ButtonBasic"].concat(classNames).join(" ")}
-            disabled
+            disabled={!enabled}
         >
             {buttonText}
         </button>
