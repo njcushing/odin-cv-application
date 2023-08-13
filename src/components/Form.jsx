@@ -405,6 +405,8 @@ function Form() {
     }
 
     const submitButton = () => {
+        const formValid = true
+
         return (
             <div className={classNames.submitButton}>
                 <ButtonBasic
@@ -412,6 +414,7 @@ function Form() {
                     clickHandler={() => {
                         return null;
                     }}
+                    enabled={formValid}
                 />
             </div>
         )
