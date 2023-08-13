@@ -8,6 +8,7 @@ const TextBox = ({
     resize = "none",
     scrollable = true,
     maxLength = -1,
+    placeholder = "",
     enabled = true,
 
 }) => {
@@ -33,6 +34,7 @@ const TextBox = ({
             onChange={changeHandler}
             value={textBoxText}
             maxLength={maxLength}
+            placeholder={placeholder}
             style={styles}
         ></textarea>
     ) : (
@@ -42,6 +44,7 @@ const TextBox = ({
             onChange={changeHandler}
             value={textBoxText}
             maxLength={maxLength}
+            placeholder={placeholder}
             style={styles}
             disabled
         ></textarea>

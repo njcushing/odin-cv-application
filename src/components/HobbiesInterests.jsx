@@ -30,6 +30,7 @@ const HobbiesInterests = ({
             resize="none"
             scrollable={true}
             maxLength={500}
+            placeholder={"You have opted not to provide any additional information about yourself"}
             enabled={editMode}
         />
     )

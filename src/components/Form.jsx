@@ -75,6 +75,7 @@ function Form() {
         submitButton: "cv-application-submit-button",
         reviewSectionContainer: "cv-application-review-section-container",
         reviewSectionTitle: "cv-application-review-section-title",
+        reviewSectionEmptyWarning: "cv-application-review-section-empty-warning",
     }
 
     const sectionTitle = (title) => <h2 className={classNames.formSectionTitle}>{title}</h2>
@@ -424,11 +425,23 @@ function Form() {
                 <div className={classNames.reviewSectionContainer}>
                 <div className={classNames.reviewSectionTitle}>Previous Education</div>
                 {previousEducationComponent(false)}
+                {previousEducation.size === 0
+                    ?   <div className={classNames.reviewSectionEmptyWarning}>
+                            You have opted not to provide any information regarding your education history.
+                        </div>
+                    : null
+                }
                 </div>
 
                 <div className={classNames.reviewSectionContainer}>
                 <div className={classNames.reviewSectionTitle}>Previous Employment</div>
                 {previousEmploymentComponent(false)}
+                {previousEducation.size === 0
+                    ?   <div className={classNames.reviewSectionEmptyWarning}>
+                            You have opted not to provide any information regarding your employment history.
+                        </div>
+                    : null
+                }
                 </div>
 
                 <div className={classNames.reviewSectionContainer}>
@@ -439,6 +452,12 @@ function Form() {
                 <div className={classNames.reviewSectionContainer}>
                 <div className={classNames.reviewSectionTitle}>Personal References</div>
                 {referencesComponent(false)}
+                {previousEducation.size === 0
+                    ?   <div className={classNames.reviewSectionEmptyWarning}>
+                            You have opted not to provide any personal references.
+                        </div>
+                    : null
+                }
                 </div>
 
                 <div className={classNames.submitButton}></div>
