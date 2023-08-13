@@ -73,7 +73,7 @@
 .cv-application-references-container {
     display: grid;
     grid-template-rows: auto;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .cv-application-inputs-area {
@@ -163,6 +163,7 @@
     outline: 1px solid rgb(175, 175, 175);
     border-radius: 0.5rem;
     min-height: 4rem;
+    padding: 1rem 0.4rem;
     margin: 0.4rem 0rem;
 }
 
