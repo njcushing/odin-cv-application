@@ -383,12 +383,14 @@ function Form() {
                 break;
         }
 
-        return (<div className={classNames.editSectionButton}>
-            <ButtonBasic
-                buttonText={buttonText}
-                clickHandler={clickHandler}
-            />
-        </div>)
+        return (
+            <div className={classNames.editSectionButton}>
+                <ButtonBasic
+                    buttonText={buttonText}
+                    clickHandler={clickHandler}
+                />
+            </div>
+        )
     }
 
     const pageButtons = (prev, next) => {
@@ -398,6 +400,19 @@ function Form() {
                     setCurrentPage(prev)}/>
                 <ButtonBasic buttonText="Next Page" clickHandler={() => 
                     setCurrentPage(next)}/>
+            </div>
+        )
+    }
+
+    const submitButton = () => {
+        return (
+            <div className={classNames.submitButton}>
+                <ButtonBasic
+                    buttonText={"Submit"}
+                    clickHandler={() => {
+                        return null;
+                    }}
+                />
             </div>
         )
     }
@@ -521,8 +536,7 @@ function Form() {
                 }
                 {editSection.references ? createNewReferenceButton : null}
                 </div>
-
-                <div className={classNames.submitButton}></div>
+                {submitButton()}
                 </div>
             )
         case "Submitted":
