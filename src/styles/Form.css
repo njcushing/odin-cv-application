@@ -44,20 +44,55 @@
     height: 1.8rem;
     border-radius: 0.3rem;
     border: none;
-    outline: 1px solid rgb(66, 66, 66);
     font-size: 1.2rem;
     padding: 0rem 0.4rem;
 }
-.InputSingleLine-input:hover:not(:disabled),
-.TextBox-textarea:hover:not(:disabled),
-.DatePicker-input:hover:not(:disabled) {
+.InputSingleLine-input:not(:disabled):not(.invalid-field),
+.TextBox-textarea:not(:disabled):not(.invalid-field),
+.DatePicker-input:not(:disabled):not(.invalid-field) {
+    outline: 1px solid rgb(66, 66, 66);
+}
+.InputSingleLine-input:disabled:not(.invalid-field),
+.TextBox-textarea:disabled:not(.invalid-field),
+.DatePicker-input:disabled:not(.invalid-field) {
+    outline: 1px solid rgb(119, 119, 119);
+    background-color: rgba(0, 0, 0, 0.03);
+}
+.InputSingleLine-input:not(:disabled).invalid-field,
+.TextBox-textarea:not(:disabled).invalid-field,
+.DatePicker-input:not(:disabled).invalid-field {
+    outline: 1px solid rgb(255, 42, 42);
+    background-color: rgba(247, 35, 35, 0.08);
+}
+.InputSingleLine-input:disabled.invalid-field,
+.TextBox-textarea:disabled.invalid-field,
+.DatePicker-input:disabled.invalid-field {
+    outline: 1px solid rgb(255, 73, 73);
+    background-color: rgba(228, 36, 36, 0.08);
+}
+.InputSingleLine-input:not(:disabled):not(.invalid-field):hover,
+.TextBox-textarea:not(:disabled):not(.invalid-field):hover,
+.DatePicker-input:not(:disabled):not(.invalid-field):hover {
     outline: 2px solid rgb(37, 37, 37);
 }
-.InputSingleLine-input:focus:not(:disabled),
-.TextBox-textarea:focus:not(:disabled),
-.DatePicker-input:focus:not(:disabled) {
+.InputSingleLine-input:not(:disabled).invalid-field:hover,
+.TextBox-textarea:not(:disabled).invalid-field:hover,
+.DatePicker-input:not(:disabled).invalid-field:hover {
+    outline: 2px solid rgb(241, 101, 101);
+    background-color: rgba(247, 77, 77, 0.08);
+}
+.InputSingleLine-input:not(:disabled):not(.invalid-field):focus,
+.TextBox-textarea:not(:disabled):not(.invalid-field):focus,
+.DatePicker-input:not(:disabled):not(.invalid-field):focus {
     outline: 2px solid rgb(37, 37, 37);
     background-color: rgba(0, 0, 0, 0.03);
+    box-shadow: 0px 4px 5px -0px rgba(0, 0, 0, 0.3);
+}
+.InputSingleLine-input:not(:disabled).invalid-field:focus,
+.TextBox-textarea:not(:disabled).invalid-field:focus,
+.DatePicker-input:not(:disabled).invalid-field:focus {
+    outline: 2px solid rgb(255, 0, 0);
+    background-color: rgba(255, 0, 0, 0.08);
     box-shadow: 0px 4px 5px -0px rgba(0, 0, 0, 0.3);
 }
 
