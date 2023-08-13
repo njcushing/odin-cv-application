@@ -61,41 +61,18 @@
     box-shadow: 0px 4px 5px -0px rgba(0, 0, 0, 0.3);
 }
 
-.cv-application-previous-education-page {
-    display: grid;
-    grid-template-rows: auto;
-    padding: 1rem 0.2rem;
-    gap: 1rem;
-}
-.cv-application-previous-education-container {
-    display: grid;
-    grid-template-rows: auto;
-    gap: 1rem;
-}
-
-.cv-application-previous-employment-page {
-    display: grid;
-    grid-template-rows: auto;
-    padding: 1rem 0.2rem;
-    gap: 1rem;
-}
-.cv-application-previous-employment-container {
-    display: grid;
-    grid-template-rows: auto;
-    padding: 1rem 0.2rem;
-    gap: 1rem;
-}
-
+.cv-application-previous-education-page,
+.cv-application-previous-employment-page,
 .cv-application-references-page {
     display: grid;
     grid-template-rows: auto;
-    padding: 1rem 0.2rem;
     gap: 1rem;
 }
+.cv-application-previous-education-container,
+.cv-application-previous-employment-container,
 .cv-application-references-container {
     display: grid;
     grid-template-rows: auto;
-    padding: 1rem 0.2rem;
     gap: 1rem;
 }
 
@@ -178,4 +155,22 @@
 }
 .cv-application-add-field-button .ButtonBasic:active {
     background-color: #23aa1f;
+}
+
+.cv-application-review-section-container {
+    display: grid;
+    position: relative;
+    outline: 1px solid rgb(175, 175, 175);
+    border-radius: 0.5rem;
+    min-height: 2rem;
+    margin: 0.5rem 0rem;
+}
+
+.cv-application-review-section-title {
+    position: absolute;
+    line-height: 1rem;
+    top: -0.5rem;
+    left: 0.8rem;
+    color: rgb(90, 90, 90);
+    background-color: white;
 }

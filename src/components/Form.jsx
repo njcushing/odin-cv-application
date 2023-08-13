@@ -73,6 +73,8 @@ function Form() {
         requiredFieldWarning: "cv-application-required-field-warning",
         pageButtons: "cv-application-page-buttons",
         submitButton: "cv-application-submit-button",
+        reviewSectionContainer: "cv-application-review-section-container",
+        reviewSectionTitle: "cv-application-review-section-title",
     }
 
     const sectionTitle = (title) => <h2 className={classNames.formSectionTitle}>{title}</h2>
@@ -390,7 +392,7 @@ function Form() {
         case "HobbiesInterests":
             return (
                 <div className={classNames.formContainer}>
-                {sectionTitle("Hobbies Interests")}
+                {sectionTitle("Hobbies & Interests")}
                 {requiredFieldWarning}
                 {hobbiesInterestsComponent()}
                 {pageButtons("Employment", "References")}
@@ -413,11 +415,32 @@ function Form() {
                 <div className={classNames.formContainer}>
                 {sectionTitle("Review Your Information")}
                 {requiredFieldWarning}
+
+                <div className={classNames.reviewSectionContainer}>
+                <div className={classNames.reviewSectionTitle}>Personal Information</div>
                 {personalInfoComponent(false)}
+                </div>
+
+                <div className={classNames.reviewSectionContainer}>
+                <div className={classNames.reviewSectionTitle}>Previous Education</div>
                 {previousEducationComponent(false)}
+                </div>
+
+                <div className={classNames.reviewSectionContainer}>
+                <div className={classNames.reviewSectionTitle}>Previous Employment</div>
                 {previousEmploymentComponent(false)}
+                </div>
+
+                <div className={classNames.reviewSectionContainer}>
+                <div className={classNames.reviewSectionTitle}>Hobbies & Interests</div>
                 {hobbiesInterestsComponent(false)}
+                </div>
+
+                <div className={classNames.reviewSectionContainer}>
+                <div className={classNames.reviewSectionTitle}>Personal References</div>
                 {referencesComponent(false)}
+                </div>
+
                 <div className={classNames.submitButton}></div>
                 </div>
             )
