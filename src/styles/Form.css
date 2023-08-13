@@ -182,20 +182,19 @@
     width: 4rem;
     top: -0.8rem;
     right: 1rem;
-    border: 2px solid rgb(175, 175, 175);
+    border: none;
     border-radius: 0.5rem;
     outline: 4px solid white;
-    color: rgb(58, 58, 58);
-    background-color: rgb(245, 245, 245);
+    color: rgb(255, 255, 255);
+    background-color: #31c22c;
     font-size: 1rem;
+    font-weight: bold;
 }
 .cv-application-edit-section-button .ButtonBasic:hover {
-    border: 2px solid rgb(201, 201, 201);
-    background-color: rgb(255, 255, 255);
+    background-color: #4bdb46;
 }
 .cv-application-edit-section-button .ButtonBasic:active {
-    border: 2px solid rgb(136, 136, 136);
-    background-color: rgb(236, 236, 236);
+    background-color: #23aa1f;
 }
 
 .cv-application-review-section-empty-warning {
