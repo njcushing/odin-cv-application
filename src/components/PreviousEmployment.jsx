@@ -10,12 +10,12 @@ const PreviousEmployment = ({
 
     companyName = "",
     companyNameChangeHandler,
-    companyNameValidityHandler,
+    companyNameValidityHandler = () => companyName.length > 0,
     companyNameInvalidMessage = "The above field must NOT be empty.",
 
     role = "",
     roleChangeHandler,
-    roleValidityHandler,
+    roleValidityHandler = () => role.length > 0,
     roleInvalidMessage = "The above field must NOT be empty.",
 
     responsibilities = "",
