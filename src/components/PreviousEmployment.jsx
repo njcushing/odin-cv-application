@@ -11,22 +11,27 @@ const PreviousEmployment = ({
     companyName = "",
     companyNameChangeHandler,
     companyNameValidityHandler,
+    companyNameInvalidMessage = "The above field must NOT be empty.",
 
     role = "",
     roleChangeHandler,
     roleValidityHandler,
+    roleInvalidMessage = "The above field must NOT be empty.",
 
     responsibilities = "",
     responsibilitiesChangeHandler,
     responsibilitiesValidityHandler,
+    responsibilitiesInvalidMessage = "The above field must NOT be empty.",
 
     startDate = null,
     startDateChangeHandler,
     startDateValidityHandler,
+    startDateInvalidMessage = "The above field must contain a valid date.",
     
     endDate = null,
     endDateChangeHandler,
     endDateValidityHandler,
+    endDateInvalidMessage = "The above field must contain a valid date.",
 
     deleteButtonClickHandler,
     classNames = [],
@@ -55,7 +60,7 @@ const PreviousEmployment = ({
             />
             {companyNameValid ? null :
                 <div className={["company-name-invalid-message"]} >
-                The above field must NOT be empty.
+                {companyNameInvalidMessage}
                 </div>
             }
         </>
@@ -76,7 +81,7 @@ const PreviousEmployment = ({
             />
             {roleValid ? null :
                 <div className={["role-invalid-message"]} >
-                The above field must NOT be empty.
+                {roleInvalidMessage}
                 </div>
             }
         </>
@@ -99,7 +104,7 @@ const PreviousEmployment = ({
             />
             {responsibilitiesValid ? null :
                 <div className={["responsibilities-invalid-message"]} >
-                The above field must NOT be empty.
+                {responsibilitiesInvalidMessage}
                 </div>
             }
         </>
@@ -119,7 +124,7 @@ const PreviousEmployment = ({
             />
             {startDateValid ? null :
                 <div className={["start-date-invalid-message"]} >
-                The above field must NOT be empty.
+                {startDateInvalidMessage}
                 </div>
             }
         </>
@@ -139,7 +144,7 @@ const PreviousEmployment = ({
             />
             {endDateValid ? null :
                 <div className={["end-date-invalid-message"]} >
-                The above field must NOT be empty.
+                {endDateInvalidMessage}
                 </div>
             }
         </>

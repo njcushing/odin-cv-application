@@ -11,18 +11,22 @@ const PreviousEducation = ({
     institution = "",
     institutionChangeHandler,
     institutionValidityHandler = () => institution.length > 0,
+    institutionInvalidMessage = "The above field must NOT be empty.",
 
     qualifications = "",
     qualificationsChangeHandler,
     qualificationsValidityHandler,
+    qualificationsInvalidMessage = "The above field must NOT be empty.",
 
     startDate = null,
     startDateChangeHandler,
     startDateValidityHandler,
+    startDateInvalidMessage = "The above field must contain a valid date.",
 
     endDate = null,
     endDateChangeHandler,
     endDateValidityHandler,
+    endDateInvalidMessage = "The above field must contain a valid date.",
 
     deleteButtonClickHandler,
     classNames = [],
@@ -50,7 +54,7 @@ const PreviousEducation = ({
             />
             {institutionValid ? null :
                 <div className={["institution-invalid-message"]} >
-                The above field must NOT be empty.
+                {institutionInvalidMessage}
                 </div>
             }
         </>
@@ -73,7 +77,7 @@ const PreviousEducation = ({
             />
             {qualificationsValid ? null :
                 <div className={["qualifications-invalid-message"]} >
-                The above field must NOT be empty.
+                {qualificationsInvalidMessage}
                 </div>
             }
         </>
@@ -93,7 +97,7 @@ const PreviousEducation = ({
             />
             {startDateValid ? null :
                 <div className={["start-date-invalid-message"]} >
-                The above field must NOT be empty.
+                {startDateInvalidMessage}
                 </div>
             }
         </>
@@ -113,7 +117,7 @@ const PreviousEducation = ({
             />
             {endDateValid ? null :
                 <div className={["end-date-invalid-message"]} >
-                The above field must NOT be empty.
+                {endDateInvalidMessage}
                 </div>
             }
         </>

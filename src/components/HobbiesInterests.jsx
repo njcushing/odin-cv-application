@@ -8,6 +8,7 @@ const HobbiesInterests = ({
     hobbiesInterests = "",
     hobbiesInterestsChangeHandler,
     hobbiesInterestsValidityHandler,
+    hobbiesInterestsInvalidMessage = "The above field must NOT be empty.",
 
     classNames = [],
     editMode = false,
@@ -40,7 +41,7 @@ const HobbiesInterests = ({
             />
             {hobbiesInterestsValid ? null :
                 <div className={["hobbies-interests-invalid-message"]} >
-                The above field must NOT be empty.
+                {hobbiesInterestsInvalidMessage}
                 </div>
             }
         </>

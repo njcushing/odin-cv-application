@@ -9,12 +9,14 @@ const PersonalInformation = ({
     firstNamesValidityHandler = () => {
         return /^[0-9a-z](\ ?[0-9a-z])*$/i.test(firstNames);
     },
+    firstNamesInvalidMessage = "The above field must NOT be empty. Your name(s) can contain letters, numbers and spaces.",
 
     lastName = "",
     lastNameChangeHandler,
     lastNameValidityHandler = () => {
         return /^[0-9a-z](\ ?[0-9a-z])*$/i.test(lastName);
     },
+    lastNameInvalidMessage = "The above field must NOT be empty. Your name(s) can contain letters, numbers and spaces.",
 
     emailAddress = "",
     emailAddressChangeHandler,
@@ -24,12 +26,14 @@ const PersonalInformation = ({
             /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         );
     },
+    emailAddressInvalidMessage = "The above field must NOT be empty. Your email must be in the format: xxx@yyy.zzz.",
 
     phoneNumber = "",
     phoneNumberChangeHandler,
     phoneNumberValidityHandler = () => {
         return /^(((\+44\s?\d{4}|\(?0\d{4}\)?)\s?\d{3}\s?\d{3})|((\+44\s?\d{3}|\(?0\d{3}\)?)\s?\d{3}\s?\d{4})|((\+44\s?\d{2}|\(?0\d{2}\)?)\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$/.test(phoneNumber);
     },
+    phoneNumberInvalidMessage = "The above field must NOT be empty. Your phone number must be a valid UK phone number.",
 
     classNames = [],
     editMode = false,
@@ -51,7 +55,7 @@ const PersonalInformation = ({
             />
             {firstNamesValid ? null :
                 <div className={["first-names-invalid-message"]} >
-                The above field must NOT be empty. Your name(s) can contain letters, numbers and spaces.
+                {firstNamesInvalidMessage}
                 </div>
             }
         </>
@@ -72,7 +76,7 @@ const PersonalInformation = ({
             />
             {lastNameValid ? null :
                 <div className={["last-name-invalid-message"]} >
-                The above field must NOT be empty. Your name(s) can contain letters, numbers and spaces.
+                {lastNameInvalidMessage}
                 </div>
             }
         </>
@@ -93,7 +97,7 @@ const PersonalInformation = ({
             />
             {emailAddressValid ? null :
                 <div className={["email-address-invalid-message"]} >
-                The above field must NOT be empty. Your email must be in the format: xxx@yyy.zzz.
+                {emailAddressInvalidMessage}
                 </div>
             }
         </>
@@ -114,7 +118,7 @@ const PersonalInformation = ({
             />
             {phoneNumberValid ? null :
                 <div className={["phone-number-invalid-message"]} >
-                The above field must NOT be empty. Your phone number must be a valid UK phone number.
+                {phoneNumberInvalidMessage}
                 </div>
             }
         </>
