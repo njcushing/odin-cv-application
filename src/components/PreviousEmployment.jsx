@@ -25,12 +25,12 @@ const PreviousEmployment = ({
 
     startDate = null,
     startDateChangeHandler,
-    startDateValidityHandler,
+    startDateValidityHandler = () => { return !isNaN(Date.parse(startDate)) },
     startDateInvalidMessage = "The above field must contain a valid date.",
     
     endDate = null,
     endDateChangeHandler,
-    endDateValidityHandler,
+    endDateValidityHandler = () => { return !isNaN(Date.parse(endDate)) },
     endDateInvalidMessage = "The above field must contain a valid date.",
 
     deleteButtonClickHandler,
