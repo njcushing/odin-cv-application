@@ -10,28 +10,28 @@ const PreviousEmployment = ({
 
     companyName = "",
     companyNameChangeHandler,
-    companyNameValidityHandler = () => companyName.length > 0,
-    companyNameInvalidMessage = "The above field must NOT be empty.",
+    companyNameValidityHandler,
+    companyNameInvalidMessage,
 
     role = "",
     roleChangeHandler,
-    roleValidityHandler = () => role.length > 0,
-    roleInvalidMessage = "The above field must NOT be empty.",
+    roleValidityHandler,
+    roleInvalidMessage,
 
     responsibilities = "",
     responsibilitiesChangeHandler,
     responsibilitiesValidityHandler,
-    responsibilitiesInvalidMessage = "The above field must NOT be empty.",
+    responsibilitiesInvalidMessage,
 
     startDate = null,
     startDateChangeHandler,
-    startDateValidityHandler = () => { return !isNaN(Date.parse(startDate)) },
-    startDateInvalidMessage = "The above field must contain a valid date.",
+    startDateValidityHandler,
+    startDateInvalidMessage,
     
     endDate = null,
     endDateChangeHandler,
-    endDateValidityHandler = () => { return !isNaN(Date.parse(endDate)) },
-    endDateInvalidMessage = "The above field must contain a valid date.",
+    endDateValidityHandler,
+    endDateInvalidMessage,
 
     deleteButtonClickHandler,
     classNames = [],

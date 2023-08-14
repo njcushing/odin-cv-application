@@ -10,23 +10,23 @@ const PreviousEducation = ({
 
     institution = "",
     institutionChangeHandler,
-    institutionValidityHandler = () => institution.length > 0,
-    institutionInvalidMessage = "The above field must NOT be empty.",
+    institutionValidityHandler,
+    institutionInvalidMessage,
 
     qualifications = "",
     qualificationsChangeHandler,
     qualificationsValidityHandler,
-    qualificationsInvalidMessage = "The above field must NOT be empty.",
+    qualificationsInvalidMessage,
 
     startDate = null,
     startDateChangeHandler,
-    startDateValidityHandler = () => { return !isNaN(Date.parse(startDate)) },
-    startDateInvalidMessage = "The above field must contain a valid date.",
+    startDateValidityHandler,
+    startDateInvalidMessage,
 
     endDate = null,
     endDateChangeHandler,
-    endDateValidityHandler = () => { return !isNaN(Date.parse(endDate)) },
-    endDateInvalidMessage = "The above field must contain a valid date.",
+    endDateValidityHandler,
+    endDateInvalidMessage,
 
     deleteButtonClickHandler,
     classNames = [],

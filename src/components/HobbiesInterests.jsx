@@ -8,7 +8,7 @@ const HobbiesInterests = ({
     hobbiesInterests = "",
     hobbiesInterestsChangeHandler,
     hobbiesInterestsValidityHandler,
-    hobbiesInterestsInvalidMessage = "The above field must NOT be empty.",
+    hobbiesInterestsInvalidMessage,
 
     classNames = [],
     editMode = false,
