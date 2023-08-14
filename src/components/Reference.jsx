@@ -22,7 +22,7 @@ const Reference = ({
 
     relationship = "",
     relationshipChangeHandler,
-    relationshipValidityHandler,
+    relationshipValidityHandler = () => relationship.length > 0,
     relationshipInvalidMessage = "The above field must NOT be empty.",
 
     emailAddress = "",
