@@ -8,19 +8,35 @@ const Reference = ({
 
     firstNames = "",
     firstNamesChangeHandler,
-    firstNamesValidityHandler,
+    firstNamesValidityHandler = () => {
+        return /^[0-9a-z](\ ?[0-9a-z])*$/i.test(firstNames);
+    },
+
     lastName = "",
     lastNameChangeHandler,
-    lastNameValidityHandler,
+    lastNameValidityHandler = () => {
+        return /^[0-9a-z](\ ?[0-9a-z])*$/i.test(lastName);
+    },
+
     relationship = "",
     relationshipChangeHandler,
     relationshipValidityHandler,
+
     emailAddress = "",
     emailAddressChangeHandler,
-    emailAddressValidityHandler,
+    emailAddressValidityHandler = () => {
+        if (emailAddress.length === 0) return false;
+        return String(emailAddress).toLowerCase().match(
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        );
+    },
+
     phoneNumber = "",
     phoneNumberChangeHandler,
-    phoneNumberValidityHandler,
+    phoneNumberValidityHandler = () => {
+        return /^(((\+44\s?\d{4}|\(?0\d{4}\)?)\s?\d{3}\s?\d{3})|((\+44\s?\d{3}|\(?0\d{3}\)?)\s?\d{3}\s?\d{4})|((\+44\s?\d{2}|\(?0\d{2}\)?)\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$/.test(phoneNumber);
+    },
+
     deleteButtonChangeHandler,
     classNames = [],
     editMode = false,
@@ -33,69 +49,104 @@ const Reference = ({
     const emailAddressKey = uuidv4();
     const phoneNumberKey = uuidv4();
 
+    const firstNamesValid = typeof firstNamesValidityHandler === 'function' ? firstNamesValidityHandler() : true;
     const firstNamesElement = (
-        <InputSingleLine
-            label="First Name(s)*: "
-            inputType="text"
-            inputValue={firstNames}
-            inputID={`references-first-names-${firstNamesKey}`}
-            classNames={["first-names"]}
-            changeHandler={firstNamesChangeHandler}
-            enabled={editMode}
-            valid={firstNamesValidityHandler}
-        />
+        <>
+            <InputSingleLine
+                label="First Name(s)*: "
+                inputType="text"
+                inputValue={firstNames}
+                inputID={`references-first-names-${firstNamesKey}`}
+                classNames={["first-names"]}
+                changeHandler={firstNamesChangeHandler}
+                enabled={editMode}
+                valid={firstNamesValid}
+            />
+            {firstNamesValid ? null :
+                <div className={["first-names-invalid-message"]} >
+                The above field must NOT be empty. Your name(s) can contain letters, numbers and spaces.
+                </div>
+            }
+        </>
     )
 
+    const lastNameValid = typeof lastNameValidityHandler === 'function' ? lastNameValidityHandler() : true;
     const lastNameElement = (
-        <InputSingleLine
-            label="Last Name*: "
-            inputType="text"
-            inputValue={lastName}
-            inputID={`references-last-name-${lastNameKey}`}
-            classNames={["last-name"]}
-            changeHandler={lastNameChangeHandler}
-            enabled={editMode}
-            valid={lastNameValidityHandler}
-        />
+        <>
+            <InputSingleLine
+                label="Last Name*: "
+                inputType="text"
+                inputValue={lastName}
+                inputID={`references-last-name-${lastNameKey}`}
+                classNames={["last-name"]}
+                changeHandler={lastNameChangeHandler}
+                enabled={editMode}
+                valid={lastNameValid}
+            />
+            {lastNameValid ? null :
+                <div className={["last-name-invalid-message"]} >
+                The above field must NOT be empty. Your name(s) can contain letters, numbers and spaces.
+                </div>
+            }
+        </>
     )
 
-    const responsibilitiesElement = (
-        <InputSingleLine
-            label="Relationship*: "
-            inputType="text"
-            inputValue={relationship}
-            inputID={`references-relationship-${relationshipKey}`}
-            classNames={["relationship"]}
-            changeHandler={relationshipChangeHandler}
-            enabled={editMode}
-            valid={relationshipValidityHandler}
-        />
+    const relationshipValid = true;
+    const relationshipElement = (
+        <>
+            <InputSingleLine
+                label="Relationship*: "
+                inputType="text"
+                inputValue={relationship}
+                inputID={`references-relationship-${relationshipKey}`}
+                classNames={["relationship"]}
+                changeHandler={relationshipChangeHandler}
+                enabled={editMode}
+                valid={relationshipValid}
+            />
+        </>
     )
 
+    const emailAddressValid = typeof emailAddressValidityHandler === 'function' ? emailAddressValidityHandler() : true;
     const emailAddressElement = (
-        <InputSingleLine
-            label="Email Address*: "
-            inputType="email"
-            inputValue={emailAddress}
-            inputID={`references-email-address-${emailAddressKey}`}
-            classNames={["email-address"]}
-            changeHandler={emailAddressChangeHandler}
-            enabled={editMode}
-            valid={emailAddressValidityHandler}
-        />
+        <>
+            <InputSingleLine
+                label="Email Address*: "
+                inputType="email"
+                inputValue={emailAddress}
+                inputID={`references-email-address-${emailAddressKey}`}
+                classNames={["email-address"]}
+                changeHandler={emailAddressChangeHandler}
+                enabled={editMode}
+                valid={emailAddressValid}
+            />
+            {emailAddressValid ? null :
+                <div className={["email-address-invalid-message"]} >
+                The above field must NOT be empty. Your email must be in the format: xxx@yyy.zzz.
+                </div>
+            }
+        </>
     )
 
+    const phoneNumberValid = typeof phoneNumberValidityHandler === 'function' ? phoneNumberValidityHandler() : true;
     const phoneNumberElement = (
-        <InputSingleLine
-            label="Telephone Number*: "
-            inputType="tel"
-            inputValue={phoneNumber}
-            inputID={`references-phone-number-${phoneNumberKey}`}
-            classNames={["phone-number"]}
-            changeHandler={phoneNumberChangeHandler}
-            enabled={editMode}
-            valid={phoneNumberValidityHandler}
-        />
+        <>
+            <InputSingleLine
+                label="Telephone Number*: "
+                inputType="tel"
+                inputValue={phoneNumber}
+                inputID={`references-phone-number-${phoneNumberKey}`}
+                classNames={["phone-number"]}
+                changeHandler={phoneNumberChangeHandler}
+                enabled={editMode}
+                valid={phoneNumberValid}
+            />
+            {phoneNumberValid ? null :
+                <div className={["phone-number-invalid-message"]} >
+                The above field must NOT be empty. Your phone number must be a valid UK phone number.
+                </div>
+            }
+        </>
     )
 
     const deleteButtonElement = editMode ? (
@@ -109,7 +160,7 @@ const Reference = ({
         <div className={["Reference"].concat(classNames).join(" ")} >
         {firstNamesElement}
         {lastNameElement}
-        {responsibilitiesElement}
+        {relationshipElement}
         {emailAddressElement}
         {phoneNumberElement}
         {deleteButtonElement}

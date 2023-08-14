@@ -25,3 +25,13 @@
     grid-template-columns: var(--PersonalInformation-label-column-width, 10rem) var(--PersonalInformation-input-column-width, 27rem);
     gap: var(--PersonalInformation-label-to-input-gap, 1rem);
 }
+
+.PersonalInformation .first-names-invalid-message,
+.PersonalInformation .last-name-invalid-message,
+.PersonalInformation .email-address-invalid-message,
+.PersonalInformation .phone-number-invalid-message {
+    color: rgb(255, 0, 0);
+    align-self: flex-end;
+    font-size: 0.6rem;
+    margin-top: calc(0.7rem - var(--PersonalInformation-label-to-input-gap, 1rem));
+}

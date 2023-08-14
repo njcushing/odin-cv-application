@@ -14,7 +14,7 @@
     display: grid;
     grid-template-rows: auto;
     place-items: center;
-    gap: 0.4rem;
+    gap: 0.2rem;
     width: var(--PreviousEducation-total-width);
 }
 
@@ -27,12 +27,27 @@
     gap: var(--PreviousEducation-label-to-input-gap, 1rem);
 }
 
+.PreviousEducation .institution-invalid-message,
+.PreviousEducation .qualifications-message,
+.PreviousEducation .start-date-invalid-message,
+.PreviousEducation .end-date-invalid-message {
+    color: rgb(255, 0, 0);
+    justify-self: end;
+    font-size: 0.6rem;
+}
+
 .PreviousEducation .institution-name {
     grid-area: 1 / 1 / 2 / 2;
 }
+.PreviousEducation .institution-name-invalid-message {
+    grid-area: 2 / 1 / 3 / 2;
+}
 
 .PreviousEducation .qualifications {
-    grid-area: 2 / 1 / 3 / 2;
+    grid-area: 3 / 1 / 4 / 2;
+}
+.PreviousEducation .qualifications-invalid-message {
+    grid-area: 4 / 1 / 5 / 2;
 }
 
 .PreviousEducation .qualifications .TextBox-textarea {
@@ -40,11 +55,17 @@
 }
 
 .PreviousEducation .start-date {
-    grid-area: 3 / 1 / 4 / 2;
+    grid-area: 5 / 1 / 6 / 2;
+}
+.PreviousEducation .start-date-invalid-message {
+    grid-area: 6 / 1 / 7 / 2;
 }
 
 .PreviousEducation .end-date {
-    grid-area: 4 / 1 / 5 / 2;
+    grid-area: 7 / 1 / 8 / 2;
+}
+.PreviousEducation .end-date-invalid-message {
+    grid-area: 8 / 1 / 9 / 2;
 }
 
 .PreviousEducation .delete-button {
@@ -57,7 +78,7 @@
     width: 7rem;
     height: 1.8rem;
     place-self: end;
-    grid-area: 5 / 1 / 6 / 2;
+    grid-area: 9 / 1 / 10 / 2;
     background-color: #e73333;
 }
 

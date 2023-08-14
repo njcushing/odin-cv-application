@@ -14,7 +14,7 @@
     display: grid;
     grid-template-rows: auto;
     place-items: center;
-    gap: 0.4rem;
+    gap: 0.2rem;
     width: var(--Reference-total-width);
 }
 
@@ -28,24 +28,49 @@
     gap: var(--Reference-label-to-input-gap, 1rem);
 }
 
+.Reference .first-names-invalid-message,
+.Reference .last-name-invalid-message,
+.Reference .relationship-invalid-message,
+.Reference .email-address-invalid-message,
+.Reference .phone-number-invalid-message {
+    color: rgb(255, 0, 0);
+    justify-self: end;
+    font-size: 0.6rem;
+}
+
 .Reference .first-names {
     grid-area: 1 / 1 / 2 / 2;
 }
-
-.Reference .last-name {
+.Reference .first-names-invalid-message {
     grid-area: 2 / 1 / 3 / 2;
 }
 
-.Reference .relationship {
+.Reference .last-name {
     grid-area: 3 / 1 / 4 / 2;
 }
-
-.Reference .email-address {
+.Reference .last-name-invalid-message {
     grid-area: 4 / 1 / 5 / 2;
 }
 
-.Reference .phone-number {
+.Reference .relationship {
     grid-area: 5 / 1 / 6 / 2;
+}
+.Reference .relationship-invalid-message {
+    grid-area: 6 / 1 / 7 / 2;
+}
+
+.Reference .email-address {
+    grid-area: 7 / 1 / 8 / 2;
+}
+.Reference .email-address-invalid-message {
+    grid-area: 8 / 1 / 9 / 2;
+}
+
+.Reference .phone-number {
+    grid-area: 9 / 1 / 10 / 2;
+}
+.Reference .phone-number-invalid-message {
+    grid-area: 10 / 1 / 11 / 2;
 }
 
 .Reference .ButtonBasic {
@@ -58,7 +83,7 @@
     width: 7rem;
     height: 1.8rem;
     place-self: end;
-    grid-area: 6 / 1 / 7 / 2;
+    grid-area: 11 / 1 / 12 / 2;
     background-color: #e73333;
 }
 

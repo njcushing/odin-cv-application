@@ -6,6 +6,7 @@
 .HobbiesInterests {
     display: grid;
     grid-template-rows: auto;
+    justify-content: center;
     padding: 1rem 0.2rem;
 }
 
@@ -18,6 +19,13 @@
 
 .HobbiesInterests .hobbies-interests-textarea {
     place-self: center;
+}
+
+.HobbiesInterests .hobbies-interests-invalid-message {
+    color: rgb(255, 0, 0);
+    justify-self: end;
+    font-size: 0.6rem;
+    margin-top: calc(0.8rem - var(--PersonalInformation-label-to-input-gap, 1rem));
 }
 
 .HobbiesInterests .hobbies-interests-textarea .TextBox-textarea {

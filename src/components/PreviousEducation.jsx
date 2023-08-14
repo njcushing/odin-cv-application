@@ -10,16 +10,20 @@ const PreviousEducation = ({
 
     institution = "",
     institutionChangeHandler,
-    institutionValidityHandler,
+    institutionValidityHandler = () => institution.length > 0,
+
     qualifications = "",
     qualificationsChangeHandler,
     qualificationsValidityHandler,
+
     startDate = null,
     startDateChangeHandler,
     startDateValidityHandler,
+
     endDate = null,
     endDateChangeHandler,
     endDateValidityHandler,
+
     deleteButtonClickHandler,
     classNames = [],
     editMode = false,
@@ -31,56 +35,88 @@ const PreviousEducation = ({
     const startDateKey = uuidv4();
     const endDateKey = uuidv4();
 
+    const institutionValid = typeof institutionValidityHandler === 'function' ? institutionValidityHandler() : true;
     const institutionElement = (
-        <InputSingleLine
-            label="Institution*: "
-            inputType="text"
-            inputValue={institution}
-            inputID={`previous-education-institution-name-${institutionKey}`}
-            classNames={["institution-name"]}
-            changeHandler={institutionChangeHandler}
-            enabled={editMode}
-            valid={institutionValidityHandler}
-        />
+        <>
+            <InputSingleLine
+                label="Institution*: "
+                inputType="text"
+                inputValue={institution}
+                inputID={`previous-education-institution-name-${institutionKey}`}
+                classNames={["institution-name"]}
+                changeHandler={institutionChangeHandler}
+                enabled={editMode}
+                valid={institutionValid}
+            />
+            {institutionValid ? null :
+                <div className={["institution-invalid-message"]} >
+                The above field must NOT be empty.
+                </div>
+            }
+        </>
     )
 
+    const qualificationsValid = typeof qualificationsValidityHandler === 'function' ? qualificationsValidityHandler() : true;
     const qualificationsElement = (
-        <TextBox
-            label="Qualifications: "
-            textBoxText={qualifications}
-            textareaID={`previous-education-qualifications-${qualificationsKey}`}
-            classNames={["qualifications"]}
-            changeHandler={qualificationsChangeHandler}
-            resize="none"
-            scrollable={true}
-            maxLength={500}
-            enabled={editMode}
-            valid={qualificationsValidityHandler}
-        />
+        <>
+            <TextBox
+                label="Qualifications: "
+                textBoxText={qualifications}
+                textareaID={`previous-education-qualifications-${qualificationsKey}`}
+                classNames={["qualifications"]}
+                changeHandler={qualificationsChangeHandler}
+                resize="none"
+                scrollable={true}
+                maxLength={500}
+                enabled={editMode}
+                valid={qualificationsValid}
+            />
+            {qualificationsValid ? null :
+                <div className={["qualifications-invalid-message"]} >
+                The above field must NOT be empty.
+                </div>
+            }
+        </>
     )
 
+    const startDateValid = typeof startDateValidityHandler === 'function' ? startDateValidityHandler() : true;
     const startDateElement = (
-        <DatePicker
-            label="Start Date*: "
-            inputID={`previous-education-start-date-${startDateKey}`}
-            date={startDate}
-            classNames={["start-date"]}
-            changeHandler={startDateChangeHandler}
-            enabled={editMode}
-            valid={startDateValidityHandler}
-        />
+        <>
+            <DatePicker
+                label="Start Date*: "
+                inputID={`previous-education-start-date-${startDateKey}`}
+                date={startDate}
+                classNames={["start-date"]}
+                changeHandler={startDateChangeHandler}
+                enabled={editMode}
+                valid={startDateValid}
+            />
+            {startDateValid ? null :
+                <div className={["start-date-invalid-message"]} >
+                The above field must NOT be empty.
+                </div>
+            }
+        </>
     )
 
+    const endDateValid = typeof endDateValidityHandler === 'function' ? endDateValidityHandler() : true;
     const endDateElement = (
-        <DatePicker
-            label="End Date*: "
-            inputID={`previous-education-end-date-${endDateKey}`}
-            date={endDate}
-            classNames={["end-date"]}
-            changeHandler={endDateChangeHandler}
-            enabled={editMode}
-            valid={endDateValidityHandler}
-        />
+        <>
+            <DatePicker
+                label="End Date*: "
+                inputID={`previous-education-end-date-${endDateKey}`}
+                date={endDate}
+                classNames={["end-date"]}
+                changeHandler={endDateChangeHandler}
+                enabled={editMode}
+                valid={endDateValid}
+            />
+            {endDateValid ? null :
+                <div className={["end-date-invalid-message"]} >
+                The above field must NOT be empty.
+                </div>
+            }
+        </>
     )
 
     const deleteButtonElement = editMode ? (

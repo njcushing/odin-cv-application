@@ -14,7 +14,7 @@
     display: grid;
     grid-template-rows: auto;
     place-items: center;
-    gap: 0.4rem;
+    gap: 0.2rem;
     width: var(--PreviousEmployment-total-width);
 }
 
@@ -28,16 +28,35 @@
     gap: var(--PreviousEmployment-label-to-input-gap, 1rem);
 }
 
+.PreviousEmployment .company-name-invalid-message,
+.PreviousEmployment .role-invalid-message,
+.PreviousEmployment .responsibilities-invalid-message,
+.PreviousEmployment .start-date-invalid-message,
+.PreviousEmployment .end-date-invalid-message {
+    color: rgb(255, 0, 0);
+    justify-self: end;
+    font-size: 0.6rem;
+}
+
 .PreviousEmployment .company-name {
     grid-area: 1 / 1 / 2 / 2;
 }
-
-.PreviousEmployment .role {
+.PreviousEmployment .company-name-invalid-message {
     grid-area: 2 / 1 / 3 / 2;
 }
 
-.PreviousEmployment .responsibilities {
+.PreviousEmployment .role {
     grid-area: 3 / 1 / 4 / 2;
+}
+.PreviousEmployment .role-invalid-message {
+    grid-area: 4 / 1 / 5 / 2;
+}
+
+.PreviousEmployment .responsibilities {
+    grid-area: 5 / 1 / 6 / 2;
+}
+.PreviousEmployment .responsibilities-invalid-message {
+    grid-area: 6 / 1 / 7 / 2;
 }
 
 .PreviousEmployment .responsibilities .TextBox-textarea {
@@ -45,11 +64,17 @@
 }
 
 .PreviousEmployment .start-date {
-    grid-area: 4 / 1 / 5 / 2;
+    grid-area: 7 / 1 / 8 / 2;
+}
+.PreviousEmployment .start-date-invalid-message {
+    grid-area: 8 / 1 / 9 / 2;
 }
 
 .PreviousEmployment .end-date {
-    grid-area: 5 / 1 / 6 / 2;
+    grid-area: 9 / 1 / 10 / 2;
+}
+.PreviousEmployment .end-date-invalid-message {
+    grid-area: 10 / 1 / 11 / 2;
 }
 
 .PreviousEmployment .ButtonBasic {
@@ -62,7 +87,7 @@
     width: 7rem;
     height: 1.8rem;
     place-self: end;
-    grid-area: 6 / 1 / 7 / 2;
+    grid-area: 11 / 1 / 12 / 2;
     background-color: #e73333;
 }
 

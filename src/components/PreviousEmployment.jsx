@@ -11,18 +11,23 @@ const PreviousEmployment = ({
     companyName = "",
     companyNameChangeHandler,
     companyNameValidityHandler,
+
     role = "",
     roleChangeHandler,
     roleValidityHandler,
+
     responsibilities = "",
     responsibilitiesChangeHandler,
     responsibilitiesValidityHandler,
+
     startDate = null,
     startDateChangeHandler,
     startDateValidityHandler,
+    
     endDate = null,
     endDateChangeHandler,
     endDateValidityHandler,
+
     deleteButtonClickHandler,
     classNames = [],
     editMode = false,
@@ -35,69 +40,109 @@ const PreviousEmployment = ({
     const startDateKey = uuidv4();
     const endDateKey = uuidv4();
 
+    const companyNameValid = typeof companyNameValidityHandler === 'function' ? companyNameValidityHandler() : true;
     const companyNameElement = (
-        <InputSingleLine
-            label="Company*: "
-            inputType="text"
-            inputValue={companyName}
-            inputID={`previous-employment-company-name-${companyNameKey}`}
-            classNames={["company-name"]}
-            changeHandler={companyNameChangeHandler}
-            enabled={editMode}
-            valid={companyNameValidityHandler}
-        />
+        <>
+            <InputSingleLine
+                label="Company*: "
+                inputType="text"
+                inputValue={companyName}
+                inputID={`previous-employment-company-name-${companyNameKey}`}
+                classNames={["company-name"]}
+                changeHandler={companyNameChangeHandler}
+                enabled={editMode}
+                valid={companyNameValid}
+            />
+            {companyNameValid ? null :
+                <div className={["company-name-invalid-message"]} >
+                The above field must NOT be empty.
+                </div>
+            }
+        </>
     )
 
+    const roleValid = typeof roleValidityHandler === 'function' ? roleValidityHandler() : true;
     const roleElement = (
-        <InputSingleLine
-            label="Role*: "
-            inputType="text"
-            inputValue={role}
-            inputID={`previous-employment-role-${roleKey}`}
-            classNames={["role"]}
-            changeHandler={roleChangeHandler}
-            enabled={editMode}
-            valid={roleValidityHandler}
-        />
+        <>
+            <InputSingleLine
+                label="Role*: "
+                inputType="text"
+                inputValue={role}
+                inputID={`previous-employment-role-${roleKey}`}
+                classNames={["role"]}
+                changeHandler={roleChangeHandler}
+                enabled={editMode}
+                valid={roleValid}
+            />
+            {roleValid ? null :
+                <div className={["role-invalid-message"]} >
+                The above field must NOT be empty.
+                </div>
+            }
+        </>
     )
 
+    const responsibilitiesValid = typeof responsibilitiesValidityHandler === 'function' ? responsibilitiesValidityHandler() : true;
     const responsibilitiesElement = (
-        <TextBox
-            label="Responsibilities: "
-            textBoxText={responsibilities}
-            textareaID={`previous-employment-responsibilities-${responsibilitiesKey}`}
-            classNames={["responsibilities"]}
-            changeHandler={responsibilitiesChangeHandler}
-            resize="none"
-            scrollable={true}
-            maxLength={500}
-            enabled={editMode}
-            valid={responsibilitiesValidityHandler}
-        />
+        <>
+            <TextBox
+                label="Responsibilities: "
+                textBoxText={responsibilities}
+                textareaID={`previous-employment-responsibilities-${responsibilitiesKey}`}
+                classNames={["responsibilities"]}
+                changeHandler={responsibilitiesChangeHandler}
+                resize="none"
+                scrollable={true}
+                maxLength={500}
+                enabled={editMode}
+                valid={responsibilitiesValid}
+            />
+            {responsibilitiesValid ? null :
+                <div className={["responsibilities-invalid-message"]} >
+                The above field must NOT be empty.
+                </div>
+            }
+        </>
     )
 
+    const startDateValid = typeof startDateValidityHandler === 'function' ? startDateValidityHandler() : true;
     const startDateElement = (
-        <DatePicker
-            label="Start Date*: "
-            inputID={`previous-employment-start-date-${startDateKey}`}
-            date={startDate}
-            classNames={["start-date"]}
-            changeHandler={startDateChangeHandler}
-            enabled={editMode}
-            valid={startDateValidityHandler}
-        />
+        <>
+            <DatePicker
+                label="Start Date*: "
+                inputID={`previous-employment-start-date-${startDateKey}`}
+                date={startDate}
+                classNames={["start-date"]}
+                changeHandler={startDateChangeHandler}
+                enabled={editMode}
+                valid={startDateValid}
+            />
+            {startDateValid ? null :
+                <div className={["start-date-invalid-message"]} >
+                The above field must NOT be empty.
+                </div>
+            }
+        </>
     )
 
+    const endDateValid = typeof endDateValidityHandler === 'function' ? endDateValidityHandler() : true;
     const endDateElement = (
-        <DatePicker
-            label="End Date*: "
-            inputID={`previous-employment-end-date-${endDateKey}`}
-            date={endDate}
-            classNames={["end-date"]}
-            changeHandler={endDateChangeHandler}
-            enabled={editMode}
-            valid={endDateValidityHandler}
-        />
+        <>
+            <DatePicker
+                label="End Date*: "
+                inputID={`previous-employment-end-date-${endDateKey}`}
+                date={endDate}
+                classNames={["end-date"]}
+                changeHandler={endDateChangeHandler}
+                enabled={editMode}
+                valid={endDateValid}
+            />
+            {endDateValid ? null :
+                <div className={["end-date-invalid-message"]} >
+                The above field must NOT be empty.
+                </div>
+            }
+        </>
     )
 
     const deleteButtonElement = editMode ? (

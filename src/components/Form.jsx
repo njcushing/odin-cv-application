@@ -405,7 +405,7 @@ function Form() {
     }
 
     const submitButton = () => {
-        const formValid = true
+        const formValid = true;
 
         return (
             <div className={classNames.submitButton}>

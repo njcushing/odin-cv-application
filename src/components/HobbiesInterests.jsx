@@ -8,6 +8,7 @@ const HobbiesInterests = ({
     hobbiesInterests = "",
     hobbiesInterestsChangeHandler,
     hobbiesInterestsValidityHandler,
+
     classNames = [],
     editMode = false,
 
@@ -21,20 +22,28 @@ const HobbiesInterests = ({
         </h4>
     )
 
+    const hobbiesInterestsValid = typeof hobbiesInterestsValidityHandler === 'function' ? hobbiesInterestsValidityHandler() : true;
     const hobbiesInterestsElement = (
-        <TextBox
-            label=""
-            textBoxText={hobbiesInterests}
-            textareaID="hobbies-interests"
-            classNames={["hobbies-interests-textarea"]}
-            changeHandler={hobbiesInterestsChangeHandler}
-            resize="none"
-            scrollable={true}
-            maxLength={500}
-            placeholder={"You have opted not to provide any additional information about yourself"}
-            enabled={editMode}
-            valid={hobbiesInterestsValidityHandler}
-        />
+        <>
+            <TextBox
+                label=""
+                textBoxText={hobbiesInterests}
+                textareaID="hobbies-interests"
+                classNames={["hobbies-interests-textarea"]}
+                changeHandler={hobbiesInterestsChangeHandler}
+                resize="none"
+                scrollable={true}
+                maxLength={500}
+                placeholder={"You have opted not to provide any additional information about yourself"}
+                enabled={editMode}
+                valid={hobbiesInterestsValid}
+            />
+            {hobbiesInterestsValid ? null :
+                <div className={["hobbies-interests-invalid-message"]} >
+                The above field must NOT be empty.
+                </div>
+            }
+        </>
     )
 
     return (
