@@ -9,7 +9,7 @@ import PreviousEmployment from './PreviousEmployment.jsx';
 import Reference from './Reference.jsx';
 import HobbiesInterests from './HobbiesInterests.jsx';
 
-const nonEmptyValidityHandler = (value) =>  value.length > 0
+const nonEmptyValidityHandler = (value) => value.length > 0
 const nameValidityHandler = (name) => /^[0-9a-z](\ ?[0-9a-z])*$/i.test(name);
 const emailAddressValidityHandler = (emailAddress) => {
     if (emailAddress.length === 0) return false;
@@ -18,6 +18,15 @@ const emailAddressValidityHandler = (emailAddress) => {
 const phoneNumberValidityHandler = (phoneNumber) => /^(((\+44\s?\d{4}|\(?0\d{4}\)?)\s?\d{3}\s?\d{3})|((\+44\s?\d{3}|\(?0\d{3}\)?)\s?\d{3}\s?\d{4})|((\+44\s?\d{2}|\(?0\d{2}\)?)\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$/.test(phoneNumber);
 const dateValidityHandler = (dateString) => !isNaN(Date.parse(dateString));
 
+const personalInformationNew = () => {
+    return {
+        uniqueID: uuidv4(),
+        firstNames: "",
+        lastName: "",
+        emailAddress: "",
+        phoneNumber: "",
+    }
+}
 const previousEducationNew = () => {
     return {
         uniqueID: uuidv4(),
@@ -25,11 +34,6 @@ const previousEducationNew = () => {
         qualifications: "",
         startDate: null,
         endDate: null,
-
-        institutionValidityHandler: nonEmptyValidityHandler,
-        qualificationsValidityHandler: (x) => true,
-        startDateValidityHandler: dateValidityHandler,
-        endDateValidityHandler: dateValidityHandler,
     }
 }
 const previousEmploymentNew = () => {
@@ -40,44 +44,22 @@ const previousEmploymentNew = () => {
         responsibilities: "",
         startDate: null,
         endDate: null,
-
-        companyValidityHandler: nonEmptyValidityHandler,
-        roleValidityHandler: nonEmptyValidityHandler,
-        responsibilitiesValidityHandler: (x) => true,
-        startDateValidityHandler: dateValidityHandler,
-        endDateValidityHandler: dateValidityHandler,
     }
 }
 const referenceNew = () => {
     return {
         uniqueID: uuidv4(),
-        firstName: "",
+        firstNames: "",
         lastName: "",
-        relation: "",
+        relationship: "",
         emailAddress: "",
         phoneNumber: "",
-
-        firstNameValidityHandler: nameValidityHandler,
-        lastNameValidityHandler: nameValidityHandler,
-        relationValidityHandler: nonEmptyValidityHandler,
-        emailAddressValidityHandler: emailAddressValidityHandler,
-        phoneNumberValidityHandler: phoneNumberValidityHandler,
     }
 }
 
 function Form() {
     const [currentPage, setCurrentPage] = useState("Education");
-    const [personalInformation, setPersonalInformation] = useState({
-        firstName: "",
-        lastName: "",
-        emailAddress: "",
-        phoneNumber: "",
-
-        firstNameValidityHandler: nameValidityHandler,
-        lastNameValidityHandler: nameValidityHandler,
-        emailAddressValidityHandler: emailAddressValidityHandler,
-        phoneNumberValidityHandler: phoneNumberValidityHandler,
-    });
+    const [personalInformation, setPersonalInformation] = useState(personalInformationNew());
     const [previousEducation, setPreviousEducation] = useState(new Map());
     const [previousEmployment, setPreviousEmployment] = useState(new Map());
     const [hobbiesInterests, setHobbiesInterests] = useState("");
@@ -135,29 +117,29 @@ function Form() {
 
     const personalInfoComponent = (editMode = true) => { return(
         <PersonalInformation
-            firstNames={personalInformation.firstName}
+            firstNames={personalInformation.firstNames}
             firstNamesChangeHandler={(e) => setPersonalInformation(
-                { ...personalInformation, firstName: e.target.value }
+                { ...personalInformation, firstNames: e.target.value }
             )}
-            firstNamesValidityHandler={() => personalInformation.firstNameValidityHandler(personalInformation.firstName)}
+            firstNamesValidityHandler={() => nameValidityHandler(personalInformation.firstNames)}
             firstNamesInvalidMessage="The above field must NOT be empty. Your name(s) can contain letters, numbers and spaces."
             lastName={personalInformation.lastName}
             lastNameChangeHandler={(e) => setPersonalInformation(
                 { ...personalInformation, lastName: e.target.value }
             )}
-            lastNameValidityHandler={() => personalInformation.lastNameValidityHandler(personalInformation.lastName)}
+            lastNameValidityHandler={() => nameValidityHandler(personalInformation.lastName)}
             lastNameInvalidMessage="The above field must NOT be empty. Your name(s) can contain letters, numbers and spaces."
             emailAddress={personalInformation.emailAddress}
             emailAddressChangeHandler={(e) => setPersonalInformation(
                 { ...personalInformation, emailAddress: e.target.value }
             )}
-            emailAddressValidityHandler={() => personalInformation.emailAddressValidityHandler(personalInformation.emailAddress)}
+            emailAddressValidityHandler={() => emailAddressValidityHandler(personalInformation.emailAddress)}
             emailAddressInvalidMessage="The above field must NOT be empty. Your email must be in the format: xxx@yyy.zzz."
             phoneNumber={personalInformation.phoneNumber}
             phoneNumberChangeHandler={(e) => setPersonalInformation(
                 { ...personalInformation, phoneNumber: e.target.value }
             )}
-            phoneNumberValidityHandler={() => personalInformation.phoneNumberValidityHandler(personalInformation.phoneNumber)}
+            phoneNumberValidityHandler={() => phoneNumberValidityHandler(personalInformation.phoneNumber)}
             phoneNumberInvalidMessage="The above field must NOT be empty. Your phone number must be a valid UK phone number."
             classNames={[classNames.personalInfoContainer]}
             editMode={editMode}
@@ -175,7 +157,7 @@ function Form() {
                     previousEducationCopy.get(uniqueID).institution = e.target.value;
                     setPreviousEducation(previousEducationCopy);
                 }}
-                institutionValidityHandler={() => education.institutionValidityHandler(education.institution)}
+                institutionValidityHandler={() => nonEmptyValidityHandler(education.institution)}
                 institutionInvalidMessage="The above field must NOT be empty."
                 qualifications={education.qualifications}
                 qualificationsChangeHandler={(e) => {
@@ -195,7 +177,7 @@ function Form() {
                     }
                     setPreviousEducation(previousEducationCopy);
                 }}
-                startDateValidityHandler={() => education.startDateValidityHandler(education.startDate)}
+                startDateValidityHandler={() => dateValidityHandler(education.startDate)}
                 startDateInvalidMessage="The above field must contain a valid date."
                 endDate={education.endDate}
                 endDateChangeHandler={(e) => {
@@ -209,7 +191,7 @@ function Form() {
                     }
                     setPreviousEducation(previousEducationCopy);
                 }}
-                endDateValidityHandler={() => education.endDateValidityHandler(education.endDate)}
+                endDateValidityHandler={() => dateValidityHandler(education.endDate)}
                 endDateInvalidMessage="The above field must contain a valid date."
                 deleteButtonClickHandler={() => {
                     var previousEducationCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEducation))));
@@ -251,7 +233,7 @@ function Form() {
                             previousEmploymentCopy.get(uniqueID).company = e.target.value;
                             setPreviousEmployment(previousEmploymentCopy);
                         }}
-                        companyNameValidityHandler={() => employment.companyValidityHandler(employment.company)}
+                        companyNameValidityHandler={() => nonEmptyValidityHandler(employment.company)}
                         companyNameInvalidMessage="The above field must NOT be empty."
                         role={employment.role}
                         roleChangeHandler={(e) => {
@@ -259,7 +241,7 @@ function Form() {
                             previousEmploymentCopy.get(uniqueID).role = e.target.value;
                             setPreviousEmployment(previousEmploymentCopy);
                         }}
-                        roleValidityHandler={() => employment.roleValidityHandler(employment.role)}
+                        roleValidityHandler={() => nonEmptyValidityHandler(employment.role)}
                         roleInvalidMessage="The above field must NOT be empty."
                         responsibilities={employment.responsibilities}
                         responsibilitiesChangeHandler={(e) => {
@@ -279,7 +261,7 @@ function Form() {
                             }
                             setPreviousEmployment(previousEmploymentCopy);
                         }}
-                        startDateValidityHandler={() => employment.startDateValidityHandler(employment.startDate)}
+                        startDateValidityHandler={() => dateValidityHandler(employment.startDate)}
                         startDateInvalidMessage="The above field must contain a valid date."
                         endDate={employment.endDate}
                         endDateChangeHandler={(e) => {
@@ -293,7 +275,7 @@ function Form() {
                             }
                             setPreviousEmployment(previousEmploymentCopy);
                         }}
-                        endDateValidityHandler={() => employment.endDateValidityHandler(employment.endDate)}
+                        endDateValidityHandler={() => dateValidityHandler(employment.endDate)}
                         endDateInvalidMessage="The above field must contain a valid date."
                         deleteButtonClickHandler={() => {
                             var previousEmploymentCopy = new Map(JSON.parse(JSON.stringify(Array.from(previousEmployment))));
@@ -339,13 +321,13 @@ function Form() {
                 const reference = references.get(uniqueID);
                 return (
                     <Reference
-                        firstNames={reference.firstName}
+                        firstNames={reference.firstNames}
                         firstNamesChangeHandler={(e) => {
                             var referencesCopy = new Map(JSON.parse(JSON.stringify(Array.from(references))));
-                            referencesCopy.get(uniqueID).firstName = e.target.value;
+                            referencesCopy.get(uniqueID).firstNames = e.target.value;
                             setReferences(referencesCopy);
                         }}
-                        firstNamesValidityHandler={() => reference.firstNameValidityHandler(reference.firstName)}
+                        firstNamesValidityHandler={() => nameValidityHandler(reference.firstNames)}
                         firstNamesInvalidMessage="The above field must NOT be empty. Your name(s) can contain letters, numbers and spaces."
                         lastName={reference.lastName}
                         lastNameChangeHandler={(e) => {
@@ -353,7 +335,7 @@ function Form() {
                             referencesCopy.get(uniqueID).lastName = e.target.value;
                             setReferences(referencesCopy);
                         }}
-                        lastNameValidityHandler={() => reference.lastNameValidityHandler(reference.lastName)}
+                        lastNameValidityHandler={() => nameValidityHandler(reference.lastName)}
                         lastNameInvalidMessage="The above field must NOT be empty. Your name(s) can contain letters, numbers and spaces."
                         relationship={reference.relationship}
                         relationshipChangeHandler={(e) => {
@@ -361,7 +343,7 @@ function Form() {
                             referencesCopy.get(uniqueID).relationship = e.target.value;
                             setReferences(referencesCopy);
                         }}
-                        relationshipValidityHandler={() => reference.relationValidityHandler(reference.relation)}
+                        relationshipValidityHandler={() => nonEmptyValidityHandler(reference.relationship)}
                         relationshipInvalidMessage="The above field must NOT be empty."
                         emailAddress={reference.emailAddress}
                         emailAddressChangeHandler={(e) => {
@@ -369,7 +351,7 @@ function Form() {
                             referencesCopy.get(uniqueID).emailAddress = e.target.value;
                             setReferences(referencesCopy);
                         }}
-                        emailAddressValidityHandler={() => reference.emailAddressValidityHandler(reference.emailAddress)}
+                        emailAddressValidityHandler={() => emailAddressValidityHandler(reference.emailAddress)}
                         emailAddressInvalidMessage="The above field must NOT be empty. Your email must be in the format: xxx@yyy.zzz."
                         phoneNumber={reference.phoneNumber}
                         phoneNumberChangeHandler={(e) => {
@@ -377,7 +359,7 @@ function Form() {
                             referencesCopy.get(uniqueID).phoneNumber = e.target.value;
                             setReferences(referencesCopy);
                         }}
-                        phoneNumberValidityHandler={() => reference.phoneNumberValidityHandler(reference.phoneNumber)}
+                        phoneNumberValidityHandler={() => phoneNumberValidityHandler(reference.phoneNumber)}
                         phoneNumberInvalidMessage="The above field must NOT be empty. Your phone number must be a valid UK phone number."
                         deleteButtonChangeHandler={() => {
                             var referencesCopy = new Map(JSON.parse(JSON.stringify(Array.from(references))));
@@ -482,9 +464,39 @@ function Form() {
     }
 
     const validateForm = () => {
+        if (!nameValidityHandler(personalInformation.firstNames)) return false;
+        if (!nameValidityHandler(personalInformation.lastName)) return false;
+        if (!emailAddressValidityHandler(personalInformation.emailAddress)) return false;
+        if (!phoneNumberValidityHandler(personalInformation.phoneNumber)) return false;
 
+        const previousEducationKeys = [...previousEducation.keys()];
+        for (let i = 0; i < previousEducationKeys.length; i++) {
+            const education = previousEducation.get(previousEducationKeys[i]);
+            if (!nonEmptyValidityHandler(education.institution)) return false;
+            if (!dateValidityHandler(education.startDate)) return false;
+            if (!dateValidityHandler(education.endDate)) return false;
+        }
 
+        const previousEmploymentKeys = [...previousEmployment.keys()];
+        for (let i = 0; i < previousEmploymentKeys.length; i++) {
+            const employment = previousEmployment.get(previousEmploymentKeys[i]);
+            if (!nonEmptyValidityHandler(employment.company)) return false;
+            if (!nonEmptyValidityHandler(employment.role)) return false;
+            if (!dateValidityHandler(employment.startDate)) return false;
+            if (!dateValidityHandler(employment.endDate)) return false;
+        }
 
+        const referencesKeys = [...references.keys()];
+        for (let i = 0; i < referencesKeys.length; i++) {
+            const reference = references.get(referencesKeys[i]);
+            if (!nameValidityHandler(reference.firstNames)) return false;
+            if (!nameValidityHandler(reference.lastName)) return false;
+            if (!nonEmptyValidityHandler(reference.relationship)) return false;
+            if (!emailAddressValidityHandler(reference.emailAddress)) return false;
+            if (!phoneNumberValidityHandler(reference.phoneNumber)) return false;
+        }
+
+        return true;
     }
 
     switch (currentPage) {
