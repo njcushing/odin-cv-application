@@ -172,7 +172,9 @@
 }
 
 .cv-application-add-field-button {
-    place-self: center;
+    justify-self: center;
+    align-self: end;
+    padding: 1rem 0.4rem;
 }
 .cv-application-add-field-button .ButtonBasic {
     border-radius: 0.3rem;
