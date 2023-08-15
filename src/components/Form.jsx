@@ -455,7 +455,7 @@ function Form() {
                 <ButtonBasic
                     buttonText={"Submit"}
                     clickHandler={() => {
-                        return null;
+                        if (validateForm()) setCurrentPage("Submitted");
                     }}
                     enabled={validateForm()}
                 />
@@ -624,7 +624,15 @@ function Form() {
         case "Submitted":
             return (
                 <div className={classNames.formContainer}>
-                <div></div>
+                {sectionTitle("Form Submitted")}
+                <div>
+                {textRegular("Thank you for taking the time to fill out this form!")}
+                {textRegular("If you would like to go back to the Review page, please click the button below.")}
+                </div>
+                <div className={classNames.pageButtons}>
+                    <ButtonBasic buttonText="Go Back" clickHandler={() => 
+                        setCurrentPage("Review")}/>
+                </div>
                 </div>
             )
         default:
