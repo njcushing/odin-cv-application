@@ -32,8 +32,8 @@ const previousEducationNew = () => {
         uniqueID: uuidv4(),
         institution: "",
         qualifications: "",
-        startDate: null,
-        endDate: null,
+        startDate: "",
+        endDate: "",
     }
 }
 const previousEmploymentNew = () => {
@@ -42,8 +42,8 @@ const previousEmploymentNew = () => {
         company: "",
         role: "",
         responsibilities: "",
-        startDate: null,
-        endDate: null,
+        startDate: "",
+        endDate: "",
     }
 }
 const referenceNew = () => {

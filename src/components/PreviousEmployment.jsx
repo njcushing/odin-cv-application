@@ -23,12 +23,12 @@ const PreviousEmployment = ({
     responsibilitiesValidityHandler,
     responsibilitiesInvalidMessage,
 
-    startDate = null,
+    startDate = "",
     startDateChangeHandler,
     startDateValidityHandler,
     startDateInvalidMessage,
     
-    endDate = null,
+    endDate = "",
     endDateChangeHandler,
     endDateValidityHandler,
     endDateInvalidMessage,
