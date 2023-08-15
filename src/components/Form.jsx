@@ -58,7 +58,7 @@ const referenceNew = () => {
 }
 
 function Form() {
-    const [currentPage, setCurrentPage] = useState("Education");
+    const [currentPage, setCurrentPage] = useState("Home");
     const [personalInformation, setPersonalInformation] = useState(personalInformationNew());
     const [previousEducation, setPreviousEducation] = useState(new Map());
     const [previousEmployment, setPreviousEmployment] = useState(new Map());
